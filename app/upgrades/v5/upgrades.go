@@ -6,9 +6,9 @@ import (
 	authz "github.com/cosmos/cosmos-sdk/x/authz"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
-	interchainquerykeeper "github.com/Stride-Labs/stride/v4/x/interchainquery/keeper"
-	stakeibckeeper "github.com/Stride-Labs/stride/v4/x/stakeibc/keeper"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	interchainquerykeeper "github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
+	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // Note: ensure these values are properly set before running upgrade

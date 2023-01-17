@@ -5,10 +5,10 @@ import (
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 	_ "github.com/stretchr/testify/suite"
 
-	icacallbacktypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	stakeibckeeper "github.com/Stride-Labs/stride/v4/x/stakeibc/keeper"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	icacallbacktypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type RebalanceCallbackState struct {
@@ -36,13 +36,13 @@ func (s *KeeperTestSuite) SetupRebalanceCallback() RebalanceCallbackTestCase {
 		HostZoneId: HostChainId,
 		Rebalancings: []*types.Rebalancing{
 			{
-				SrcValidator: "stride_VAL3",
-				DstValidator: "stride_VAL1",
+				SrcValidator: "dred_VAL3",
+				DstValidator: "dred_VAL1",
 				Amt:          sdkmath.NewInt(104),
 			},
 			{
-				SrcValidator: "stride_VAL4",
-				DstValidator: "stride_VAL1",
+				SrcValidator: "dred_VAL4",
+				DstValidator: "dred_VAL1",
 				Amt:          sdkmath.NewInt(13),
 			},
 		},
@@ -139,13 +139,13 @@ func (s *KeeperTestSuite) TestRebalanceCallback_WrongValidator() {
 		HostZoneId: HostChainId,
 		Rebalancings: []*types.Rebalancing{
 			{
-				SrcValidator: "stride_VAL3",
-				DstValidator: "stride_VAL1",
+				SrcValidator: "dred_VAL3",
+				DstValidator: "dred_VAL1",
 				Amt:          sdkmath.NewInt(104),
 			},
 			{
-				SrcValidator: "stride_VAL4_WRONG",
-				DstValidator: "stride_VAL1",
+				SrcValidator: "dred_VAL4_WRONG",
+				DstValidator: "dred_VAL1",
 				Amt:          sdkmath.NewInt(13),
 			},
 		},
@@ -157,13 +157,13 @@ func (s *KeeperTestSuite) TestRebalanceCallback_WrongValidator() {
 		HostZoneId: HostChainId,
 		Rebalancings: []*types.Rebalancing{
 			{
-				SrcValidator: "stride_VAL3",
-				DstValidator: "stride_VAL1_WRONG",
+				SrcValidator: "dred_VAL3",
+				DstValidator: "dred_VAL1_WRONG",
 				Amt:          sdkmath.NewInt(104),
 			},
 			{
-				SrcValidator: "stride_VAL4",
-				DstValidator: "stride_VAL1",
+				SrcValidator: "dred_VAL4",
+				DstValidator: "dred_VAL1",
 				Amt:          sdkmath.NewInt(13),
 			},
 		},
@@ -172,10 +172,10 @@ func (s *KeeperTestSuite) TestRebalanceCallback_WrongValidator() {
 	s.Require().NoError(err)
 
 	err = stakeibckeeper.RebalanceCallback(s.App.StakeibcKeeper, s.Ctx, tc.validArgs.packet, tc.validArgs.ackResponse, invalidArgsOne)
-	s.Require().EqualError(err, "validator not found stride_VAL4_WRONG: invalid request")
+	s.Require().EqualError(err, "validator not found dred_VAL4_WRONG: invalid request")
 	s.checkDelegationStateIfCallbackFailed()
 
 	err = stakeibckeeper.RebalanceCallback(s.App.StakeibcKeeper, s.Ctx, tc.validArgs.packet, tc.validArgs.ackResponse, invalidArgsTwo)
-	s.Require().EqualError(err, "validator not found stride_VAL1_WRONG: invalid request")
+	s.Require().EqualError(err, "validator not found dred_VAL1_WRONG: invalid request")
 	s.checkDelegationStateIfCallbackFailed()
 }

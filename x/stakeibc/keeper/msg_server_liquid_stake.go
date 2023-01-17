@@ -8,8 +8,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 func (k msgServer) LiquidStake(goCtx context.Context, msg *types.MsgLiquidStake) (*types.MsgLiquidStakeResponse, error) {
@@ -20,7 +20,7 @@ func (k msgServer) LiquidStake(goCtx context.Context, msg *types.MsgLiquidStake)
 	// NOTE: Should we add an additional check here? This is a pretty important line of code
 	// NOTE: If sender doesn't have enough inCoin, this errors (error is hard to interpret)
 	// check that hostZone is registered
-	// strided tx stakeibc liquid-stake 100 uatom
+	// dred tx stakeibc liquid-stake 100 uatom
 	hostZone, err := k.GetHostZoneFromHostDenom(ctx, msg.HostDenom)
 	if err != nil {
 		k.Logger(ctx).Error(fmt.Sprintf("Host Zone not found for denom (%s)", msg.HostDenom))
@@ -76,16 +76,16 @@ func (k msgServer) LiquidStake(goCtx context.Context, msg *types.MsgLiquidStake)
 	}
 
 	// create a deposit record of these tokens (pending transfer)
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	dredEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DRED_EPOCH)
 	if !found {
-		k.Logger(ctx).Error("failed to find stride epoch")
-		return nil, sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.STRIDE_EPOCH)
+		k.Logger(ctx).Error("failed to find dredger epoch")
+		return nil, sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.DRED_EPOCH)
 	}
 	// Does this use too much gas?
-	depositRecord, found := k.RecordsKeeper.GetDepositRecordByEpochAndChain(ctx, strideEpochTracker.EpochNumber, hostZone.ChainId)
+	depositRecord, found := k.RecordsKeeper.GetDepositRecordByEpochAndChain(ctx, dredEpochTracker.EpochNumber, hostZone.ChainId)
 	if !found {
 		k.Logger(ctx).Error("failed to find deposit record")
-		return nil, sdkerrors.Wrapf(sdkerrors.ErrNotFound, fmt.Sprintf("no deposit record for epoch (%d)", strideEpochTracker.EpochNumber))
+		return nil, sdkerrors.Wrapf(sdkerrors.ErrNotFound, fmt.Sprintf("no deposit record for epoch (%d)", dredEpochTracker.EpochNumber))
 	}
 	depositRecord.Amount = depositRecord.Amount.Add(msg.Amount)
 	k.RecordsKeeper.SetDepositRecord(ctx, *depositRecord)

@@ -8,9 +8,9 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	icatypes "github.com/cosmos/ibc-go/v5/modules/apps/27-interchain-accounts/types"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -162,9 +162,9 @@ func (k msgServer) RegisterHostZone(goCtx context.Context, msg *types.MsgRegiste
 	k.RecordsKeeper.SetEpochUnbondingRecord(ctx, *updatedEpochUnbondingRecord)
 
 	// create an empty deposit record for the host zone
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	dredEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DRED_EPOCH)
 	if !found {
-		return nil, sdkerrors.Wrapf(types.ErrEpochNotFound, "epoch tracker (%s) not found", epochtypes.STRIDE_EPOCH)
+		return nil, sdkerrors.Wrapf(types.ErrEpochNotFound, "epoch tracker (%s) not found", epochtypes.DRED_EPOCH)
 	}
 	depositRecord := recordstypes.DepositRecord{
 		Id:                 0,
@@ -172,7 +172,7 @@ func (k msgServer) RegisterHostZone(goCtx context.Context, msg *types.MsgRegiste
 		Denom:              zone.HostDenom,
 		HostZoneId:         zone.ChainId,
 		Status:             recordstypes.DepositRecord_TRANSFER_QUEUE,
-		DepositEpochNumber: strideEpochTracker.EpochNumber,
+		DepositEpochNumber: dredEpochTracker.EpochNumber,
 	}
 	k.RecordsKeeper.AppendDepositRecord(ctx, depositRecord)
 

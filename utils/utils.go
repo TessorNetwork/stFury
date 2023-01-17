@@ -15,9 +15,9 @@ import (
 
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 
-	config "github.com/Stride-Labs/stride/v4/cmd/strided/config"
-	icacallbacktypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
+	config "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
+	icacallbacktypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
 )
 
 func FilterDepositRecords(arr []recordstypes.DepositRecord, condition func(recordstypes.DepositRecord) bool) (ret []recordstypes.DepositRecord) {
@@ -192,8 +192,8 @@ func ContainsString(s []string, e string) bool {
 	return false
 }
 
-// Convert any bech32 to stride address
-func ConvertAddressToStrideAddress(address string) string {
+// Convert any bech32 to dredger address
+func ConvertAddressToDredAddress(address string) string {
 	_, bz, err := bech32.DecodeAndConvert(address)
 	if err != nil {
 		return ""

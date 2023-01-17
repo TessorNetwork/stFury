@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/stretchr/testify/suite"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	recordtypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type Account struct {
@@ -59,7 +59,7 @@ func (s *KeeperTestSuite) SetupLiquidStake() LiquidStakeTestCase {
 	}
 
 	epochTracker := stakeibctypes.EpochTracker{
-		EpochIdentifier: epochtypes.STRIDE_EPOCH,
+		EpochIdentifier: epochtypes.DRED_EPOCH,
 		EpochNumber:     1,
 	}
 
@@ -220,10 +220,10 @@ func (s *KeeperTestSuite) TestLiquidStake_InsufficientBalance() {
 func (s *KeeperTestSuite) TestLiquidStake_NoEpochTracker() {
 	tc := s.SetupLiquidStake()
 	// Remove epoch tracker
-	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.STRIDE_EPOCH)
+	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.DRED_EPOCH)
 	_, err := s.GetMsgServer().LiquidStake(sdk.WrapSDKContext(s.Ctx), &tc.validMsg)
 
-	s.Require().EqualError(err, fmt.Sprintf("no epoch number for epoch (%s): not found", epochtypes.STRIDE_EPOCH))
+	s.Require().EqualError(err, fmt.Sprintf("no epoch number for epoch (%s): not found", epochtypes.DRED_EPOCH))
 }
 
 func (s *KeeperTestSuite) TestLiquidStake_NoDepositRecord() {

@@ -5,10 +5,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/Stride-Labs/stride/v4/testutil/keeper"
-	"github.com/Stride-Labs/stride/v4/testutil/nullify"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	keepertest "github.com/TessorNetwork/dredger/v4/testutil/keeper"
+	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 func TestGenesis(t *testing.T) {
@@ -19,7 +19,7 @@ func TestGenesis(t *testing.T) {
 			Address: "78",
 		},
 		EpochTrackerList: []types.EpochTracker{
-			{EpochIdentifier: "stride_epoch"},
+			{EpochIdentifier: "dred_epoch"},
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}

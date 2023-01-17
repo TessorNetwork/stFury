@@ -8,14 +8,14 @@ import (
 
 	authz "github.com/cosmos/cosmos-sdk/x/authz"
 
-	v2 "github.com/Stride-Labs/stride/v4/app/upgrades/v2"
-	v3 "github.com/Stride-Labs/stride/v4/app/upgrades/v3"
-	v4 "github.com/Stride-Labs/stride/v4/app/upgrades/v4"
-	v5 "github.com/Stride-Labs/stride/v4/app/upgrades/v5"
-	claimtypes "github.com/Stride-Labs/stride/v4/x/claim/types"
+	v2 "github.com/TessorNetwork/dredger/v4/app/upgrades/v2"
+	v3 "github.com/TessorNetwork/dredger/v4/app/upgrades/v3"
+	v4 "github.com/TessorNetwork/dredger/v4/app/upgrades/v4"
+	v5 "github.com/TessorNetwork/dredger/v4/app/upgrades/v5"
+	claimtypes "github.com/TessorNetwork/dredger/v4/x/claim/types"
 )
 
-func (app *StrideApp) setupUpgradeHandlers() {
+func (app *DredApp) setupUpgradeHandlers() {
 	// v2 upgrade handler
 	app.UpgradeKeeper.SetUpgradeHandler(
 		v2.UpgradeName,

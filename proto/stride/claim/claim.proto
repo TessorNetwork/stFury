@@ -1,9 +1,9 @@
 syntax = "proto3";
-package stride.claim;
+package dredger.claim;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
 
 enum Action {
   option (gogoproto.goproto_enum_prefix) = false;

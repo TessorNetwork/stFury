@@ -1,10 +1,10 @@
 syntax = "proto3";
-package stride.interchainquery.v1;
+package dredger.interchainquery.v1;
 
 import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/interchainquery/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/interchainquery/types";
 
 message Query {
   string id = 1;

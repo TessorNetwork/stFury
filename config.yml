@@ -9,18 +9,18 @@ build:
 accounts:
 - name: alice
   coins:
-  - 200000000ustrd
+  - 200000000udred
   - 200000000stake
   - 25000ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9
 - name: bob
   coins:
-  - 100000000ustrd
+  - 100000000udred
   - 100000000stake
   - 5000ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9
 faucet:
   name: bob
   coins:
-  - 500000ustrd
+  - 500000udred
   - 100000stake
   host: 0.0.0.0:4500
 client:

@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	epochstypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type IcaTx struct {
@@ -115,9 +115,9 @@ func (k Keeper) GetRedemptionTransferMsg(ctx sdk.Context, userRedemptionRecord *
 	})
 
 	// Give claims a 10 minute timeout
-	epochTracker, found := k.GetEpochTracker(ctx, epochstypes.STRIDE_EPOCH)
+	epochTracker, found := k.GetEpochTracker(ctx, epochstypes.DRED_EPOCH)
 	if !found {
-		errMsg := fmt.Sprintf("Epoch tracker not found for epoch %s", epochstypes.STRIDE_EPOCH)
+		errMsg := fmt.Sprintf("Epoch tracker not found for epoch %s", epochstypes.DRED_EPOCH)
 		k.Logger(ctx).Error(errMsg)
 		return nil, sdkerrors.Wrap(types.ErrEpochNotFound, errMsg)
 	}

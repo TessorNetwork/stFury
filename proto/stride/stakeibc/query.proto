@@ -1,51 +1,51 @@
 syntax = "proto3";
-package stride.stakeibc;
+package dredger.stakeibc;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
-import "stride/stakeibc/params.proto";
-import "stride/stakeibc/validator.proto";
-import "stride/stakeibc/ica_account.proto";
-import "stride/stakeibc/host_zone.proto";
-import "stride/stakeibc/epoch_tracker.proto";
+import "dredger/stakeibc/params.proto";
+import "dredger/stakeibc/validator.proto";
+import "dredger/stakeibc/ica_account.proto";
+import "dredger/stakeibc/host_zone.proto";
+import "dredger/stakeibc/epoch_tracker.proto";
 // this line is used by starport scaffolding # 1
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
 
 // Query defines the gRPC querier service.
 service Query {
   // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-    option (google.api.http).get = "/Stridelabs/stride/stakeibc/params";
+    option (google.api.http).get = "/Dredlabs/dredger/stakeibc/params";
   }
   // Queries a Validator by host zone.
   rpc Validators(QueryGetValidatorsRequest)
       returns (QueryGetValidatorsResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/stakeibc/validators/{chain_id}";
+        "/TessorNetwork/dredger/stakeibc/validators/{chain_id}";
   }
   // Queries a ICAAccount by index.
   rpc ICAAccount(QueryGetICAAccountRequest)
       returns (QueryGetICAAccountResponse) {
-    option (google.api.http).get = "/Stride-Labs/stride/stakeibc/ica_account";
+    option (google.api.http).get = "/TessorNetwork/dredger/stakeibc/ica_account";
   }
   // Queries a HostZone by id.
   rpc HostZone(QueryGetHostZoneRequest) returns (QueryGetHostZoneResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/stakeibc/host_zone/{chain_id}";
+        "/TessorNetwork/dredger/stakeibc/host_zone/{chain_id}";
   }
 
   // Queries a list of HostZone items.
   rpc HostZoneAll(QueryAllHostZoneRequest) returns (QueryAllHostZoneResponse) {
-    option (google.api.http).get = "/Stride-Labs/stride/stakeibc/host_zone";
+    option (google.api.http).get = "/TessorNetwork/dredger/stakeibc/host_zone";
   }
 
   // Queries a list of ModuleAddress items.
   rpc ModuleAddress(QueryModuleAddressRequest)
       returns (QueryModuleAddressResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/stakeibc/module_address/{name}";
+        "/TessorNetwork/dredger/stakeibc/module_address/{name}";
   }
   // QueryInterchainAccountFromAddress returns the interchain account for given
   // owner address on a given connection pair
@@ -56,13 +56,13 @@ service Query {
   rpc EpochTracker(QueryGetEpochTrackerRequest)
       returns (QueryGetEpochTrackerResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/stakeibc/epoch_tracker/{epoch_identifier}";
+        "/TessorNetwork/dredger/stakeibc/epoch_tracker/{epoch_identifier}";
   }
 
   // Queries a list of EpochTracker items.
   rpc EpochTrackerAll(QueryAllEpochTrackerRequest)
       returns (QueryAllEpochTrackerResponse) {
-    option (google.api.http).get = "/Stride-Labs/stride/stakeibc/epoch_tracker";
+    option (google.api.http).get = "/TessorNetwork/dredger/stakeibc/epoch_tracker";
   }
 
   // this line is used by starport scaffolding # 2

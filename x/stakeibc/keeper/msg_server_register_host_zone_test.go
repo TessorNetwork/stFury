@@ -12,16 +12,16 @@ import (
 
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	recordtypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type RegisterHostZoneTestCase struct {
 	validMsg                   stakeibctypes.MsgRegisterHostZone
 	epochUnbondingRecordNumber uint64
-	strideEpochNumber          uint64
+	dredEpochNumber          uint64
 	unbondingFrequency         uint64
 	defaultRedemptionRate      sdk.Dec
 	atomHostZoneChainId        string
@@ -29,7 +29,7 @@ type RegisterHostZoneTestCase struct {
 
 func (s *KeeperTestSuite) SetupRegisterHostZone() RegisterHostZoneTestCase {
 	epochUnbondingRecordNumber := uint64(3)
-	strideEpochNumber := uint64(4)
+	dredEpochNumber := uint64(4)
 	unbondingFrequency := uint64(3)
 	defaultRedemptionRate := sdk.NewDec(1)
 	atomHostZoneChainId := "GAIA"
@@ -42,8 +42,8 @@ func (s *KeeperTestSuite) SetupRegisterHostZone() RegisterHostZoneTestCase {
 	})
 
 	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, stakeibctypes.EpochTracker{
-		EpochIdentifier: epochtypes.STRIDE_EPOCH,
-		EpochNumber:     strideEpochNumber,
+		EpochIdentifier: epochtypes.DRED_EPOCH,
+		EpochNumber:     dredEpochNumber,
 	})
 
 	epochUnbondingRecord := recordtypes.EpochUnbondingRecord{
@@ -64,7 +64,7 @@ func (s *KeeperTestSuite) SetupRegisterHostZone() RegisterHostZoneTestCase {
 	return RegisterHostZoneTestCase{
 		validMsg:                   defaultMsg,
 		epochUnbondingRecordNumber: epochUnbondingRecordNumber,
-		strideEpochNumber:          strideEpochNumber,
+		dredEpochNumber:          dredEpochNumber,
 		unbondingFrequency:         unbondingFrequency,
 		defaultRedemptionRate:      defaultRedemptionRate,
 		atomHostZoneChainId:        atomHostZoneChainId,
@@ -81,7 +81,7 @@ func (s *KeeperTestSuite) SetupRegisterHostZone() RegisterHostZoneTestCase {
 func (s *KeeperTestSuite) createNewHostZoneMessage(chainID string, denom string, prefix string) stakeibctypes.MsgRegisterHostZone {
 	// Create a new test chain and connection ID
 	osmoChain := ibctesting.NewTestChain(s.T(), s.Coordinator, chainID)
-	path := ibctesting.NewPath(s.StrideChain, osmoChain)
+	path := ibctesting.NewPath(s.DredChain, osmoChain)
 	s.Coordinator.SetupConnections(path)
 	connectionId := path.EndpointA.ConnectionID
 
@@ -146,7 +146,7 @@ func (s *KeeperTestSuite) TestRegisterHostZone_Success() {
 		HostZoneId:         hostZone.ChainId,
 		Denom:              hostZone.HostDenom,
 		Status:             recordstypes.DepositRecord_TRANSFER_QUEUE,
-		DepositEpochNumber: tc.strideEpochNumber,
+		DepositEpochNumber: tc.dredEpochNumber,
 	}
 
 	depositRecords := s.App.RecordsKeeper.GetAllDepositRecord(s.Ctx)
@@ -265,17 +265,17 @@ func (s *KeeperTestSuite) TestRegisterHostZone_CannotFindDayEpochTracker() {
 	s.Require().EqualError(err, expectedErrMsg, "day epoch tracker not found")
 }
 
-func (s *KeeperTestSuite) TestRegisterHostZone_CannotFindStrideEpochTracker() {
+func (s *KeeperTestSuite) TestRegisterHostZone_CannotFindDredEpochTracker() {
 	// tests for a failure if the epoch tracker cannot be found
 	tc := s.SetupRegisterHostZone()
 	msg := tc.validMsg
 
 	// delete the epoch tracker
-	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.STRIDE_EPOCH)
+	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.DRED_EPOCH)
 
 	_, err := s.GetMsgServer().RegisterHostZone(sdk.WrapSDKContext(s.Ctx), &msg)
-	expectedErrMsg := "epoch tracker (stride_epoch) not found: epoch not found"
-	s.Require().EqualError(err, expectedErrMsg, "stride epoch tracker not found")
+	expectedErrMsg := "epoch tracker (dred_epoch) not found: epoch not found"
+	s.Require().EqualError(err, expectedErrMsg, "dredger epoch tracker not found")
 }
 
 func (s *KeeperTestSuite) TestRegisterHostZone_CannotFindEpochUnbondingRecord() {

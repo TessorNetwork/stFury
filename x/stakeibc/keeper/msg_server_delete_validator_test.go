@@ -6,7 +6,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type DeleteValidatorTestCase struct {
@@ -19,7 +19,7 @@ func (s *KeeperTestSuite) SetupDeleteValidator() DeleteValidatorTestCase {
 	initialValidators := []*stakeibctypes.Validator{
 		{
 			Name:           "val1",
-			Address:        "stride_VAL1",
+			Address:        "dred_VAL1",
 			CommissionRate: 1,
 			Weight:         0,
 			Status:         stakeibctypes.Validator_ACTIVE,
@@ -27,7 +27,7 @@ func (s *KeeperTestSuite) SetupDeleteValidator() DeleteValidatorTestCase {
 		},
 		{
 			Name:           "val2",
-			Address:        "stride_VAL2",
+			Address:        "dred_VAL2",
 			CommissionRate: 2,
 			Weight:         0,
 			Status:         stakeibctypes.Validator_ACTIVE,
@@ -41,14 +41,14 @@ func (s *KeeperTestSuite) SetupDeleteValidator() DeleteValidatorTestCase {
 	}
 	validMsgs := []stakeibctypes.MsgDeleteValidator{
 		{
-			Creator:  "stride_ADDRESS",
+			Creator:  "dred_ADDRESS",
 			HostZone: "GAIA",
-			ValAddr:  "stride_VAL1",
+			ValAddr:  "dred_VAL1",
 		},
 		{
-			Creator:  "stride_ADDRESS",
+			Creator:  "dred_ADDRESS",
 			HostZone: "GAIA",
-			ValAddr:  "stride_VAL2",
+			ValAddr:  "dred_VAL2",
 		},
 	}
 
@@ -89,7 +89,7 @@ func (s *KeeperTestSuite) TestDeleteValidator_HostZoneNotFound() {
 	badHostZoneMsg := tc.validMsgs[0]
 	badHostZoneMsg.HostZone = "gaia"
 	_, err := s.GetMsgServer().DeleteValidator(sdk.WrapSDKContext(s.Ctx), &badHostZoneMsg)
-	errMsg := "Validator (stride_VAL1) not removed from host zone (gaia) "
+	errMsg := "Validator (dred_VAL1) not removed from host zone (gaia) "
 	errMsg += "| err: HostZone (gaia) not found: host zone not found: validator not removed"
 	s.Require().EqualError(err, errMsg)
 }
@@ -99,11 +99,11 @@ func (s *KeeperTestSuite) TestDeleteValidator_AddressNotFound() {
 
 	// Build message with a validator address that does not exist
 	badAddressMsg := tc.validMsgs[0]
-	badAddressMsg.ValAddr = "stride_VAL5"
+	badAddressMsg.ValAddr = "dred_VAL5"
 	_, err := s.GetMsgServer().DeleteValidator(sdk.WrapSDKContext(s.Ctx), &badAddressMsg)
 
-	errMsg := "Validator (stride_VAL5) not removed from host zone (GAIA) "
-	errMsg += "| err: Validator address (stride_VAL5) not found on host zone (GAIA): "
+	errMsg := "Validator (dred_VAL5) not removed from host zone (GAIA) "
+	errMsg += "| err: Validator address (dred_VAL5) not found on host zone (GAIA): "
 	errMsg += "validator not found: validator not removed"
 	s.Require().EqualError(err, errMsg)
 }
@@ -117,8 +117,8 @@ func (s *KeeperTestSuite) TestDeleteValidator_NonZeroDelegation() {
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
 
 	_, err := s.GetMsgServer().DeleteValidator(sdk.WrapSDKContext(s.Ctx), &tc.validMsgs[0])
-	errMsg := "Validator (stride_VAL1) not removed from host zone (GAIA) "
-	errMsg += "| err: Validator (stride_VAL1) has non-zero delegation (1) or weight (0): "
+	errMsg := "Validator (dred_VAL1) not removed from host zone (GAIA) "
+	errMsg += "| err: Validator (dred_VAL1) has non-zero delegation (1) or weight (0): "
 	errMsg += "validator not removed"
 	s.Require().EqualError(err, errMsg)
 }
@@ -132,8 +132,8 @@ func (s *KeeperTestSuite) TestDeleteValidator_NonZeroWeight() {
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
 
 	_, err := s.GetMsgServer().DeleteValidator(sdk.WrapSDKContext(s.Ctx), &tc.validMsgs[0])
-	errMsg := "Validator (stride_VAL1) not removed from host zone (GAIA) "
-	errMsg += "| err: Validator (stride_VAL1) has non-zero delegation (0) or weight (1): "
+	errMsg := "Validator (dred_VAL1) not removed from host zone (GAIA) "
+	errMsg += "| err: Validator (dred_VAL1) has non-zero delegation (0) or weight (1): "
 	errMsg += "validator not removed"
 	s.Require().EqualError(err, errMsg)
 }

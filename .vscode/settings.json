@@ -16,7 +16,7 @@
         }
     },
     "gopls": {
-        "local": "github.com/Stride-Labs/stride"
+        "local": "github.com/TessorNetwork/dredger"
     },
     "files.eol": "\n",
 }

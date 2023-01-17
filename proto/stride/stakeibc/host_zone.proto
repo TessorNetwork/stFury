@@ -1,12 +1,12 @@
 syntax = "proto3";
-package stride.stakeibc;
+package dredger.stakeibc;
 
-import "stride/stakeibc/validator.proto";
-import "stride/stakeibc/ica_account.proto";
+import "dredger/stakeibc/validator.proto";
+import "dredger/stakeibc/ica_account.proto";
 import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
 
 // next id: 19
 message HostZone {
@@ -20,7 +20,7 @@ message HostZone {
   ICAAccount fee_account = 6;
   ICAAccount delegation_account = 7;
   ICAAccount redemption_account = 16;
-  // ibc denom on stride
+  // ibc denom on dredger
   string ibc_denom = 8;
   // native denom on host zone
   string host_denom = 9;

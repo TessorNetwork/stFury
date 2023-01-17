@@ -9,7 +9,7 @@ import (
 
 const (
 	// Bech32Prefix defines the Bech32 prefix used for EthAccounts
-	Bech32Prefix = "stride"
+	Bech32Prefix = "dred"
 
 	// Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
 	Bech32PrefixAccAddr = Bech32Prefix
@@ -26,8 +26,8 @@ const (
 )
 
 const (
-	HumanReadableCoinUnit = "STRD"
-	BaseCoinUnit          = "ustrd"
+	HumanReadableCoinUnit = "DRED"
+	BaseCoinUnit          = "udred"
 	DefaultBondDenom      = BaseCoinUnit
 )
 
@@ -38,8 +38,8 @@ func SetupConfig() {
 	SetAddressPrefixes(config)
 	config.Seal()
 
-	version.AppName = "stride"
-	version.Name = "strided"
+	version.AppName = "dredger"
+	version.Name = "dred"
 	version.Version = "v5.0.0"
 }
 

@@ -15,9 +15,9 @@ BALANCES_LOG=balances.log
 mkdir -p $TEMP_LOGS_DIR
 
 while true; do
-    N_VALIDATORS_STRIDE=$($STRIDE_MAIN_CMD q tendermint-validator-set | grep -o address | wc -l | tr -dc '0-9')
-    echo "STRIDE @ $($STRIDE_MAIN_CMD q tendermint-validator-set | head -n 1 | tr -dc '0-9') | $N_VALIDATORS_STRIDE VALS" >$TEMP_LOGS_DIR/$STATE_LOG
-    echo "STRIDE @ $($STRIDE_MAIN_CMD q tendermint-validator-set | head -n 1 | tr -dc '0-9') | $N_VALIDATORS_STRIDE VALS" >$TEMP_LOGS_DIR/$BALANCES_LOG
+    N_VALIDATORS_DRED=$($DRED_MAIN_CMD q tendermint-validator-set | grep -o address | wc -l | tr -dc '0-9')
+    echo "DREDGER @ $($DRED_MAIN_CMD q tendermint-validator-set | head -n 1 | tr -dc '0-9') | $N_VALIDATORS_DRED VALS" >$TEMP_LOGS_DIR/$STATE_LOG
+    echo "DREDGER @ $($DRED_MAIN_CMD q tendermint-validator-set | head -n 1 | tr -dc '0-9') | $N_VALIDATORS_DRED VALS" >$TEMP_LOGS_DIR/$BALANCES_LOG
 
     for chain in ${HOST_CHAINS[@]}; do
         HOST_MAIN_CMD=$(GET_VAR_VALUE ${chain}_MAIN_CMD)
@@ -27,17 +27,17 @@ while true; do
         echo "$chain   @ $($HOST_MAIN_CMD q tendermint-validator-set | head -n 1 | tr -dc '0-9') | $N_VALIDATORS_HOST VALS" >>$TEMP_LOGS_DIR/$BALANCES_LOG
     done
 
-    printf '\n%s\n' "LIST-HOST-ZONES STRIDE" >>$TEMP_LOGS_DIR/$STATE_LOG
-    $STRIDE_MAIN_CMD q stakeibc list-host-zone >>$TEMP_LOGS_DIR/$STATE_LOG
+    printf '\n%s\n' "LIST-HOST-ZONES DREDGER" >>$TEMP_LOGS_DIR/$STATE_LOG
+    $DRED_MAIN_CMD q stakeibc list-host-zone >>$TEMP_LOGS_DIR/$STATE_LOG
     printf '\n%s\n' "LIST-DEPOSIT-RECORDS" >>$TEMP_LOGS_DIR/$STATE_LOG
-    $STRIDE_MAIN_CMD q records list-deposit-record  >> $TEMP_LOGS_DIR/$STATE_LOG
+    $DRED_MAIN_CMD q records list-deposit-record  >> $TEMP_LOGS_DIR/$STATE_LOG
     printf '\n%s\n' "LIST-EPOCH-UNBONDING-RECORDS" >>$TEMP_LOGS_DIR/$STATE_LOG
-    $STRIDE_MAIN_CMD q records list-epoch-unbonding-record  >> $TEMP_LOGS_DIR/$STATE_LOG
+    $DRED_MAIN_CMD q records list-epoch-unbonding-record  >> $TEMP_LOGS_DIR/$STATE_LOG
     printf '\n%s\n' "LIST-USER-REDEMPTION-RECORDS" >>$TEMP_LOGS_DIR/$STATE_LOG
-    $STRIDE_MAIN_CMD q records list-user-redemption-record >> $TEMP_LOGS_DIR/$STATE_LOG
+    $DRED_MAIN_CMD q records list-user-redemption-record >> $TEMP_LOGS_DIR/$STATE_LOG
 
-    printf '\n%s\n' "BALANCES STRIDE" >>$TEMP_LOGS_DIR/$BALANCES_LOG
-    $STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) >>$TEMP_LOGS_DIR/$BALANCES_LOG
+    printf '\n%s\n' "BALANCES DREDGER" >>$TEMP_LOGS_DIR/$BALANCES_LOG
+    $DRED_MAIN_CMD q bank balances $(DRED_ADDRESS) >>$TEMP_LOGS_DIR/$BALANCES_LOG
 
     for chain in ${HOST_CHAINS[@]}; do
         HOST_CHAIN_ID=$(GET_VAR_VALUE ${chain}_CHAIN_ID)

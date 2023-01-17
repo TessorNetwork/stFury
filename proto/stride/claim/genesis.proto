@@ -1,11 +1,11 @@
 syntax = "proto3";
-package stride.claim;
+package dredger.claim;
 
 import "gogoproto/gogo.proto";
-import "stride/claim/claim.proto";
-import "stride/claim/params.proto";
+import "dredger/claim/claim.proto";
+import "dredger/claim/params.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
 
 // GenesisState defines the claim module's genesis state.
 message GenesisState {

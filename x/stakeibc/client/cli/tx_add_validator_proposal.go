@@ -16,7 +16,7 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 	"github.com/spf13/cobra"
 
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 func parseAddValidatorProposalFile(cdc codec.JSONCodec, proposalFile string) (types.AddValidatorProposal, error) {
@@ -56,7 +56,7 @@ Where proposal.json contains:
     "hostZone": "GAIA",
     "validatorName": "Imperator",
     "validatorAddress": "cosmosvaloper1v5y0tg0jllvxf5c3afml8s3awue0ymju89frut",
-    "deposit": "64000000ustrd"
+    "deposit": "64000000udred"
 }
 `, version.AppName),
 		),
@@ -88,13 +88,13 @@ Where proposal.json contains:
 				return err
 			}
 
-			strideDenom, err := sdk.GetBaseDenom()
+			dredDenom, err := sdk.GetBaseDenom()
 			if err != nil {
 				return err
 			}
 
-			if len(deposit) != 1 || deposit.GetDenomByIndex(0) != strideDenom {
-				return sdkerrors.Wrapf(sdkerrors.ErrInvalidCoins, "Deposit token denom must be %s", strideDenom)
+			if len(deposit) != 1 || deposit.GetDenomByIndex(0) != dredDenom {
+				return sdkerrors.Wrapf(sdkerrors.ErrInvalidCoins, "Deposit token denom must be %s", dredDenom)
 			}
 
 			msg, err := govtypes.NewMsgSubmitProposal(&proposal, deposit, from)

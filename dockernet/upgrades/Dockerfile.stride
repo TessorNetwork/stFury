@@ -4,21 +4,21 @@ FROM alpine:3.15
 ARG upgrade_name
 ENV UPGRADE_NAME=$upgrade_name
 
-ENV DAEMON_NAME=strided
-ENV DAEMON_HOME=/home/stride/.stride
+ENV DAEMON_NAME=dred
+ENV DAEMON_HOME=/home/dredger/.dredger
 ENV DAEMON_RESTART_AFTER_UPGRADE=true
-ENV COSMOVISOR_HOME=/home/stride/cosmovisor
+ENV COSMOVISOR_HOME=/home/dredger/cosmovisor
 
 RUN apk add --update vim bash \
-    && addgroup -g 1000 stride \
-    && adduser -S -h /home/stride -D stride -u 1000 -G stride
+    && addgroup -g 1000 dredger \
+    && adduser -S -h /home/dredger -D dredger -u 1000 -G dredger
 
-COPY --from=stridezone:cosmovisor /opt/cosmos-sdk/cosmovisor/cosmovisor /usr/local/bin/cosmovisor
-COPY --from=stridezone:cosmovisor --chown=stride:stride /opt/build/strided1 ${COSMOVISOR_HOME}/genesis/bin/strided
-COPY --from=stridezone:stride --chown=stride:stride /usr/local/bin/strided ${COSMOVISOR_HOME}/upgrades/${UPGRADE_NAME}/bin/strided
+COPY --from=dredzone:cosmovisor /opt/cosmos-sdk/cosmovisor/cosmovisor /usr/local/bin/cosmovisor
+COPY --from=dredzone:cosmovisor --chown=dredger:dredger /opt/build/dred1 ${COSMOVISOR_HOME}/genesis/bin/dred
+COPY --from=dredzone:dredger --chown=dredger:dredger /usr/local/bin/dred ${COSMOVISOR_HOME}/upgrades/${UPGRADE_NAME}/bin/dred
 
-USER stride
-WORKDIR /home/stride
+USER dredger
+WORKDIR /home/dredger
 
 EXPOSE 26657 26656 1317 9090
 

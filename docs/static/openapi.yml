@@ -38289,7 +38289,7 @@ paths:
         - Query
   /claim/claim_record/{address}:
     get:
-      operationId: StrideClaimClaimRecord
+      operationId: DredClaimClaimRecord
       responses:
         '200':
           description: A successful response.
@@ -38514,7 +38514,7 @@ paths:
         - Query
   /claim/claimable_for_action/{address}/{action}:
     get:
-      operationId: StrideClaimClaimableForAction
+      operationId: DredClaimClaimableForAction
       responses:
         '200':
           description: A successful response.
@@ -38744,7 +38744,7 @@ paths:
         - Query
   /claim/module_account_balance:
     get:
-      operationId: StrideClaimDistributorAccountBalance
+      operationId: DredClaimDistributorAccountBalance
       responses:
         '200':
           description: A successful response.
@@ -38966,7 +38966,7 @@ paths:
         - Query
   /claim/params:
     get:
-      operationId: StrideClaimParams
+      operationId: DredClaimParams
       responses:
         '200':
           description: A successful response.
@@ -38999,7 +38999,7 @@ paths:
                           title: airdrop distribution account
                         claimed_so_far:
                           type: string
-                          title: ustrd tokens claimed so far in the current period
+                          title: udred tokens claimed so far in the current period
             description: >-
               QueryParamsResponse is the response type for the Query/Params RPC
               method.
@@ -39192,7 +39192,7 @@ paths:
         - Query
   /claim/total_claimable/{address}:
     get:
-      operationId: StrideClaimTotalClaimable
+      operationId: DredClaimTotalClaimable
       responses:
         '200':
           description: A successful response.
@@ -39418,7 +39418,7 @@ paths:
         - Query
   /claim/user_vestings/{address}:
     get:
-      operationId: StrideClaimUserVestings
+      operationId: DredClaimUserVestings
       responses:
         '200':
           description: A successful response.
@@ -39669,10 +39669,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stridelabs/stride/epochs:
+  /Dredlabs/dredger/epochs:
     get:
       summary: EpochInfos provide running epochInfos
-      operationId: StrideEpochsEpochInfos
+      operationId: DredEpochsEpochInfos
       responses:
         '200':
           description: A successful response.
@@ -39803,10 +39803,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stridelabs/stride/epochs/current_epoch:
+  /Dredlabs/dredger/epochs/current_epoch:
     get:
       summary: CurrentEpoch provide current epoch of specified identifier
-      operationId: StrideEpochsCurrentEpoch
+      operationId: DredEpochsCurrentEpoch
       responses:
         '200':
           description: A successful response.
@@ -39841,10 +39841,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stridelabs/stride/epochs/epoch_info:
+  /Dredlabs/dredger/epochs/epoch_info:
     get:
       summary: CurrentEpoch provide current epoch of specified identifier
-      operationId: StrideEpochsEpochInfo
+      operationId: DredEpochsEpochInfo
       responses:
         '200':
           description: A successful response.
@@ -39897,10 +39897,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/icacallbacks/callback_data:
+  /TessorNetwork/dredger/icacallbacks/callback_data:
     get:
       summary: Queries a list of CallbackData items.
-      operationId: StrideIcacallbacksCallbackDataAll
+      operationId: DredIcacallbacksCallbackDataAll
       responses:
         '200':
           description: A successful response.
@@ -40027,10 +40027,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/icacallbacks/callback_data/{callback_key}:
+  /TessorNetwork/dredger/icacallbacks/callback_data/{callback_key}:
     get:
       summary: Queries a CallbackData by index.
-      operationId: StrideIcacallbacksCallbackData
+      operationId: DredIcacallbacksCallbackData
       responses:
         '200':
           description: A successful response.
@@ -40079,10 +40079,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/icacallbacks/params:
+  /TessorNetwork/dredger/icacallbacks/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: StrideIcacallbacksParams
+      operationId: DredIcacallbacksParams
       responses:
         '200':
           description: A successful response.
@@ -40115,9 +40115,9 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /Stride-Labs/stride/interchainquery/pending_queries:
+  /TessorNetwork/dredger/interchainquery/pending_queries:
     get:
-      operationId: StrideInterchainqueryV1PendingQueries
+      operationId: DredInterchainqueryV1PendingQueries
       responses:
         '200':
           description: A successful response.
@@ -40170,7 +40170,7 @@ paths:
   /interchainquery/tx/v1beta1/submitquery:
     post:
       summary: SubmitQueryResponse defines a method for submit query responses.
-      operationId: StrideInterchainqueryV1SubmitQueryResponse
+      operationId: DredInterchainqueryV1SubmitQueryResponse
       responses:
         '200':
           description: A successful response.
@@ -40254,7 +40254,7 @@ paths:
   /mint/v1beta1/epoch_provisions:
     get:
       summary: EpochProvisions current minting epoch provisions value.
-      operationId: StrideMintV1Beta1EpochProvisions
+      operationId: DredMintV1Beta1EpochProvisions
       responses:
         '200':
           description: A successful response.
@@ -40293,7 +40293,7 @@ paths:
   /mint/v1beta1/params:
     get:
       summary: Params returns the total set of minting parameters.
-      operationId: StrideMintV1Beta1Params
+      operationId: DredMintV1Beta1Params
       responses:
         '200':
           description: A successful response.
@@ -40382,10 +40382,10 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /Stride-Labs/stride/records/deposit_record:
+  /TessorNetwork/dredger/records/deposit_record:
     get:
       summary: Queries a list of DepositRecord items.
-      operationId: StrideRecordsDepositRecordAll
+      operationId: DredRecordsDepositRecordAll
       responses:
         '200':
           description: A successful response.
@@ -40426,9 +40426,9 @@ paths:
                     source:
                       type: string
                       enum:
-                        - STRIDE
+                        - DREDGER
                         - WITHDRAWAL_ICA
-                      default: STRIDE
+                      default: DREDGER
               pagination:
                 type: object
                 properties:
@@ -40530,10 +40530,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/records/deposit_record/{id}:
+  /TessorNetwork/dredger/records/deposit_record/{id}:
     get:
       summary: Queries a DepositRecord by id.
-      operationId: StrideRecordsDepositRecord
+      operationId: DredRecordsDepositRecord
       responses:
         '200':
           description: A successful response.
@@ -40572,9 +40572,9 @@ paths:
                   source:
                     type: string
                     enum:
-                      - STRIDE
+                      - DREDGER
                       - WITHDRAWAL_ICA
-                    default: STRIDE
+                    default: DREDGER
         default:
           description: An unexpected error response.
           schema:
@@ -40601,10 +40601,10 @@ paths:
           format: uint64
       tags:
         - Query
-  /Stride-Labs/stride/records/epoch_unbonding_record:
+  /TessorNetwork/dredger/records/epoch_unbonding_record:
     get:
       summary: Queries a list of EpochUnbondingRecord items.
-      operationId: StrideRecordsEpochUnbondingRecordAll
+      operationId: DredRecordsEpochUnbondingRecordAll
       responses:
         '200':
           description: A successful response.
@@ -40754,10 +40754,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/records/epoch_unbonding_record/{epoch_number}:
+  /TessorNetwork/dredger/records/epoch_unbonding_record/{epoch_number}:
     get:
       summary: Queries a EpochUnbondingRecord by id.
-      operationId: StrideRecordsEpochUnbondingRecord
+      operationId: DredRecordsEpochUnbondingRecord
       responses:
         '200':
           description: A successful response.
@@ -40829,10 +40829,10 @@ paths:
           format: uint64
       tags:
         - Query
-  /Stride-Labs/stride/records/user_redemption_record:
+  /TessorNetwork/dredger/records/user_redemption_record:
     get:
       summary: Queries a list of UserRedemptionRecord items.
-      operationId: StrideRecordsUserRedemptionRecordAll
+      operationId: DredRecordsUserRedemptionRecordAll
       responses:
         '200':
           description: A successful response.
@@ -40963,10 +40963,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/records/user_redemption_record/{id}:
+  /TessorNetwork/dredger/records/user_redemption_record/{id}:
     get:
       summary: Queries a UserRedemptionRecord by id.
-      operationId: StrideRecordsUserRedemptionRecord
+      operationId: DredRecordsUserRedemptionRecord
       responses:
         '200':
           description: A successful response.
@@ -41019,10 +41019,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/records/user_redemption_record_for_user/{chain_id}/{day}/{address}/{limit}:
+  /TessorNetwork/dredger/records/user_redemption_record_for_user/{chain_id}/{day}/{address}/{limit}:
     get:
       summary: Queries a list of UserRedemptionRecord items by chainId / userId pair.
-      operationId: StrideRecordsUserRedemptionRecordForUser
+      operationId: DredRecordsUserRedemptionRecordForUser
       responses:
         '200':
           description: A successful response.
@@ -41171,10 +41171,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /StrideLabs/stride/records/params:
+  /DredLabs/dredger/records/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: StrideRecordsParams
+      operationId: DredRecordsParams
       responses:
         '200':
           description: A successful response.
@@ -41207,10 +41207,10 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/epoch_tracker:
+  /TessorNetwork/dredger/stakeibc/epoch_tracker:
     get:
       summary: Queries a list of EpochTracker items.
-      operationId: StrideStakeibcEpochTrackerAll
+      operationId: DredStakeibcEpochTrackerAll
       responses:
         '200':
           description: A successful response.
@@ -41334,10 +41334,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/epoch_tracker/{epoch_identifier}:
+  /TessorNetwork/dredger/stakeibc/epoch_tracker/{epoch_identifier}:
     get:
       summary: Queries a EpochTracker by index.
-      operationId: StrideStakeibcEpochTracker
+      operationId: DredStakeibcEpochTracker
       responses:
         '200':
           description: A successful response.
@@ -41383,10 +41383,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/host_zone:
+  /TessorNetwork/dredger/stakeibc/host_zone:
     get:
       summary: Queries a list of HostZone items.
-      operationId: StrideStakeibcHostZoneAll
+      operationId: DredStakeibcHostZoneAll
       responses:
         '200':
           description: A successful response.
@@ -41542,7 +41542,7 @@ paths:
                         coins, maybe store port name directly)
                     ibc_denom:
                       type: string
-                      title: ibc denom on stride
+                      title: ibc denom on dredger
                     host_denom:
                       type: string
                       title: native denom on host zone
@@ -41668,10 +41668,10 @@ paths:
           type: boolean
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/host_zone/{chain_id}:
+  /TessorNetwork/dredger/stakeibc/host_zone/{chain_id}:
     get:
       summary: Queries a HostZone by id.
-      operationId: StrideStakeibcHostZone
+      operationId: DredStakeibcHostZone
       responses:
         '200':
           description: A successful response.
@@ -41825,7 +41825,7 @@ paths:
                       coins, maybe store port name directly)
                   ibc_denom:
                     type: string
-                    title: ibc denom on stride
+                    title: ibc denom on dredger
                   host_denom:
                     type: string
                     title: native denom on host zone
@@ -41875,10 +41875,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/ica_account:
+  /TessorNetwork/dredger/stakeibc/ica_account:
     get:
       summary: Queries a ICAAccount by index.
-      operationId: StrideStakeibcICAAccount
+      operationId: DredStakeibcICAAccount
       responses:
         '200':
           description: A successful response.
@@ -41923,10 +41923,10 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/module_address/{name}:
+  /TessorNetwork/dredger/stakeibc/module_address/{name}:
     get:
       summary: Queries a list of ModuleAddress items.
-      operationId: StrideStakeibcModuleAddress
+      operationId: DredStakeibcModuleAddress
       responses:
         '200':
           description: A successful response.
@@ -41960,10 +41960,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stride-Labs/stride/stakeibc/validators/{chain_id}:
+  /TessorNetwork/dredger/stakeibc/validators/{chain_id}:
     get:
       summary: Queries a Validator by host zone.
-      operationId: StrideStakeibcValidators
+      operationId: DredStakeibcValidators
       responses:
         '200':
           description: A successful response.
@@ -42026,10 +42026,10 @@ paths:
           type: string
       tags:
         - Query
-  /Stridelabs/stride/stakeibc/params:
+  /Dredlabs/dredger/stakeibc/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: StrideStakeibcParams
+      operationId: DredStakeibcParams
       responses:
         '200':
           description: A successful response.
@@ -42043,7 +42043,7 @@ paths:
                   rewards_interval:
                     type: string
                     format: uint64
-                    title: define epoch lengths, in stride_epochs
+                    title: define epoch lengths, in dred_epochs
                   delegate_interval:
                     type: string
                     format: uint64
@@ -42053,7 +42053,7 @@ paths:
                   redemption_rate_interval:
                     type: string
                     format: uint64
-                  stride_commission:
+                  dred_commission:
                     type: string
                     format: uint64
                   zone_com_address:
@@ -42062,7 +42062,7 @@ paths:
                       type: string
                     title: |-
                       zone_com_address stores which addresses to
-                      send the Stride commission too, as well as what portion
+                      send the Dredger commission too, as well as what portion
                       of the fee each address is entitled to
                       TODO implement this
                   reinvest_interval:
@@ -68196,14 +68196,14 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
-  stride.claim.Action:
+  dredger.claim.Action:
     type: string
     enum:
       - ACTION_FREE
       - ACTION_LIQUID_STAKE
       - ACTION_DELEGATE_STAKE
     default: ACTION_FREE
-  stride.claim.Airdrop:
+  dredger.claim.Airdrop:
     type: object
     properties:
       airdrop_identifier:
@@ -68223,8 +68223,8 @@ definitions:
         title: airdrop distribution account
       claimed_so_far:
         type: string
-        title: ustrd tokens claimed so far in the current period
-  stride.claim.ClaimRecord:
+        title: udred tokens claimed so far in the current period
+  dredger.claim.ClaimRecord:
     type: object
     properties:
       airdrop_identifier:
@@ -68244,7 +68244,7 @@ definitions:
           true if action is completed
           index of bool in array refers to action enum #
     title: A Claim Records is the metadata of claim data per address
-  stride.claim.MsgClaimFreeAmountResponse:
+  dredger.claim.MsgClaimFreeAmountResponse:
     type: object
     properties:
       claimed_amount:
@@ -68261,13 +68261,13 @@ definitions:
 
             NOTE: The amount field is an Int which implements the custom method
             signatures required by gogoproto.
-  stride.claim.MsgCreateAirdropResponse:
+  dredger.claim.MsgCreateAirdropResponse:
     type: object
-  stride.claim.MsgDeleteAirdropResponse:
+  dredger.claim.MsgDeleteAirdropResponse:
     type: object
-  stride.claim.MsgSetAirdropAllocationsResponse:
+  dredger.claim.MsgSetAirdropAllocationsResponse:
     type: object
-  stride.claim.Params:
+  dredger.claim.Params:
     type: object
     properties:
       airdrops:
@@ -68292,9 +68292,9 @@ definitions:
               title: airdrop distribution account
             claimed_so_far:
               type: string
-              title: ustrd tokens claimed so far in the current period
+              title: udred tokens claimed so far in the current period
     description: Params defines the claim module's parameters.
-  stride.claim.QueryClaimRecordResponse:
+  dredger.claim.QueryClaimRecordResponse:
     type: object
     properties:
       claim_record:
@@ -68317,7 +68317,7 @@ definitions:
               true if action is completed
               index of bool in array refers to action enum #
         title: A Claim Records is the metadata of claim data per address
-  stride.claim.QueryClaimableForActionResponse:
+  dredger.claim.QueryClaimableForActionResponse:
     type: object
     properties:
       coins:
@@ -68334,7 +68334,7 @@ definitions:
 
             NOTE: The amount field is an Int which implements the custom method
             signatures required by gogoproto.
-  stride.claim.QueryDistributorAccountBalanceResponse:
+  dredger.claim.QueryDistributorAccountBalanceResponse:
     type: object
     properties:
       distributor_account_balance:
@@ -68353,7 +68353,7 @@ definitions:
             signatures required by gogoproto.
         description: params defines the parameters of the module.
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
-  stride.claim.QueryParamsResponse:
+  dredger.claim.QueryParamsResponse:
     type: object
     properties:
       params:
@@ -68382,9 +68382,9 @@ definitions:
                   title: airdrop distribution account
                 claimed_so_far:
                   type: string
-                  title: ustrd tokens claimed so far in the current period
+                  title: udred tokens claimed so far in the current period
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
-  stride.claim.QueryTotalClaimableResponse:
+  dredger.claim.QueryTotalClaimableResponse:
     type: object
     properties:
       coins:
@@ -68401,7 +68401,7 @@ definitions:
 
             NOTE: The amount field is an Int which implements the custom method
             signatures required by gogoproto.
-  stride.claim.QueryUserVestingsResponse:
+  dredger.claim.QueryUserVestingsResponse:
     type: object
     properties:
       spendable_coins:
@@ -68450,7 +68450,7 @@ definitions:
               type: integer
               format: int32
           description: Period defines a length of time and amount of coins that will vest.
-  stride.vesting.Period:
+  dredger.vesting.Period:
     type: object
     properties:
       start_time:
@@ -68477,7 +68477,7 @@ definitions:
         type: integer
         format: int32
     description: Period defines a length of time and amount of coins that will vest.
-  stride.epochs.EpochInfo:
+  dredger.epochs.EpochInfo:
     type: object
     properties:
       identifier:
@@ -68498,13 +68498,13 @@ definitions:
       current_epoch_start_height:
         type: string
         format: int64
-  stride.epochs.QueryCurrentEpochResponse:
+  dredger.epochs.QueryCurrentEpochResponse:
     type: object
     properties:
       current_epoch:
         type: string
         format: int64
-  stride.epochs.QueryEpochInfoResponse:
+  dredger.epochs.QueryEpochInfoResponse:
     type: object
     properties:
       epoch:
@@ -68528,7 +68528,7 @@ definitions:
           current_epoch_start_height:
             type: string
             format: int64
-  stride.epochs.QueryEpochsInfoResponse:
+  dredger.epochs.QueryEpochsInfoResponse:
     type: object
     properties:
       epochs:
@@ -68579,7 +68579,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.icacallbacks.CallbackData:
+  dredger.icacallbacks.CallbackData:
     type: object
     properties:
       callback_key:
@@ -68596,10 +68596,10 @@ definitions:
       callback_args:
         type: string
         format: byte
-  stride.icacallbacks.Params:
+  dredger.icacallbacks.Params:
     type: object
     description: Params defines the parameters for the module.
-  stride.icacallbacks.QueryAllCallbackDataResponse:
+  dredger.icacallbacks.QueryAllCallbackDataResponse:
     type: object
     properties:
       callback_data:
@@ -68646,7 +68646,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.icacallbacks.QueryGetCallbackDataResponse:
+  dredger.icacallbacks.QueryGetCallbackDataResponse:
     type: object
     properties:
       callback_data:
@@ -68666,14 +68666,14 @@ definitions:
           callback_args:
             type: string
             format: byte
-  stride.icacallbacks.QueryParamsResponse:
+  dredger.icacallbacks.QueryParamsResponse:
     type: object
     properties:
       params:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  stride.interchainquery.v1.MsgSubmitQueryResponse:
+  dredger.interchainquery.v1.MsgSubmitQueryResponse:
     type: object
     properties:
       chain_id:
@@ -68712,12 +68712,12 @@ definitions:
     description: >-
       MsgSubmitQueryResponse represents a message type to fulfil a query
       request.
-  stride.interchainquery.v1.MsgSubmitQueryResponseResponse:
+  dredger.interchainquery.v1.MsgSubmitQueryResponseResponse:
     type: object
     description: |-
       MsgSubmitQueryResponseResponse defines the MsgSubmitQueryResponse response
       type.
-  stride.interchainquery.v1.Query:
+  dredger.interchainquery.v1.Query:
     type: object
     properties:
       id:
@@ -68738,7 +68738,7 @@ definitions:
         format: uint64
       request_sent:
         type: boolean
-  stride.interchainquery.v1.QueryPendingQueriesResponse:
+  dredger.interchainquery.v1.QueryPendingQueriesResponse:
     type: object
     properties:
       pending_queries:
@@ -68800,7 +68800,7 @@ definitions:
             The data could be arbitrary format, providing nessecary data
             for example neighbouring node hash
     title: ProofOps is Merkle proof defined by the list of ProofOps
-  stride.mint.v1beta1.DistributionProportions:
+  dredger.mint.v1beta1.DistributionProportions:
     type: object
     properties:
       staking:
@@ -68828,7 +68828,7 @@ definitions:
 
           to be allocated to the pool: strategic reserve.
     title: 'next id: 5'
-  stride.mint.v1beta1.Params:
+  dredger.mint.v1beta1.Params:
     type: object
     properties:
       mint_denom:
@@ -68884,7 +68884,7 @@ definitions:
         format: int64
         title: start epoch to distribute minting rewards
     description: Params holds parameters for the mint module.
-  stride.mint.v1beta1.QueryEpochProvisionsResponse:
+  dredger.mint.v1beta1.QueryEpochProvisionsResponse:
     type: object
     properties:
       epoch_provisions:
@@ -68894,7 +68894,7 @@ definitions:
     description: |-
       QueryEpochProvisionsResponse is the response type for the
       Query/EpochProvisions RPC method.
-  stride.mint.v1beta1.QueryParamsResponse:
+  dredger.mint.v1beta1.QueryParamsResponse:
     type: object
     properties:
       params:
@@ -68956,7 +68956,7 @@ definitions:
             format: int64
             title: start epoch to distribute minting rewards
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
-  stride.records.DepositRecord:
+  dredger.records.DepositRecord:
     type: object
     properties:
       id:
@@ -68987,16 +68987,16 @@ definitions:
       source:
         type: string
         enum:
-          - STRIDE
+          - DREDGER
           - WITHDRAWAL_ICA
-        default: STRIDE
-  stride.records.DepositRecord.Source:
+        default: DREDGER
+  dredger.records.DepositRecord.Source:
     type: string
     enum:
-      - STRIDE
+      - DREDGER
       - WITHDRAWAL_ICA
-    default: STRIDE
-  stride.records.DepositRecord.Status:
+    default: DREDGER
+  dredger.records.DepositRecord.Status:
     type: string
     enum:
       - TRANSFER_QUEUE
@@ -69009,7 +69009,7 @@ definitions:
        - TRANSFER_IN_PROGRESS: transfer in progress (IBC packet sent, ack not received)
        - DELEGATION_QUEUE: in staking queue on delegation ICA
        - DELEGATION_IN_PROGRESS: staking in progress (ICA packet sent, ack not received)
-  stride.records.EpochUnbondingRecord:
+  dredger.records.EpochUnbondingRecord:
     type: object
     properties:
       epoch_number:
@@ -69048,7 +69048,7 @@ definitions:
               type: array
               items:
                 type: string
-  stride.records.HostZoneUnbonding:
+  dredger.records.HostZoneUnbonding:
     type: object
     properties:
       st_token_amount:
@@ -69079,7 +69079,7 @@ definitions:
         type: array
         items:
           type: string
-  stride.records.HostZoneUnbonding.Status:
+  dredger.records.HostZoneUnbonding.Status:
     type: string
     enum:
       - UNBONDING_QUEUE
@@ -69092,10 +69092,10 @@ definitions:
       - UNBONDING_QUEUE: tokens bonded on delegate account
        - EXIT_TRANSFER_QUEUE: unbonding completed on delegate account
        - CLAIMABLE: transfer success
-  stride.records.Params:
+  dredger.records.Params:
     type: object
     description: Params defines the parameters for the module.
-  stride.records.QueryAllDepositRecordResponse:
+  dredger.records.QueryAllDepositRecordResponse:
     type: object
     properties:
       deposit_record:
@@ -69132,9 +69132,9 @@ definitions:
             source:
               type: string
               enum:
-                - STRIDE
+                - DREDGER
                 - WITHDRAWAL_ICA
-              default: STRIDE
+              default: DREDGER
       pagination:
         type: object
         properties:
@@ -69160,7 +69160,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.records.QueryAllEpochUnbondingRecordResponse:
+  dredger.records.QueryAllEpochUnbondingRecordResponse:
     type: object
     properties:
       epoch_unbonding_record:
@@ -69229,7 +69229,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.records.QueryAllUserRedemptionRecordForUserResponse:
+  dredger.records.QueryAllUserRedemptionRecordForUserResponse:
     type: object
     properties:
       user_redemption_record:
@@ -69280,7 +69280,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.records.QueryAllUserRedemptionRecordResponse:
+  dredger.records.QueryAllUserRedemptionRecordResponse:
     type: object
     properties:
       user_redemption_record:
@@ -69331,7 +69331,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.records.QueryGetDepositRecordResponse:
+  dredger.records.QueryGetDepositRecordResponse:
     type: object
     properties:
       deposit_record:
@@ -69366,10 +69366,10 @@ definitions:
           source:
             type: string
             enum:
-              - STRIDE
+              - DREDGER
               - WITHDRAWAL_ICA
-            default: STRIDE
-  stride.records.QueryGetEpochUnbondingRecordResponse:
+            default: DREDGER
+  dredger.records.QueryGetEpochUnbondingRecordResponse:
     type: object
     properties:
       epoch_unbonding_record:
@@ -69411,7 +69411,7 @@ definitions:
                   type: array
                   items:
                     type: string
-  stride.records.QueryGetUserRedemptionRecordResponse:
+  dredger.records.QueryGetUserRedemptionRecordResponse:
     type: object
     properties:
       user_redemption_record:
@@ -69435,14 +69435,14 @@ definitions:
             format: uint64
           claim_is_pending:
             type: boolean
-  stride.records.QueryParamsResponse:
+  dredger.records.QueryParamsResponse:
     type: object
     properties:
       params:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  stride.records.UserRedemptionRecord:
+  dredger.records.UserRedemptionRecord:
     type: object
     properties:
       id:
@@ -69463,7 +69463,7 @@ definitions:
         format: uint64
       claim_is_pending:
         type: boolean
-  stride.stakeibc.EpochTracker:
+  dredger.stakeibc.EpochTracker:
     type: object
     properties:
       epoch_identifier:
@@ -69477,7 +69477,7 @@ definitions:
       duration:
         type: string
         format: uint64
-  stride.stakeibc.HostZone:
+  dredger.stakeibc.HostZone:
     type: object
     properties:
       chain_id:
@@ -69624,7 +69624,7 @@ definitions:
           coins, maybe store port name directly)
       ibc_denom:
         type: string
-        title: ibc denom on stride
+        title: ibc denom on dredger
       host_denom:
         type: string
         title: native denom on host zone
@@ -69647,7 +69647,7 @@ definitions:
       address:
         type: string
     title: 'next id: 19'
-  stride.stakeibc.ICAAccount:
+  dredger.stakeibc.ICAAccount:
     type: object
     properties:
       address:
@@ -69665,7 +69665,7 @@ definitions:
       be
 
       coins, maybe store port name directly)
-  stride.stakeibc.ICAAccountType:
+  dredger.stakeibc.ICAAccountType:
     type: string
     enum:
       - DELEGATION
@@ -69673,38 +69673,38 @@ definitions:
       - WITHDRAWAL
       - REDEMPTION
     default: DELEGATION
-  stride.stakeibc.MsgAddValidatorResponse:
+  dredger.stakeibc.MsgAddValidatorResponse:
     type: object
-  stride.stakeibc.MsgChangeValidatorWeightResponse:
+  dredger.stakeibc.MsgChangeValidatorWeightResponse:
     type: object
-  stride.stakeibc.MsgClaimUndelegatedTokensResponse:
+  dredger.stakeibc.MsgClaimUndelegatedTokensResponse:
     type: object
-  stride.stakeibc.MsgClearBalanceResponse:
+  dredger.stakeibc.MsgClearBalanceResponse:
     type: object
-  stride.stakeibc.MsgDeleteValidatorResponse:
+  dredger.stakeibc.MsgDeleteValidatorResponse:
     type: object
-  stride.stakeibc.MsgLiquidStakeResponse:
+  dredger.stakeibc.MsgLiquidStakeResponse:
     type: object
-  stride.stakeibc.MsgRebalanceValidatorsResponse:
+  dredger.stakeibc.MsgRebalanceValidatorsResponse:
     type: object
-  stride.stakeibc.MsgRedeemStakeResponse:
+  dredger.stakeibc.MsgRedeemStakeResponse:
     type: object
-  stride.stakeibc.MsgRegisterHostZoneResponse:
+  dredger.stakeibc.MsgRegisterHostZoneResponse:
     type: object
     title: |-
       TODO(TEST-53): Remove this pre-launch (no need for clients to create /
       interact with ICAs)
-  stride.stakeibc.MsgRestoreInterchainAccountResponse:
+  dredger.stakeibc.MsgRestoreInterchainAccountResponse:
     type: object
-  stride.stakeibc.MsgUpdateValidatorSharesExchRateResponse:
+  dredger.stakeibc.MsgUpdateValidatorSharesExchRateResponse:
     type: object
-  stride.stakeibc.Params:
+  dredger.stakeibc.Params:
     type: object
     properties:
       rewards_interval:
         type: string
         format: uint64
-        title: define epoch lengths, in stride_epochs
+        title: define epoch lengths, in dred_epochs
       delegate_interval:
         type: string
         format: uint64
@@ -69714,7 +69714,7 @@ definitions:
       redemption_rate_interval:
         type: string
         format: uint64
-      stride_commission:
+      dred_commission:
         type: string
         format: uint64
       zone_com_address:
@@ -69723,7 +69723,7 @@ definitions:
           type: string
         title: |-
           zone_com_address stores which addresses to
-          send the Stride commission too, as well as what portion
+          send the Dredger commission too, as well as what portion
           of the fee each address is entitled to
           TODO implement this
       reinvest_interval:
@@ -69765,7 +69765,7 @@ definitions:
     title: |-
       Params defines the parameters for the module.
       next id: 18
-  stride.stakeibc.QueryAllEpochTrackerResponse:
+  dredger.stakeibc.QueryAllEpochTrackerResponse:
     type: object
     properties:
       epoch_tracker:
@@ -69809,7 +69809,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.stakeibc.QueryAllHostZoneResponse:
+  dredger.stakeibc.QueryAllHostZoneResponse:
     type: object
     properties:
       host_zone:
@@ -69961,7 +69961,7 @@ definitions:
                 coins, maybe store port name directly)
             ibc_denom:
               type: string
-              title: ibc denom on stride
+              title: ibc denom on dredger
             host_denom:
               type: string
               title: native denom on host zone
@@ -70009,7 +70009,7 @@ definitions:
                    repeated Bar results = 1;
                    PageResponse page = 2;
            }
-  stride.stakeibc.QueryGetEpochTrackerResponse:
+  dredger.stakeibc.QueryGetEpochTrackerResponse:
     type: object
     properties:
       epoch_tracker:
@@ -70026,7 +70026,7 @@ definitions:
           duration:
             type: string
             format: uint64
-  stride.stakeibc.QueryGetHostZoneResponse:
+  dredger.stakeibc.QueryGetHostZoneResponse:
     type: object
     properties:
       host_zone:
@@ -70176,7 +70176,7 @@ definitions:
               coins, maybe store port name directly)
           ibc_denom:
             type: string
-            title: ibc denom on stride
+            title: ibc denom on dredger
           host_denom:
             type: string
             title: native denom on host zone
@@ -70199,7 +70199,7 @@ definitions:
           address:
             type: string
         title: 'next id: 19'
-  stride.stakeibc.QueryGetICAAccountResponse:
+  dredger.stakeibc.QueryGetICAAccountResponse:
     type: object
     properties:
       ica_account:
@@ -70220,7 +70220,7 @@ definitions:
           should be
 
           coins, maybe store port name directly)
-  stride.stakeibc.QueryGetValidatorsResponse:
+  dredger.stakeibc.QueryGetValidatorsResponse:
     type: object
     properties:
       validators:
@@ -70254,7 +70254,7 @@ definitions:
                 epoch_number:
                   type: string
                   format: uint64
-  stride.stakeibc.QueryInterchainAccountFromAddressResponse:
+  dredger.stakeibc.QueryInterchainAccountFromAddressResponse:
     type: object
     properties:
       interchain_account_address:
@@ -70262,12 +70262,12 @@ definitions:
     title: |-
       QueryInterchainAccountFromAddressResponse the response type for the
       Query/InterchainAccountAddress RPC
-  stride.stakeibc.QueryModuleAddressResponse:
+  dredger.stakeibc.QueryModuleAddressResponse:
     type: object
     properties:
       addr:
         type: string
-  stride.stakeibc.QueryParamsResponse:
+  dredger.stakeibc.QueryParamsResponse:
     type: object
     properties:
       params:
@@ -70277,7 +70277,7 @@ definitions:
           rewards_interval:
             type: string
             format: uint64
-            title: define epoch lengths, in stride_epochs
+            title: define epoch lengths, in dred_epochs
           delegate_interval:
             type: string
             format: uint64
@@ -70287,7 +70287,7 @@ definitions:
           redemption_rate_interval:
             type: string
             format: uint64
-          stride_commission:
+          dred_commission:
             type: string
             format: uint64
           zone_com_address:
@@ -70296,7 +70296,7 @@ definitions:
               type: string
             title: |-
               zone_com_address stores which addresses to
-              send the Stride commission too, as well as what portion
+              send the Dredger commission too, as well as what portion
               of the fee each address is entitled to
               TODO implement this
           reinvest_interval:
@@ -70339,7 +70339,7 @@ definitions:
           Params defines the parameters for the module.
           next id: 18
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  stride.stakeibc.Validator:
+  dredger.stakeibc.Validator:
     type: object
     properties:
       name:
@@ -70368,13 +70368,13 @@ definitions:
           epoch_number:
             type: string
             format: uint64
-  stride.stakeibc.Validator.ValidatorStatus:
+  dredger.stakeibc.Validator.ValidatorStatus:
     type: string
     enum:
       - ACTIVE
       - INACTIVE
     default: ACTIVE
-  stride.stakeibc.ValidatorExchangeRate:
+  dredger.stakeibc.ValidatorExchangeRate:
     type: object
     properties:
       internal_tokens_to_shares_rate:

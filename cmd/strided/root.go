@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/snapshots"
 
-	"github.com/Stride-Labs/stride/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/utils"
 
 	tmDb "github.com/tendermint/tm-db"
 
@@ -40,8 +40,8 @@ import (
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 	tmcfg "github.com/tendermint/tendermint/config"
 
-	"github.com/Stride-Labs/stride/v4/app"
-	// "github.com/Stride-Labs/stride/v4/app/params"
+	"github.com/TessorNetwork/dredger/v4/app"
+	// "github.com/TessorNetwork/dredger/v4/app/params"
 	// this line is used by starport scaffolding # stargate/root/import
 )
 
@@ -64,7 +64,7 @@ func NewRootCmd() (*cobra.Command, app.EncodingConfig) {
 
 	rootCmd := &cobra.Command{
 		Use:   app.Name + "d",
-		Short: "Stride App",
+		Short: "Dredger App",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())
@@ -147,7 +147,7 @@ func initAppConfig() (string, interface{}) {
 	//
 	// In simapp, we set the min gas prices to 0.
 	// TODO TEST-48 investigate if this is sufficient to allow 0 gas transactions
-	srvCfg.MinGasPrices = "0ustrd"
+	srvCfg.MinGasPrices = "0udred"
 	srvCfg.API.Enable = true
 	srvCfg.API.EnableUnsafeCORS = true
 	srvCfg.GRPCWeb.EnableUnsafeCORS = true
@@ -301,7 +301,7 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		cast.ToUint32(appOpts.Get(server.FlagStateSyncSnapshotKeepRecent)),
 	)
 
-	return app.NewStrideApp(
+	return app.NewDredApp(
 		logger, db, traceStore, true, skipUpgradeHeights,
 		cast.ToString(appOpts.Get(flags.FlagHome)),
 		cast.ToUint(appOpts.Get(server.FlagInvCheckPeriod)),
@@ -327,7 +327,7 @@ func (a appCreator) appExport(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, height int64, forZeroHeight bool, jailAllowedAddrs []string,
 	appOpts servertypes.AppOptions,
 ) (servertypes.ExportedApp, error) {
-	var anApp *app.StrideApp
+	var anApp *app.DredApp
 
 	homePath, ok := appOpts.Get(flags.FlagHome).(string)
 	if !ok || homePath == "" {
@@ -335,7 +335,7 @@ func (a appCreator) appExport(
 	}
 
 	if height != -1 {
-		anApp = app.NewStrideApp(
+		anApp = app.NewDredApp(
 			logger,
 			db,
 			traceStore,
@@ -351,7 +351,7 @@ func (a appCreator) appExport(
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		anApp = app.NewStrideApp(
+		anApp = app.NewDredApp(
 			logger,
 			db,
 			traceStore,

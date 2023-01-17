@@ -9,35 +9,35 @@ UPGRADE_HEIGHT=250
 PROPOSAL_ID=1
 
 printf "PROPOSAL\n"
-$STRIDE_MAIN_CMD tx gov submit-proposal software-upgrade $UPGRADE_NAME \
+$DRED_MAIN_CMD tx gov submit-proposal software-upgrade $UPGRADE_NAME \
     --title $UPGRADE_NAME --description "version 2 description" \
     --upgrade-height $UPGRADE_HEIGHT --from val1 -y | TRIM_TX
 
 sleep 5
 printf "\nPROPOSAL CONFIRMATION\n"
-$STRIDE_MAIN_CMD query gov proposals
+$DRED_MAIN_CMD query gov proposals
 
 sleep 5 
 printf "\nDEPOSIT\n"
-$STRIDE_MAIN_CMD tx gov deposit $PROPOSAL_ID 10000001ustrd --from val1 -y | TRIM_TX
+$DRED_MAIN_CMD tx gov deposit $PROPOSAL_ID 10000001udred --from val1 -y | TRIM_TX
 
 sleep 5
 printf "\nDEPOSIT CONFIRMATION\n"
-$STRIDE_MAIN_CMD query gov deposits $PROPOSAL_ID
+$DRED_MAIN_CMD query gov deposits $PROPOSAL_ID
 
 sleep 5
 printf "\nVOTING\n"
-$STRIDE_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val1 -y | TRIM_TX
-$STRIDE_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val2 -y | TRIM_TX
-$STRIDE_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val3 -y | TRIM_TX
+$DRED_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val1 -y | TRIM_TX
+$DRED_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val2 -y | TRIM_TX
+$DRED_MAIN_CMD tx gov vote $PROPOSAL_ID yes --from val3 -y | TRIM_TX
 
 sleep 5
 printf "\nVOTE CONFIRMATION\n"
-$STRIDE_MAIN_CMD query gov tally $PROPOSAL_ID
+$DRED_MAIN_CMD query gov tally $PROPOSAL_ID
 
 printf "\nPROPOSAL STATUS\n"
 while true; do
-    status=$($STRIDE_MAIN_CMD query gov proposal $PROPOSAL_ID | grep "status" | awk '{printf $2}')
+    status=$($DRED_MAIN_CMD query gov proposal $PROPOSAL_ID | grep "status" | awk '{printf $2}')
     if [[ "$status" == "PROPOSAL_STATUS_VOTING_PERIOD" ]]; then
         echo "Proposal still in progress..."
         sleep 5

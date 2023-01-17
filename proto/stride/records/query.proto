@@ -1,39 +1,39 @@
 syntax = "proto3";
-package stride.records;
+package dredger.records;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
-import "stride/records/genesis.proto";
+import "dredger/records/genesis.proto";
 // this line is used by starport scaffolding # 1
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/records/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/records/types";
 
 // Query defines the gRPC querier service.
 service Query {
   // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-    option (google.api.http).get = "/StrideLabs/stride/records/params";
+    option (google.api.http).get = "/DredLabs/dredger/records/params";
   }
   // Queries a UserRedemptionRecord by id.
   rpc UserRedemptionRecord(QueryGetUserRedemptionRecordRequest)
       returns (QueryGetUserRedemptionRecordResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/user_redemption_record/{id}";
+        "/TessorNetwork/dredger/records/user_redemption_record/{id}";
   }
 
   // Queries a list of UserRedemptionRecord items.
   rpc UserRedemptionRecordAll(QueryAllUserRedemptionRecordRequest)
       returns (QueryAllUserRedemptionRecordResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/user_redemption_record";
+        "/TessorNetwork/dredger/records/user_redemption_record";
   }
 
   // Queries a list of UserRedemptionRecord items by chainId / userId pair.
   rpc UserRedemptionRecordForUser(QueryAllUserRedemptionRecordForUserRequest)
       returns (QueryAllUserRedemptionRecordForUserResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/user_redemption_record_for_user/"
+        "/TessorNetwork/dredger/records/user_redemption_record_for_user/"
         "{chain_id}/{day}/{address}/{limit}";
   }
 
@@ -41,14 +41,14 @@ service Query {
   rpc EpochUnbondingRecord(QueryGetEpochUnbondingRecordRequest)
       returns (QueryGetEpochUnbondingRecordResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/epoch_unbonding_record/{epoch_number}";
+        "/TessorNetwork/dredger/records/epoch_unbonding_record/{epoch_number}";
   }
 
   // Queries a list of EpochUnbondingRecord items.
   rpc EpochUnbondingRecordAll(QueryAllEpochUnbondingRecordRequest)
       returns (QueryAllEpochUnbondingRecordResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/epoch_unbonding_record";
+        "/TessorNetwork/dredger/records/epoch_unbonding_record";
   }
 
   // this line is used by starport scaffolding # 2
@@ -57,13 +57,13 @@ service Query {
   rpc DepositRecord(QueryGetDepositRecordRequest)
       returns (QueryGetDepositRecordResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/records/deposit_record/{id}";
+        "/TessorNetwork/dredger/records/deposit_record/{id}";
   }
 
   // Queries a list of DepositRecord items.
   rpc DepositRecordAll(QueryAllDepositRecordRequest)
       returns (QueryAllDepositRecordResponse) {
-    option (google.api.http).get = "/Stride-Labs/stride/records/deposit_record";
+    option (google.api.http).get = "/TessorNetwork/dredger/records/deposit_record";
   }
   // this line is used by starport scaffolding # 2
 }

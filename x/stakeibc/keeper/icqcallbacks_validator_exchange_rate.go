@@ -6,10 +6,10 @@ import (
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icqtypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // ValidatorCallback is a callback handler for validator queries.
@@ -56,11 +56,11 @@ func ValidatorExchangeRateCallback(k Keeper, ctx sdk.Context, args []byte, query
 		return sdkerrors.Wrapf(types.ErrValidatorNotFound, "no registered validator for address (%s)", queriedValidator.OperatorAddress)
 	}
 
-	// Get the stride epoch number
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	// Get the dredger epoch number
+	dredEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DRED_EPOCH)
 	if !found {
-		k.Logger(ctx).Error("failed to find stride epoch")
-		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.STRIDE_EPOCH)
+		k.Logger(ctx).Error("failed to find dredger epoch")
+		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.DRED_EPOCH)
 	}
 
 	// If the validator's delegation shares is 0, we'll get a division by zero error when trying to get the exchange rate
@@ -77,7 +77,7 @@ func ValidatorExchangeRateCallback(k Keeper, ctx sdk.Context, args []byte, query
 	//    and the returned number of tokens will be equal to the internal exchange rate
 	validator.InternalExchangeRate = &types.ValidatorExchangeRate{
 		InternalTokensToSharesRate: queriedValidator.TokensFromShares(sdk.NewDec(1.0)),
-		EpochNumber:                strideEpochTracker.GetEpochNumber(),
+		EpochNumber:                dredEpochTracker.GetEpochNumber(),
 	}
 	hostZone.Validators[valIndex] = &validator
 	k.SetHostZone(ctx, hostZone)

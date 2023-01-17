@@ -1,24 +1,24 @@
 syntax = "proto3";
-package stride.stakeibc;
+package dredger.stakeibc;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
 
 // Params defines the parameters for the module.
 // next id: 18
 message Params {
   option (gogoproto.goproto_stringer) = false;
 
-  // define epoch lengths, in stride_epochs
+  // define epoch lengths, in dred_epochs
   uint64 rewards_interval = 1;
   uint64 delegate_interval = 6;
   uint64 deposit_interval = 2;
   uint64 redemption_rate_interval = 3;
 
-  uint64 stride_commission = 4;
+  uint64 dred_commission = 4;
   // zone_com_address stores which addresses to
-  // send the Stride commission too, as well as what portion
+  // send the Dredger commission too, as well as what portion
   // of the fee each address is entitled to
   // TODO implement this
   map<string, string> zone_com_address = 5;

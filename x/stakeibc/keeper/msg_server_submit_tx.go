@@ -8,11 +8,11 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/spf13/cast"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	icacallbackstypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
 
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
@@ -20,8 +20,8 @@ import (
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	epochstypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icqtypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
+	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	icatypes "github.com/cosmos/ibc-go/v5/modules/apps/27-interchain-accounts/types"
@@ -86,7 +86,7 @@ func (k Keeper) DelegateOnHost(ctx sdk.Context, hostZone types.HostZone, amt sdk
 	}
 
 	// Send the transaction through SubmitTx
-	_, err = k.SubmitTxsStrideEpoch(ctx, connectionId, msgs, *delegationAccount, ICACallbackID_Delegate, marshalledCallbackArgs)
+	_, err = k.SubmitTxsDredEpoch(ctx, connectionId, msgs, *delegationAccount, ICACallbackID_Delegate, marshalledCallbackArgs)
 	if err != nil {
 		return sdkerrors.Wrapf(err, "Failed to SubmitTxs for connectionId %s on %s. Messages: %s", connectionId, hostZone.ChainId, msgs)
 	}
@@ -132,7 +132,7 @@ func (k Keeper) SetWithdrawalAddressOnHost(ctx sdk.Context, hostZone types.HostZ
 			WithdrawAddress:  withdrawalAccount.Address,
 		},
 	}
-	_, err = k.SubmitTxsStrideEpoch(ctx, connectionId, msgs, *delegationAccount, "", nil)
+	_, err = k.SubmitTxsDredEpoch(ctx, connectionId, msgs, *delegationAccount, "", nil)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "Failed to SubmitTxs for %s, %s, %s", connectionId, hostZone.ChainId, msgs)
 	}
@@ -159,10 +159,10 @@ func (k Keeper) UpdateWithdrawalBalance(ctx sdk.Context, hostZone types.HostZone
 	queryData := append(bankTypes.CreateAccountBalancesPrefix(withdrawalAddressBz), []byte(hostZone.HostDenom)...)
 
 	// The query should timeout at the end of the ICA buffer window
-	ttl, err := k.GetICATimeoutNanos(ctx, epochstypes.STRIDE_EPOCH)
+	ttl, err := k.GetICATimeoutNanos(ctx, epochstypes.DRED_EPOCH)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest,
-			"Failed to get ICA timeout nanos for epochType %s using param, error: %s", epochstypes.STRIDE_EPOCH, err.Error())
+			"Failed to get ICA timeout nanos for epochType %s using param, error: %s", epochstypes.DRED_EPOCH, err.Error())
 	}
 
 	// Submit the ICQ for the withdrawal account balance
@@ -210,7 +210,7 @@ func (k Keeper) SubmitTxsDayEpoch(
 	return sequence, nil
 }
 
-func (k Keeper) SubmitTxsStrideEpoch(
+func (k Keeper) SubmitTxsDredEpoch(
 	ctx sdk.Context,
 	connectionId string,
 	msgs []sdk.Msg,
@@ -218,7 +218,7 @@ func (k Keeper) SubmitTxsStrideEpoch(
 	callbackId string,
 	callbackArgs []byte,
 ) (uint64, error) {
-	sequence, err := k.SubmitTxsEpoch(ctx, connectionId, msgs, account, epochstypes.STRIDE_EPOCH, callbackId, callbackArgs)
+	sequence, err := k.SubmitTxsEpoch(ctx, connectionId, msgs, account, epochstypes.DRED_EPOCH, callbackId, callbackArgs)
 	if err != nil {
 		return 0, err
 	}
@@ -388,7 +388,7 @@ func (k Keeper) QueryValidatorExchangeRate(ctx sdk.Context, msg *types.MsgUpdate
 	queryData := stakingtypes.GetValidatorKey(validatorAddressBz)
 
 	// The query should timeout at the start of the next epoch
-	ttl, err := k.GetStartTimeNextEpoch(ctx, epochstypes.STRIDE_EPOCH)
+	ttl, err := k.GetStartTimeNextEpoch(ctx, epochstypes.DRED_EPOCH)
 	if err != nil {
 		return nil, sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "could not get start time for next epoch: %s", err.Error())
 	}
@@ -441,7 +441,7 @@ func (k Keeper) QueryDelegationsIcq(ctx sdk.Context, hostZone types.HostZone, va
 	queryData := stakingtypes.GetDelegationKey(delegatorAddressBz, validatorAddressBz)
 
 	// The query should timeout at the start of the next epoch
-	ttl, err := k.GetStartTimeNextEpoch(ctx, epochstypes.STRIDE_EPOCH)
+	ttl, err := k.GetStartTimeNextEpoch(ctx, epochstypes.DRED_EPOCH)
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "could not get start time for next epoch: %s", err.Error())
 	}

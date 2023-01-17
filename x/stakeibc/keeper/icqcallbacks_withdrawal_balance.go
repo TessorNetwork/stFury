@@ -10,9 +10,9 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/spf13/cast"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	icqtypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // WithdrawalBalanceCallback is a callback handler for WithdrawalBalance queries.
@@ -60,21 +60,21 @@ func WithdrawalBalanceCallback(k Keeper, ctx sdk.Context, args []byte, query icq
 		return sdkerrors.Wrapf(types.ErrICAAccountNotFound, "no fee account found for %s", chainId)
 	}
 
-	// Determine the stride commission rate to the relevant portion can be sent to the fee account
+	// Determine the dredger commission rate to the relevant portion can be sent to the fee account
 	params := k.GetParams(ctx)
-	strideCommissionInt, err := cast.ToInt64E(params.StrideCommission)
+	dredCommissionInt, err := cast.ToInt64E(params.DredCommission)
 	if err != nil {
 		return err
 	}
 
-	// check that stride commission is between 0 and 1
-	strideCommission := sdk.NewDec(strideCommissionInt).Quo(sdk.NewDec(100))
-	if strideCommission.LT(sdk.ZeroDec()) || strideCommission.GT(sdk.OneDec()) {
-		return sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Aborting withdrawal balance callback -- Stride commission must be between 0 and 1!")
+	// check that dredger commission is between 0 and 1
+	dredCommission := sdk.NewDec(dredCommissionInt).Quo(sdk.NewDec(100))
+	if dredCommission.LT(sdk.ZeroDec()) || dredCommission.GT(sdk.OneDec()) {
+		return sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Aborting withdrawal balance callback -- Dredger commission must be between 0 and 1!")
 	}
 
 	// Split out the reinvestment amount from the fee amount
-	feeAmount := strideCommission.Mul(sdk.NewDecFromInt(withdrawalBalanceAmount)).TruncateInt()
+	feeAmount := dredCommission.Mul(sdk.NewDecFromInt(withdrawalBalanceAmount)).TruncateInt()
 	reinvestAmount := withdrawalBalanceAmount.Sub(feeAmount)
 
 	// Safety check, balances should add to original amount
@@ -119,7 +119,7 @@ func WithdrawalBalanceCallback(k Keeper, ctx sdk.Context, args []byte, query icq
 	}
 
 	// Send the transaction through SubmitTx
-	_, err = k.SubmitTxsStrideEpoch(ctx, hostZone.ConnectionId, msgs, *withdrawalAccount, ICACallbackID_Reinvest, marshalledCallbackArgs)
+	_, err = k.SubmitTxsDredEpoch(ctx, hostZone.ConnectionId, msgs, *withdrawalAccount, ICACallbackID_Reinvest, marshalledCallbackArgs)
 	if err != nil {
 		return sdkerrors.Wrapf(types.ErrICATxFailed, "Failed to SubmitTxs, Messages: %v, err: %s", msgs, err.Error())
 	}

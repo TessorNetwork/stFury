@@ -19,12 +19,12 @@ class Account:
     address: str
 
 # Contants
-BONDED_TOKENS_POOL_MODULE_ADDRESS = "stride1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
+BONDED_TOKENS_POOL_MODULE_ADDRESS = "dred1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
 
 config = {
     "governance_voting_period": "180s",
     "epoch_day_duration": '3600s',
-    "epoch_stride_duration": "3600s",
+    "epoch_dred_duration": "3600s",
 }
 
 def replace(d, old_value, new_value):
@@ -77,8 +77,8 @@ def create_parser():
         '-c',
         '--chain-id',
         type = str,
-        default="localstride",
-        help='Chain ID for the testnet \nDefault: localstride\n'
+        default="localdred",
+        help='Chain ID for the testnet \nDefault: localdred\n'
     )
 
     parser.add_argument(
@@ -166,8 +166,8 @@ def main():
         moniker = "Mendel",
         pubkey = "idsN6Oq6FjHf/woVuEo2yQfRqDcO2L3g6uJfDDJtoXo=",
         hex_address = "2F811FD9BAD33E72A674DCA98A15EBAF241341A7",
-        operator_address = "stridevaloper1h2r2k24349gtx7e4kfxxl8gzqz8tn6zym65uxc",
-        consensus_address = "stridevalcons197q3lkd66vl89fn5mj5c590t4ujpxsd8rus25g"
+        operator_address = "dredvaloper1h2r2k24349gtx7e4kfxxl8gzqz8tn6zym65uxc",
+        consensus_address = "dredvalcons197q3lkd66vl89fn5mj5c590t4ujpxsd8rus25g"
     )
 
     new_account = Account(
@@ -177,7 +177,7 @@ def main():
 
     old_account = Account(
         pubkey = "Ayyx0UKVV+w9zsTTLTGylpUH0bPON0DVdseetjVNN9eC",
-        address = "stride1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
+        address = "dred1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
     )
 
     print("📝 Opening {}... (it may take a while)".format(args.input_genesis))
@@ -204,8 +204,8 @@ def main():
         if epoch['identifier'] == "day": 
             epoch['duration'] = config["epoch_day_duration"]
 
-        elif epoch['identifier'] == "stride_epoch":
-            epoch['duration'] = config["epoch_stride_duration"]
+        elif epoch['identifier'] == "dred_epoch":
+            epoch['duration'] = config["epoch_dred_duration"]
 
         epoch['current_epoch_start_time'] = datetime.now().isoformat() + 'Z'
 
@@ -301,27 +301,27 @@ def main():
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == new_account.address:
             for coin in balance['coins']:
-                if coin['denom'] == "ustrd":
+                if coin['denom'] == "udred":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} ustrd balance to {}".format(new_account.address, coin["amount"]))
+                    print("\tUpdate {} udred balance to {}".format(new_account.address, coin["amount"]))
                     break
             break
 
-    # Add 1 BN ustrd to bonded_tokens_pool module address
+    # Add 1 BN udred to bonded_tokens_pool module address
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == BONDED_TOKENS_POOL_MODULE_ADDRESS:
-            # Find ustrd
+            # Find udred
             for coin in balance['coins']:
-                if coin['denom'] == "ustrd":
+                if coin['denom'] == "udred":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} (bonded_tokens_pool_module) ustrd balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
+                    print("\tUpdate {} (bonded_tokens_pool_module) udred balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
                     break
             break
 
     # Update bank balance
     for supply in genesis['app_state']['bank']['supply']:
-        if supply["denom"] == "ustrd":
-            print("\tUpdate total ustrd supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
+        if supply["denom"] == "udred":
+            print("\tUpdate total udred supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
             supply["amount"] = str(int(supply["amount"]) + 2000000000000000)
             break
 

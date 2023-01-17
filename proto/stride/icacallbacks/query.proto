@@ -1,33 +1,33 @@
 syntax = "proto3";
-package stride.icacallbacks;
+package dredger.icacallbacks;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
-import "stride/icacallbacks/params.proto";
-import "stride/icacallbacks/callback_data.proto";
+import "dredger/icacallbacks/params.proto";
+import "dredger/icacallbacks/callback_data.proto";
 // this line is used by starport scaffolding # 1
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/icacallbacks/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types";
 
 // Query defines the gRPC querier service.
 service Query {
   // Parameters queries the parameters of the module.
   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-    option (google.api.http).get = "/Stride-Labs/stride/icacallbacks/params";
+    option (google.api.http).get = "/TessorNetwork/dredger/icacallbacks/params";
   }
   // Queries a CallbackData by index.
   rpc CallbackData(QueryGetCallbackDataRequest)
       returns (QueryGetCallbackDataResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/icacallbacks/callback_data/{callback_key}";
+        "/TessorNetwork/dredger/icacallbacks/callback_data/{callback_key}";
   }
 
   // Queries a list of CallbackData items.
   rpc CallbackDataAll(QueryAllCallbackDataRequest)
       returns (QueryAllCallbackDataResponse) {
     option (google.api.http).get =
-        "/Stride-Labs/stride/icacallbacks/callback_data";
+        "/TessorNetwork/dredger/icacallbacks/callback_data";
   }
 
   // this line is used by starport scaffolding # 2

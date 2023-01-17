@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Stride-Labs/stride/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/utils"
 )
 
 // Msg type for MsgSetAirdropAllocations
@@ -65,12 +65,12 @@ func (msg *MsgSetAirdropAllocations) ValidateBasic() error {
 	}
 
 	for _, user := range msg.Users {
-		strideAddr := utils.ConvertAddressToStrideAddress(user)
-		if strideAddr == "" {
+		dredAddr := utils.ConvertAddressToDredAddress(user)
+		if dredAddr == "" {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid bech32 address")
 		}
 
-		_, err := sdk.AccAddressFromBech32(strideAddr)
+		_, err := sdk.AccAddressFromBech32(dredAddr)
 		if err != nil {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)
 		}

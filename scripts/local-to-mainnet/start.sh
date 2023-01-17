@@ -3,9 +3,9 @@
 set -eu 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-STRIDE_CHAIN_ID=local-test-1
+DRED_CHAIN_ID=local-test-1
 HOST_CHAIN_ID=osmosis-1
-HOST_ENDPOINT=osmo-fleet-direct.main.stridenet.co
+HOST_ENDPOINT=osmo-fleet-direct.main.drednet.co
 HOST_ACCOUNT_PREFIX=osmo
 HOST_DENOM=uosmo
 HOST_BINARY=build/osmosisd
@@ -17,12 +17,12 @@ HOT_WALLET_ADDRESS=osmo1c37n9aywapx2v0s6vk2yedydkkhq65zz38jfnc
 
 STATE=$SCRIPT_DIR/../state
 LOGS=$SCRIPT_DIR/../logs
-STRIDE_LOGS=$LOGS/stride.log
-STRIDE_HOME=$STATE/stride1
+DRED_LOGS=$LOGS/dredger.log
+DRED_HOME=$STATE/dred1
 DOCKER_COMPOSE="docker-compose -f $SCRIPT_DIR/docker-compose.yml"
 
-HERMES_STRIDE_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
-RELAYER_STRIDE_MNEMONIC="pride narrow breeze fitness sign bounce dose smart squirrel spell length federal replace coral lunar thunder vital push nuclear crouch fun accident hood need"
+HERMES_DRED_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
+RELAYER_DRED_MNEMONIC="pride narrow breeze fitness sign bounce dose smart squirrel spell length federal replace coral lunar thunder vital push nuclear crouch fun accident hood need"
 
 # cleanup any stale state
 make stop-docker
@@ -30,14 +30,14 @@ rm -rf $STATE $LOGS
 mkdir -p $STATE
 mkdir -p $LOGS
 
-# Start stride
-bash ${SCRIPT_DIR}/init_stride.sh $STRIDE_CHAIN_ID
+# Start dredger
+bash ${SCRIPT_DIR}/init_dred.sh $DRED_CHAIN_ID
 
-$DOCKER_COMPOSE up -d stride1
-$DOCKER_COMPOSE logs -f stride1 | sed -r -u "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > $STRIDE_LOGS 2>&1 &
+$DOCKER_COMPOSE up -d dred1
+$DOCKER_COMPOSE logs -f dred1 | sed -r -u "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > $DRED_LOGS 2>&1 &
 
-printf "Waiting for Stride to start..."
-( tail -f -n0 $STRIDE_LOGS & ) | grep -q "finalizing commit of block"
+printf "Waiting for Dredger to start..."
+( tail -f -n0 $DRED_LOGS & ) | grep -q "finalizing commit of block"
 echo "Done"
 
 # Setup relayers
@@ -49,13 +49,13 @@ cp ${SCRIPT_DIR}/templates/hermes_config.toml $HERMES_CONFIG_FILE
 cp ${SCRIPT_DIR}/templates/relayer_config.yaml $RELAYER_CONFIG_FILE
 
 # Update relayer templates
-sed -i -E "s|STRIDE_CHAIN_ID|$STRIDE_CHAIN_ID|g" $HERMES_CONFIG_FILE
+sed -i -E "s|DRED_CHAIN_ID|$DRED_CHAIN_ID|g" $HERMES_CONFIG_FILE
 sed -i -E "s|HOST_CHAIN_ID|$HOST_CHAIN_ID|g" $HERMES_CONFIG_FILE
 sed -i -E "s|HOST_ENDPOINT|$HOST_ENDPOINT|g" $HERMES_CONFIG_FILE
 sed -i -E "s|HOST_ACCOUNT_PREFIX|$HOST_ACCOUNT_PREFIX|g" $HERMES_CONFIG_FILE
 sed -i -E "s|HOST_DENOM|$HOST_DENOM|g" $HERMES_CONFIG_FILE
 
-sed -i -E "s|STRIDE_CHAIN_ID|$STRIDE_CHAIN_ID|g" $RELAYER_CONFIG_FILE
+sed -i -E "s|DRED_CHAIN_ID|$DRED_CHAIN_ID|g" $RELAYER_CONFIG_FILE
 sed -i -E "s|HOST_CHAIN_ID|$HOST_CHAIN_ID|g" $RELAYER_CONFIG_FILE
 sed -i -E "s|HOST_ENDPOINT|$HOST_ENDPOINT|g" $RELAYER_CONFIG_FILE
 sed -i -E "s|HOST_ACCOUNT_PREFIX|$HOST_ACCOUNT_PREFIX|g" $RELAYER_CONFIG_FILE
@@ -64,15 +64,15 @@ sed -i -E "s|HOST_DENOM|$HOST_DENOM|g" $RELAYER_CONFIG_FILE
 echo "Adding Hermes keys"
 HERMES_CMD="$SCRIPT_DIR/../../build/hermes/release/hermes --config $STATE/hermes/config.toml"
 TMP_MNEMONICS=$STATE/mnemonic.txt 
-echo "$HERMES_STRIDE_MNEMONIC" > $TMP_MNEMONICS
-$HERMES_CMD keys add --key-name hrly1 --chain $STRIDE_CHAIN_ID --mnemonic-file $TMP_MNEMONICS --overwrite
+echo "$HERMES_DRED_MNEMONIC" > $TMP_MNEMONICS
+$HERMES_CMD keys add --key-name hrly1 --chain $DRED_CHAIN_ID --mnemonic-file $TMP_MNEMONICS --overwrite
 echo "$HOT_WALLET_2_MNEMONIC" > $TMP_MNEMONICS
 $HERMES_CMD keys add --key-name hrly2 --chain $HOST_CHAIN_ID --mnemonic-file $TMP_MNEMONICS --overwrite
 rm -f $TMP_MNEMONICS
 
 echo "Adding Relayer keys"
 RELAYER_CMD="$SCRIPT_DIR/../../build/relayer --home $STATE/relayer"
-$RELAYER_CMD keys restore stride rly1 "$RELAYER_STRIDE_MNEMONIC" 
+$RELAYER_CMD keys restore dredger rly1 "$RELAYER_DRED_MNEMONIC" 
 $RELAYER_CMD keys restore host rly2 "$HOT_WALLET_3_MNEMONIC" 
 
 # Update commands template
@@ -85,8 +85,8 @@ sed -i -E '1s/^/############################################\n### WARNING: THIS 
 sed -i -E "s|DOCKER_COMPOSE|$DOCKER_COMPOSE_RELATIVE|g" $COMMANDS_FILE
 sed -i -E "s|STATE|$STATE_RELATIVE|g" $COMMANDS_FILE
 sed -i -E "s|LOGS|$LOGS_RELATIVE|g" $COMMANDS_FILE
-sed -i -E "s|STRIDE_HOME|s|g" $COMMANDS_FILE
-sed -i -E "s|STRIDE_CHAIN_ID|$STRIDE_CHAIN_ID|g" $COMMANDS_FILE
+sed -i -E "s|DRED_HOME|s|g" $COMMANDS_FILE
+sed -i -E "s|DRED_CHAIN_ID|$DRED_CHAIN_ID|g" $COMMANDS_FILE
 sed -i -E "s|HOST_CHAIN_ID|$HOST_CHAIN_ID|g" $COMMANDS_FILE
 sed -i -E "s|HOST_BINARY|$HOST_BINARY|g" $COMMANDS_FILE
 sed -i -E "s|HOST_DENOM|$HOST_DENOM|g" $COMMANDS_FILE

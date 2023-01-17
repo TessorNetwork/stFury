@@ -1,14 +1,14 @@
 syntax = "proto3";
-package stride.claim;
+package dredger.claim;
 
 import "gogoproto/gogo.proto";
 import "google/api/annotations.proto";
 import "cosmos/base/v1beta1/coin.proto";
-import "stride/claim/claim.proto";
-import "stride/claim/params.proto";
-import "stride/vesting/vesting.proto";
+import "dredger/claim/claim.proto";
+import "dredger/claim/params.proto";
+import "dredger/vesting/vesting.proto";
 
-option go_package = "github.com/Stride-Labs/stride/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
 
 // Query defines the gRPC querier service.
 service Query {
@@ -115,7 +115,7 @@ message QueryUserVestingsResponse {
     (gogoproto.nullable) = false,
     (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.Coins"
   ];
-  repeated stride.vesting.Period periods = 1 [
+  repeated dredger.vesting.Period periods = 1 [
     (gogoproto.moretags) = "yaml:\"periods\"",
     (gogoproto.nullable) = false
   ];

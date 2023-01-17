@@ -11,9 +11,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/Stride-Labs/stride/v4/testutil/network"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/client/cli"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/testutil/network"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/client/cli"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // Prevent strconv unused error
@@ -33,7 +33,7 @@ func networkWithEpochTracker(t *testing.T) *network.Network {
 func TestShowEpochTracker(t *testing.T) {
 	net := networkWithEpochTracker(t)
 	ctx := net.Validators[0].ClientCtx
-	strideEpochId := "stride_epoch"
+	dredEpochId := "dred_epoch"
 	nonExistentId := "nonexistent_id"
 	common := []string{
 		fmt.Sprintf("--%s=json", tmcli.OutputFlag),
@@ -48,10 +48,10 @@ func TestShowEpochTracker(t *testing.T) {
 	}{
 		{
 			desc:              "found",
-			idEpochIdentifier: strideEpochId,
+			idEpochIdentifier: dredEpochId,
 
 			args: common,
-			obj:  types.EpochTracker{EpochIdentifier: strideEpochId, EpochNumber: 1},
+			obj:  types.EpochTracker{EpochIdentifier: dredEpochId, EpochNumber: 1},
 		},
 		{
 			desc:              "not found",
@@ -93,7 +93,7 @@ func TestListEpochTracker(t *testing.T) {
 	expected := []types.EpochTracker{
 		{EpochIdentifier: "day", EpochNumber: 1},
 		{EpochIdentifier: "mint", EpochNumber: 1},
-		{EpochIdentifier: "stride_epoch", EpochNumber: 1},
+		{EpochIdentifier: "dred_epoch", EpochNumber: 1},
 		{EpochIdentifier: "week", EpochNumber: 1},
 	}
 	require.NoError(t, err)

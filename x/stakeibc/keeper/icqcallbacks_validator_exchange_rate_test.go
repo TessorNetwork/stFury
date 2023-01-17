@@ -9,15 +9,15 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icqtypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
-	stakeibckeeper "github.com/Stride-Labs/stride/v4/x/stakeibc/keeper"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type ValidatorICQCallbackState struct {
 	hostZone           stakeibctypes.HostZone
-	strideEpochTracker stakeibctypes.EpochTracker
+	dredEpochTracker stakeibctypes.EpochTracker
 }
 
 type ValidatorICQCallbackArgs struct {
@@ -88,22 +88,22 @@ func (s *KeeperTestSuite) SetupValidatorICQCallback() ValidatorICQCallbackTestCa
 	valIndexInvalid := 1
 
 	// This will make the current time 90% through the epoch
-	strideEpochTracker := stakeibctypes.EpochTracker{
-		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
+	dredEpochTracker := stakeibctypes.EpochTracker{
+		EpochIdentifier:    epochtypes.DRED_EPOCH,
 		EpochNumber:        currentEpoch,
 		Duration:           10_000_000_000,                                               // 10 second epochs
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 1_000_000_000), // epoch ends in 1 second
 	}
 
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredEpochTracker)
 
 	queryResponse := s.CreateValidatorQueryResponse(valAddress, numTokens, numShares)
 
 	return ValidatorICQCallbackTestCase{
 		initialState: ValidatorICQCallbackState{
 			hostZone:           hostZone,
-			strideEpochTracker: strideEpochTracker,
+			dredEpochTracker: dredEpochTracker,
 		},
 		validArgs: ValidatorICQCallbackArgs{
 			query: icqtypes.Query{
@@ -157,7 +157,7 @@ func (s *KeeperTestSuite) TestValidatorExchangeRateCallback_BufferWindowError() 
 	tc := s.SetupValidatorICQCallback()
 
 	// update epoch tracker so that we're in the middle of an epoch
-	epochTracker := tc.initialState.strideEpochTracker
+	epochTracker := tc.initialState.dredEpochTracker
 	epochTracker.Duration = 0 // duration of 0 will make the epoch start time equal to the epoch end time
 
 	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, epochTracker)
@@ -172,7 +172,7 @@ func (s *KeeperTestSuite) TestValidatorExchangeRateCallback_OutsideBufferWindow(
 	tc := s.SetupValidatorICQCallback()
 
 	// update epoch tracker so that we're in the middle of an epoch
-	epochTracker := tc.initialState.strideEpochTracker
+	epochTracker := tc.initialState.dredEpochTracker
 	epochTracker.Duration = 10_000_000_000                                                         // 10 second epochs
 	epochTracker.NextEpochStartTime = uint64(s.Coordinator.CurrentTime.UnixNano() + 5_000_000_000) // epoch ends in 5 second
 
