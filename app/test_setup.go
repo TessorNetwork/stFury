@@ -20,10 +20,10 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dredger/config"
 )
 
-const Bech32Prefix = "dred"
+const Bech32Prefix = "dredger"
 
 func init() {
 	SetupConfig()

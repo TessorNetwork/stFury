@@ -29,7 +29,7 @@ import (
 	sdkmath "cosmossdk.io/math"
 
 	"github.com/TessorNetwork/dredger/app"
-	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dredger/config"
 	"github.com/TessorNetwork/dredger/x/claim/types"
 	claimtypes "github.com/TessorNetwork/dredger/x/claim/types"
 )

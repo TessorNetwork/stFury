@@ -15,7 +15,7 @@ import (
 
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 
-	config "github.com/TessorNetwork/dredger/cmd/dred/config"
+	config "github.com/TessorNetwork/dredger/cmd/dredger/config"
 	icacallbacktypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
 	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
 )

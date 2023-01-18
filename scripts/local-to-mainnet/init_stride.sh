@@ -23,7 +23,7 @@ RPC_PORT=26657
 VAL_PREFIX=val
 DENOM=udred
 
-NODE_NAME="dred1"
+NODE_NAME="dredger1"
 DREDGER_VAL_MNEMONIC="close soup mirror crew erode defy knock trigger gather eyebrow tent farm gym gloom base lemon sleep weekend rich forget diagram hurt prize fly"
 HERMES_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
 RELAYER_MNEMONIC="pride narrow breeze fitness sign bounce dose smart squirrel spell length federal replace coral lunar thunder vital push nuclear crouch fun accident hood need"
@@ -33,7 +33,7 @@ DREDGER_VAL_ACCT=val1
 HERMES_ACCT=hrly1
 RELAYER_ACCT=rly1
 
-CMD="$SCRIPT_DIR/../../build/dred --home $SCRIPT_DIR/../state/dred1"
+CMD="$SCRIPT_DIR/../../build/dredger --home $SCRIPT_DIR/../state/dredger1"
 
 echo "Initializing Dredger chain..."
 

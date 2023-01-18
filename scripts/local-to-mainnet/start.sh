@@ -18,7 +18,7 @@ HOT_WALLET_ADDRESS=osmo1c37n9aywapx2v0s6vk2yedydkkhq65zz38jfnc
 STATE=$SCRIPT_DIR/../state
 LOGS=$SCRIPT_DIR/../logs
 DREDGER_LOGS=$LOGS/dredger.log
-DREDGER_HOME=$STATE/dred1
+DREDGER_HOME=$STATE/dredger1
 DOCKER_COMPOSE="docker-compose -f $SCRIPT_DIR/docker-compose.yml"
 
 HERMES_DREDGER_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
@@ -33,8 +33,8 @@ mkdir -p $LOGS
 # Start dredger
 bash ${SCRIPT_DIR}/init_dredger.sh $DREDGER_CHAIN_ID
 
-$DOCKER_COMPOSE up -d dred1
-$DOCKER_COMPOSE logs -f dred1 | sed -r -u "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > $DREDGER_LOGS 2>&1 &
+$DOCKER_COMPOSE up -d dredger1
+$DOCKER_COMPOSE logs -f dredger1 | sed -r -u "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]//g" > $DREDGER_LOGS 2>&1 &
 
 printf "Waiting for Dredger to start..."
 ( tail -f -n0 $DREDGER_LOGS & ) | grep -q "finalizing commit of block"

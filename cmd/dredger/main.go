@@ -7,7 +7,7 @@ import (
 
 	"github.com/TessorNetwork/dredger/app"
 
-	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dredger/config"
 )
 
 func main() {

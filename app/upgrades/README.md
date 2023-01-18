@@ -2,7 +2,7 @@
 
 ## Increment Version 
 ```go
-// cmd/dred/config/config.go
+// cmd/dredger/config/config.go
 ...
 version.Version = "{newVersion}"
 

@@ -28,7 +28,7 @@ go install -ldflags '-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbl
 # go install -ldflags '-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=boltdb' -tags boltdb ./...
 
 # Initialize chain.
-dred init test
+dredger init test
 
 # Get Genesis
 wget https://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json
@@ -56,4 +56,4 @@ DREDGERD_P2P_SEEDS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-regi
 export DREDGERD_P2P_SEEDS
 
 # Start chain.
-dred start --x-crisis-skip-assert-invariants --db_backend pebbledb
+dredger start --x-crisis-skip-assert-invariants --db_backend pebbledb

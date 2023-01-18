@@ -27,9 +27,9 @@ port = 3001
 
 [[chains]]
 id = 'DREDGER'
-rpc_addr = 'http://dred1:26657'
-grpc_addr = 'http://dred1:9090'
-websocket_addr = 'ws://dred1:26657/websocket'
+rpc_addr = 'http://dredger1:26657'
+grpc_addr = 'http://dredger1:9090'
+websocket_addr = 'ws://dredger1:26657/websocket'
 rpc_timeout = '10s'
 account_prefix = 'dredger'
 key_name = 'hrly1'

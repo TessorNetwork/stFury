@@ -42,18 +42,18 @@ then
     echo "MNEMONIC: $MNEMONIC"
     echo "DREDGER_HOME: $DREDGER_HOME"
 
-    echo $MNEMONIC | dred init localdredger -o --chain-id=$CHAIN_ID --home $DREDGER_HOME
-    echo $MNEMONIC | dred keys add val --recover --keyring-backend test
+    echo $MNEMONIC | dredger init localdredger -o --chain-id=$CHAIN_ID --home $DREDGER_HOME
+    echo $MNEMONIC | dredger keys add val --recover --keyring-backend test
 
-    ACCOUNT_PUBKEY=$(dred keys show --keyring-backend test val --pubkey | dasel -r json '.key' --plain)
-    ACCOUNT_ADDRESS=$(dred keys show -a --keyring-backend test val --bech acc)
+    ACCOUNT_PUBKEY=$(dredger keys show --keyring-backend test val --pubkey | dasel -r json '.key' --plain)
+    ACCOUNT_ADDRESS=$(dredger keys show -a --keyring-backend test val --bech acc)
 
-    VALIDATOR_PUBKEY_JSON=$(dred tendermint show-validator --home $DREDGER_HOME)
+    VALIDATOR_PUBKEY_JSON=$(dredger tendermint show-validator --home $DREDGER_HOME)
     VALIDATOR_PUBKEY=$(echo $VALIDATOR_PUBKEY_JSON | dasel -r json '.key' --plain)
-    VALIDATOR_HEX_ADDRESS=$(dred debug pubkey $VALIDATOR_PUBKEY_JSON 2>&1 --home $DREDGER_HOME | grep Address | cut -d " " -f 2)
-    VALIDATOR_ACCOUNT_ADDRESS=$(dred debug addr $VALIDATOR_HEX_ADDRESS 2>&1  --home $DREDGER_HOME | grep Acc | cut -d " " -f 3)
-    VALIDATOR_OPERATOR_ADDRESS=$(dred debug addr $VALIDATOR_HEX_ADDRESS 2>&1  --home $DREDGER_HOME | grep Val | cut -d " " -f 3)
-    VALIDATOR_CONSENSUS_ADDRESS=$(dred tendermint show-address --home $DREDGER_HOME)
+    VALIDATOR_HEX_ADDRESS=$(dredger debug pubkey $VALIDATOR_PUBKEY_JSON 2>&1 --home $DREDGER_HOME | grep Address | cut -d " " -f 2)
+    VALIDATOR_ACCOUNT_ADDRESS=$(dredger debug addr $VALIDATOR_HEX_ADDRESS 2>&1  --home $DREDGER_HOME | grep Acc | cut -d " " -f 3)
+    VALIDATOR_OPERATOR_ADDRESS=$(dredger debug addr $VALIDATOR_HEX_ADDRESS 2>&1  --home $DREDGER_HOME | grep Val | cut -d " " -f 3)
+    VALIDATOR_CONSENSUS_ADDRESS=$(dredger tendermint show-address --home $DREDGER_HOME)
 
     python3 -u testnetify.py \
     -i /home/dredger/state_export.json \
@@ -69,4 +69,4 @@ then
     edit_config
 fi
 
-dred start --home $DREDGER_HOME --x-crisis-skip-assert-invariants
+dredger start --home $DREDGER_HOME --x-crisis-skip-assert-invariants

@@ -1,13 +1,13 @@
 # Testing Upgrades in Local Mode
 ## Run Instructions
-* Before working on the upgrade logic, compile the original binary and place it in `dockernet/upgrades/binaries/` named `dred1`
+* Before working on the upgrade logic, compile the original binary and place it in `dockernet/upgrades/binaries/` named `dredger1`
 * **This binary should represent the code before the upgrade changes. You'll likely want to checkout to the main branch to compile this.**
 ```
 git checkout {OLD_COMMIT_HASH}
 make build-docker build=s
 mkdir -p dockernet/upgrades/binaries
-rm -f dockernet/upgrades/binaries/dred1
-cp build/dred dockernet/upgrades/binaries/dred1
+rm -f dockernet/upgrades/binaries/dredger1
+cp build/dredger dockernet/upgrades/binaries/dredger1
 git checkout {UPDATED_BRANCH}
 ```
 * Then switch the code back to the most recent version 

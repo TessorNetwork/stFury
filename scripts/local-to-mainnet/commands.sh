@@ -27,8 +27,8 @@ docker-compose -f scripts/local-to-mainnet/docker-compose.yml run --rm relayer r
 #         connection-id: {CONNECTION-ID}
 
 # Get channel ID created on the host
-build/dred --home s q ibc channel channels 
-transfer_channel=$(build/dred --home s q ibc channel channels | grep channel-0 -A 4 | grep counterparty -A 1 | grep channel | awk '{print $2}') && echo $transfer_channel
+build/dredger --home s q ibc channel channels 
+transfer_channel=$(build/dredger --home s q ibc channel channels | grep channel-0 -A 4 | grep counterparty -A 1 | grep channel | awk '{print $2}') && echo $transfer_channel
 
 # Start Hermes Relayer
 docker-compose -f scripts/local-to-mainnet/docker-compose.yml up -d hermes
@@ -47,61 +47,61 @@ docker-compose -f scripts/local-to-mainnet/docker-compose.yml logs -f relayer | 
 build/osmosisd tx ibc-transfer transfer transfer $transfer_channel dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 4000000uosmo --from hot --chain-id osmosis-1 -y --keyring-backend test --node http://osmo-fleet-direct.main.dredgernet.co:26657
 
 # Confirm funds were recieved on dredger and get IBC denom
-build/dred --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 
 # Register host zone
-IBC_DENOM=$(build/dred --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 | grep ibc | awk '{print $2}' | tr -d '"') && echo $IBC_DENOM
-build/dred --home s tx stakeibc register-host-zone \
+IBC_DENOM=$(build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 | grep ibc | awk '{print $2}' | tr -d '"') && echo $IBC_DENOM
+build/dredger --home s tx stakeibc register-host-zone \
     connection-0 uosmo osmo $IBC_DENOM channel-0 1 \
     --from admin --gas 1000000 -y
 
 # Add validator
-build/dred --home s tx stakeibc add-validator osmosis-1 imperator osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s 10 5 --chain-id local-test-1 --keyring-backend test --from admin -y
+build/dredger --home s tx stakeibc add-validator osmosis-1 imperator osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s 10 5 --chain-id local-test-1 --keyring-backend test --from admin -y
 
 # Confirm ICA channels were registered
-build/dred --home s q stakeibc list-host-zone
+build/dredger --home s q stakeibc list-host-zone
 
 #### FLOW
 ## Go Through Flow
 # Liquid stake (then wait and LS again)
-build/dred --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
+build/dredger --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
 
 # Confirm stTokens, StakedBal, and Redemption Rate
-build/dred --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
-build/dred --home s q stakeibc list-host-zone
+build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q stakeibc list-host-zone
 
 # Redeem
-build/dred --home s tx stakeibc redeem-stake 1000 osmosis-1 osmo1c37n9aywapx2v0s6vk2yedydkkhq65zz38jfnc --from admin --keyring-backend test --chain-id local-test-1 -y
+build/dredger --home s tx stakeibc redeem-stake 1000 osmosis-1 osmo1c37n9aywapx2v0s6vk2yedydkkhq65zz38jfnc --from admin --keyring-backend test --chain-id local-test-1 -y
 
 # Confirm stTokens and StakedBal
-build/dred --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
-build/dred --home s q stakeibc list-host-zone
+build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q stakeibc list-host-zone
 
 # Add another validator
-build/dred --home s tx stakeibc add-validator osmosis-1 notional osmovaloper1083svrca4t350mphfv9x45wq9asrs60c6rv0j5 10 5 --chain-id local-test-1 --keyring-backend test --from admin -y
+build/dredger --home s tx stakeibc add-validator osmosis-1 notional osmovaloper1083svrca4t350mphfv9x45wq9asrs60c6rv0j5 10 5 --chain-id local-test-1 --keyring-backend test --from admin -y
 
 # Liquid stake and confirm the stake was split 50/50 between the validators
-build/dred --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
+build/dredger --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
 
 # Change validator weights
-build/dred --home s tx stakeibc change-validator-weight osmosis-1 osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s 1 --from admin -y
-build/dred --home s tx stakeibc change-validator-weight osmosis-1 osmovaloper1083svrca4t350mphfv9x45wq9asrs60c6rv0j5 49 --from admin -y
+build/dredger --home s tx stakeibc change-validator-weight osmosis-1 osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s 1 --from admin -y
+build/dredger --home s tx stakeibc change-validator-weight osmosis-1 osmovaloper1083svrca4t350mphfv9x45wq9asrs60c6rv0j5 49 --from admin -y
 
 # LS and confirm delegation aligned with new weights
-build/dred --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
+build/dredger --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
 
 # Call rebalance to and confirm new delegations
-build/dred --home s tx stakeibc rebalance-validators osmosis-1 5 --from admin
+build/dredger --home s tx stakeibc rebalance-validators osmosis-1 5 --from admin
 
 # Clear balances
-fee_address=$(build/dred --home s q stakeibc show-host-zone osmosis-1 | grep feeAccount -A 1 | grep address | awk '{print $2}') && echo $fee_address
+fee_address=$(build/dredger --home s q stakeibc show-host-zone osmosis-1 | grep feeAccount -A 1 | grep address | awk '{print $2}') && echo $fee_address
 balance=$(build/osmosisd --home s q bank balances $fee_address | grep amount | awk '{print $3}' | tr -d '"') && echo $balance
-build/dred --home s tx stakeibc clear-balance osmosis-1 $balance $transfer_channel --from admin
+build/dredger --home s tx stakeibc clear-balance osmosis-1 $balance $transfer_channel --from admin
 
 # Update delegations (just submit this query and confirm the ICQ callback displays in the dredger logs)
 # Must be submitted in ICQ window
-build/dred --home s tx stakeibc update-delegation osmosis-1 osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s --from admin -y
+build/dredger --home s tx stakeibc update-delegation osmosis-1 osmovaloper1t8qckan2yrygq7kl9apwhzfalwzgc2429p8f0s --from admin -y
 
 #### MISC 
 # If a channel closes, restore it with:
-build/dred --home s tx stakeibc restore-interchain-account osmosis-1 {DELEGATION | WITHDRAWAL | FEE | REDEMPTION} --from admin
+build/dredger --home s tx stakeibc restore-interchain-account osmosis-1 {DELEGATION | WITHDRAWAL | FEE | REDEMPTION} --from admin

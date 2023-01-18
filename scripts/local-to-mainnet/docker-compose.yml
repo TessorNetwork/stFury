@@ -1,9 +1,9 @@
 version: "3"
 services:
-  dred1:
+  dredger1:
     image: dredgerzone:dredger
     volumes:
-      - ../state/dred1:/home/dredger/.dredger
+      - ../state/dredger1:/home/dredger/.dredger
     ports:
       - "26657:26657"
       - "1317:1317"

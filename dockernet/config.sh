@@ -135,9 +135,9 @@ DREDGER_FEE_ADDRESS=dred1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
 
 # Binaries are contigent on whether we're doing an upgrade or not
 if [[ "$UPGRADE_NAME" == "" ]]; then 
-  DREDGER_BINARY="$DOCKERNET_HOME/../build/dred"
+  DREDGER_BINARY="$DOCKERNET_HOME/../build/dredger"
 else
-  DREDGER_BINARY="$UPGRADES/binaries/dred1"
+  DREDGER_BINARY="$UPGRADES/binaries/dredger1"
 fi
 DREDGER_MAIN_CMD="$DREDGER_BINARY --home $DOCKERNET_HOME/state/${DREDGER_NODE_PREFIX}1"
 
@@ -201,7 +201,7 @@ STARS_RECEIVER_ADDRESS='stars15dywcmy6gzsc8wfefkrx0c9czlwvwrjenqthyq'
 HOST_CHAIN_ID=HOST
 HOST_NODE_PREFIX=host
 HOST_NUM_NODES=1
-HOST_BINARY="$DOCKERNET_HOME/../build/dred"
+HOST_BINARY="$DOCKERNET_HOME/../build/dredger"
 HOST_VAL_PREFIX=hval
 HOST_ADDRESS_PREFIX=dredger
 HOST_REV_ACCT=hrev1

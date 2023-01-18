@@ -23,7 +23,7 @@ RUN LINK_STATICALLY=true make build
 # Add to a distroless container
 FROM ${RUNNER_IMAGE}
 
-COPY --from=builder /opt/build/dred /usr/local/bin/dred
+COPY --from=builder /opt/build/dredger /usr/local/bin/dredger
 RUN apk add bash vim sudo dasel \
     && addgroup -g 1000 dredger \
     && adduser -S -h /home/dredger -D dredger -u 1000 -G dredger 
@@ -39,4 +39,4 @@ WORKDIR $HOME
 
 EXPOSE 26657 26656 1317 9090
 
-CMD ["dred", "start"]
+CMD ["dredger", "start"]

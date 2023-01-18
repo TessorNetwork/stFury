@@ -9,7 +9,7 @@ chains:
     value:
       key: rly1
       chain-id: DREDGER_CHAIN_ID
-      rpc-addr: http://dred1:26657
+      rpc-addr: http://dredger1:26657
       account-prefix: dredger
       keyring-backend: test
       gas-adjustment: 1.2
