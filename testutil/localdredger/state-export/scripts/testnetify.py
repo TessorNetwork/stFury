@@ -19,7 +19,7 @@ class Account:
     address: str
 
 # Contants
-BONDED_TOKENS_POOL_MODULE_ADDRESS = "dred1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
+BONDED_TOKENS_POOL_MODULE_ADDRESS = "dredger1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
 
 config = {
     "governance_voting_period": "180s",
@@ -177,7 +177,7 @@ def main():
 
     old_account = Account(
         pubkey = "Ayyx0UKVV+w9zsTTLTGylpUH0bPON0DVdseetjVNN9eC",
-        address = "dred1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
+        address = "dredger1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
     )
 
     print("📝 Opening {}... (it may take a while)".format(args.input_genesis))
@@ -301,27 +301,27 @@ def main():
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == new_account.address:
             for coin in balance['coins']:
-                if coin['denom'] == "udred":
+                if coin['denom'] == "udredger":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} udred balance to {}".format(new_account.address, coin["amount"]))
+                    print("\tUpdate {} udredger balance to {}".format(new_account.address, coin["amount"]))
                     break
             break
 
-    # Add 1 BN udred to bonded_tokens_pool module address
+    # Add 1 BN udredger to bonded_tokens_pool module address
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == BONDED_TOKENS_POOL_MODULE_ADDRESS:
-            # Find udred
+            # Find udredger
             for coin in balance['coins']:
-                if coin['denom'] == "udred":
+                if coin['denom'] == "udredger":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} (bonded_tokens_pool_module) udred balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
+                    print("\tUpdate {} (bonded_tokens_pool_module) udredger balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
                     break
             break
 
     # Update bank balance
     for supply in genesis['app_state']['bank']['supply']:
-        if supply["denom"] == "udred":
-            print("\tUpdate total udred supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
+        if supply["denom"] == "udredger":
+            print("\tUpdate total udredger supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
             supply["amount"] = str(int(supply["amount"]) + 2000000000000000)
             break
 

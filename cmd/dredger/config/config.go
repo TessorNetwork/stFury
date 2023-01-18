@@ -9,7 +9,7 @@ import (
 
 const (
 	// Bech32Prefix defines the Bech32 prefix used for EthAccounts
-	Bech32Prefix = "dred"
+	Bech32Prefix = "dredger"
 
 	// Bech32PrefixAccAddr defines the Bech32 prefix of an account's address
 	Bech32PrefixAccAddr = Bech32Prefix
@@ -26,8 +26,8 @@ const (
 )
 
 const (
-	HumanReadableCoinUnit = "DRED"
-	BaseCoinUnit          = "udred"
+	HumanReadableCoinUnit = "DREDGER"
+	BaseCoinUnit          = "udredger"
 	DefaultBondDenom      = BaseCoinUnit
 )
 

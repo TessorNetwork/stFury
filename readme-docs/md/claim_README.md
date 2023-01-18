@@ -164,7 +164,7 @@ message Params {
 
 1. `airdrop_start_time` refers to the time when user can start to claim airdrop.
 2. `airdrop_duration` refers to the duration from start time to end time.
-3. `claim_denom` refers to the denomination of claiming tokens. As a default, it's `udred`.
+3. `claim_denom` refers to the denomination of claiming tokens. As a default, it's `udredger`.
 4. `distributor_address` refers to the address of distribution account.
 
 ## Queries

@@ -21,7 +21,7 @@ ADMIN_TOKENS=1000000000
 PEER_PORT=26656
 RPC_PORT=26657
 VAL_PREFIX=val
-DENOM=udred
+DENOM=udredger
 
 NODE_NAME="dredger1"
 DREDGER_VAL_MNEMONIC="close soup mirror crew erode defy knock trigger gather eyebrow tent farm gym gloom base lemon sleep weekend rich forget diagram hurt prize fly"

@@ -41,7 +41,7 @@ UPGRADE_OLD_COMMIT_HASH=""
 ATOM_DENOM="uatom"
 JUNO_DENOM="ujuno"
 OSMO_DENOM="uosmo"
-DRED_DENOM="udred"
+DRED_DENOM="udredger"
 STARS_DENOM="ustars"
 WALK_DENOM="uwalk"
 STATOM_DENOM="stuatom"
@@ -129,9 +129,9 @@ DREDGER_VAL_PREFIX=val
 DREDGER_DENOM=$DRED_DENOM
 DREDGER_RPC_PORT=26657
 DREDGER_ADMIN_ACCT=admin
-DREDGER_ADMIN_ADDRESS=dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+DREDGER_ADMIN_ADDRESS=dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 DREDGER_ADMIN_MNEMONIC="tone cause tribe this switch near host damage idle fragile antique tail soda alien depth write wool they rapid unfold body scan pledge soft"
-DREDGER_FEE_ADDRESS=dred1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
+DREDGER_FEE_ADDRESS=dredger1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
 
 # Binaries are contigent on whether we're doing an upgrade or not
 if [[ "$UPGRADE_NAME" == "" ]]; then 
@@ -209,7 +209,7 @@ HOST_DENOM=$WALK_DENOM
 HOST_COIN_TYPE=$COSMOS_COIN_TYPE
 HOST_RPC_PORT=26157
 HOST_MAIN_CMD="$HOST_BINARY --home $DOCKERNET_HOME/state/${HOST_NODE_PREFIX}1"
-HOST_RECEIVER_ADDRESS='dred1trm75t8g83f26u4y8jfds7pms9l587a7q227k9'
+HOST_RECEIVER_ADDRESS='dredger1trm75t8g83f26u4y8jfds7pms9l587a7q227k9'
 
 # RELAYER
 RELAYER_CMD="$DOCKERNET_HOME/../build/relayer --home $STATE/relayer"

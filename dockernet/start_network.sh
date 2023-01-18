@@ -16,8 +16,8 @@ if [[ "$UPGRADE_NAME" != "" ]]; then
     
     # Update binary #2 with the binary that was just compiled
     mkdir -p $UPGRADES/binaries
-    rm -f $UPGRADES/binaries/dred2
-    cp $DOCKERNET_HOME/../build/dredger $UPGRADES/binaries/dred2
+    rm -f $UPGRADES/binaries/dredger2
+    cp $DOCKERNET_HOME/../build/dredger $UPGRADES/binaries/dredger2
 
     # Build a cosmovisor image with the old binary and replace the dredger docker image with a new one
     #  that has both binaries and is running cosmovisor

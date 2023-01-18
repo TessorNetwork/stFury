@@ -54,7 +54,7 @@ make localnet-keys
 - These keys are added to your `--keyring-backend test`
 - If the keys are already on your keyring, you will get an `"Error: aborted"`
 - Ensure you use the name of the account as listed in the table below, as well as ensure you append the `--keyring-backend test` to your txs
-- Example: `dredger tx bank send ls-test2 dred1kwax6g0q2nwny5n43fswexgefedge033t5g95j --keyring-backend test --chain-id localdredger`
+- Example: `dredger tx bank send ls-test2 dredger1kwax6g0q2nwny5n43fswexgefedge033t5g95j --keyring-backend test --chain-id localdredger`
 
 5. You can stop the chain, keeping the state with
 
@@ -159,7 +159,7 @@ dredger status
 11. Here is an example command to ensure complete understanding:
 
 ```sh
-dredger tx bank send val dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000udred --chain-id localdredger --keyring-backend test
+dredger tx bank send val dredger1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000udredger --chain-id localdredger --keyring-backend test
 ```
 
 12. You can stop chain, keeping the state with
@@ -185,14 +185,14 @@ LocalDredger is pre-configured with one validator and 10 accounts with dredger b
 
 | Account   | Address                                                                                                | Mnemonic                                                                                                                                                                   |
 | --------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| val    | `dred1wal8dgs7whmykpdaz0chan2f54ynythkz0cazc`<br/>`dredgervaloper1wal8dgs7whmykpdaz0chan2f54ynythkp6upwa` | `deer gaze swear marine one perfect hero twice turkey symbol mushroom hub escape accident prevent rifle horse arena secret endless panel equal rely payment`                    |
-| ls-test1  | `dred1u9klnra0d4zq9ffalpnr3nhz5859yc7ckdk9wt`                                                          | `journey envelope color ensure fruit assault soup air ozone math beyond miracle very bring bid retire cargo exhaust garden helmet spread sentence insect treat`                       |
-| ls-test2  | `dred1kwax6g0q2nwny5n43fswexgefedge033t5g95j`                                                          | `update minimum pyramid initial napkin guilt minute spread diamond dinosaur force observe lounge siren region forest annual citizen mule pilot style horse prize trophy`              |
-| ls-test3  | `dred1dv0ecm36ywdyc6zjftw0q62zy6v3mndrwxde03`                                                          | `between flight suffer century action army insane position egg napkin tumble silent enemy crisp club february lake push coral rice few patch hockey ostrich`        |
-| ls-test4  | `dred1z3dj2tvqpzy2l5shx98f9k5486tleah5a00fay`                                                          | `muffin brave clinic miss various width depend sand eager mom vicious spoil verb rain leg lunar blossom always silver funny spot frog half coral` |
-| ls-test5  | `dred14khzkfs8luaqymdtplrt5uwzrghrndeh4235am`                                                          | `dismiss verb champion ceiling veteran today owner inch field shock dizzy pool creek problem nuclear cage shift romance venue rabbit flower sign bicycle rocket`        |
-| ls-test6  | `dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw`                                                          | `until lend canvas brain brief blossom tomato tent drip claw more era click bind shrug surprise universe orchard parrot describe jelly scorpion glove path`                  |
-| ls-test7  | `dred1et8cdkxl69yrtmpjhxwey52d88kflwzn5xp4xn`                                                          | `choice holiday audit valley asthma empty visa hood lonely primary aerobic that panda define enrich ankle athlete punch glimpse ridge narrow affair thunder lock`                       |
-| ls-test8  | `dred1tcrlyn05q9j590uauncywf26ptfn8se65dvfz6`                                                          | `major eager blame canyon jazz occur curious resemble tragic rack tired choose wolf purity meat dog castle attitude decorate moon echo quote core doctor`                 |
-| ls-test9  | `dred14ugekxs6f4rfleg6wj8k0wegv69khfpxkt8yn4`                                                          | `neck devote small animal ready swarm melt ugly bronze opinion fire inmate acquire use mobile party paper clock hour view stool aspect angle demand`       |
-| ls-test10 | `dred18htv32r83q2wn2knw5wp9m4nkp4xuzyfhmwpqs`                                                          | `almost turtle mobile bullet figure myself dad depart infant vivid view black purity develop kidney cruel seminar outside disorder attack spoil infant sauce blood`     |
+| val    | `dredger1wal8dgs7whmykpdaz0chan2f54ynythkz0cazc`<br/>`dredgervaloper1wal8dgs7whmykpdaz0chan2f54ynythkp6upwa` | `deer gaze swear marine one perfect hero twice turkey symbol mushroom hub escape accident prevent rifle horse arena secret endless panel equal rely payment`                    |
+| ls-test1  | `dredger1u9klnra0d4zq9ffalpnr3nhz5859yc7ckdk9wt`                                                          | `journey envelope color ensure fruit assault soup air ozone math beyond miracle very bring bid retire cargo exhaust garden helmet spread sentence insect treat`                       |
+| ls-test2  | `dredger1kwax6g0q2nwny5n43fswexgefedge033t5g95j`                                                          | `update minimum pyramid initial napkin guilt minute spread diamond dinosaur force observe lounge siren region forest annual citizen mule pilot style horse prize trophy`              |
+| ls-test3  | `dredger1dv0ecm36ywdyc6zjftw0q62zy6v3mndrwxde03`                                                          | `between flight suffer century action army insane position egg napkin tumble silent enemy crisp club february lake push coral rice few patch hockey ostrich`        |
+| ls-test4  | `dredger1z3dj2tvqpzy2l5shx98f9k5486tleah5a00fay`                                                          | `muffin brave clinic miss various width depend sand eager mom vicious spoil verb rain leg lunar blossom always silver funny spot frog half coral` |
+| ls-test5  | `dredger14khzkfs8luaqymdtplrt5uwzrghrndeh4235am`                                                          | `dismiss verb champion ceiling veteran today owner inch field shock dizzy pool creek problem nuclear cage shift romance venue rabbit flower sign bicycle rocket`        |
+| ls-test6  | `dredger1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw`                                                          | `until lend canvas brain brief blossom tomato tent drip claw more era click bind shrug surprise universe orchard parrot describe jelly scorpion glove path`                  |
+| ls-test7  | `dredger1et8cdkxl69yrtmpjhxwey52d88kflwzn5xp4xn`                                                          | `choice holiday audit valley asthma empty visa hood lonely primary aerobic that panda define enrich ankle athlete punch glimpse ridge narrow affair thunder lock`                       |
+| ls-test8  | `dredger1tcrlyn05q9j590uauncywf26ptfn8se65dvfz6`                                                          | `major eager blame canyon jazz occur curious resemble tragic rack tired choose wolf purity meat dog castle attitude decorate moon echo quote core doctor`                 |
+| ls-test9  | `dredger14ugekxs6f4rfleg6wj8k0wegv69khfpxkt8yn4`                                                          | `neck devote small animal ready swarm melt ugly bronze opinion fire inmate acquire use mobile party paper clock hour view stool aspect angle demand`       |
+| ls-test10 | `dredger18htv32r83q2wn2knw5wp9m4nkp4xuzyfhmwpqs`                                                          | `almost turtle mobile bullet figure myself dad depart infant vivid view black purity develop kidney cruel seminar outside disorder attack spoil infant sauce blood`     |

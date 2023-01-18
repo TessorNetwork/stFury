@@ -16,9 +16,9 @@ func (suite *KeeperTestSuite) TestLoadAllocationData() {
 	var allocations = `identifier,address,weight
 osmosis,osmo1g7yxhuppp5x3yqkah5mw29eqq5s4sv2fp6e2eg,0.5
 osmosis,osmo1h4astdfzjhcwahtfrh24qtvndzzh49xvtm69fg,0.3
-dredger,dred1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d,0.7
-dredger,dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk,0.3
-dredger,dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk,0.5`
+dredger,dredger1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d,0.7
+dredger,dredger1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk,0.3
+dredger,dredger1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk,0.5`
 
 	ok := suite.app.ClaimKeeper.LoadAllocationData(suite.ctx, allocations)
 	suite.Require().True(ok)
@@ -31,10 +31,10 @@ dredger,dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk,0.5`
 	suite.Require().NoError(err)
 	suite.Require().True(totalWeight.Equal(sdk.MustNewDecFromStr("1")))
 
-	addr, _ := sdk.AccAddressFromBech32("dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk") // hex(dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk) = hex(osmo1g7yxhuppp5x3yqkah5mw29eqq5s4sv2fp6e2eg)
+	addr, _ := sdk.AccAddressFromBech32("dredger1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk") // hex(dredger1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk) = hex(osmo1g7yxhuppp5x3yqkah5mw29eqq5s4sv2fp6e2eg)
 	claimRecord, err := suite.app.ClaimKeeper.GetClaimRecord(suite.ctx, addr, "osmosis")
 	suite.Require().NoError(err)
-	suite.Require().Equal(claimRecord.Address, "dred1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk")
+	suite.Require().Equal(claimRecord.Address, "dredger1g7yxhuppp5x3yqkah5mw29eqq5s4sv2f222xmk")
 	suite.Require().True(claimRecord.Weight.Equal(sdk.MustNewDecFromStr("0.5")))
 	suite.Require().Equal(claimRecord.ActionCompleted, []bool{false, false, false})
 

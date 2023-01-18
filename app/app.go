@@ -136,7 +136,7 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "dred"
+	AccountAddressPrefix = "dredger"
 	Name                 = "dredger"
 	Version              = "5.0.0"
 )

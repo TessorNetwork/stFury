@@ -49,7 +49,7 @@ ADMINS_FILE_BACKUP=${DOCKERNET_HOME}/../utils/admins.go.main
 
 replace_admin_address() {
    cp $ADMINS_FILE $ADMINS_FILE_BACKUP
-   sed -i -E "s|dred1k8c2m5cn322akk5wy8lpt87dd2f4yh9azg7jlh|$DREDGER_ADMIN_ADDRESS|g" $ADMINS_FILE
+   sed -i -E "s|dredger1k8c2m5cn322akk5wy8lpt87dd2f4yh9azg7jlh|$DREDGER_ADMIN_ADDRESS|g" $ADMINS_FILE
 }
 
 revert_admin_address() {

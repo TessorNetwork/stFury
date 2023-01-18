@@ -93,8 +93,8 @@ setup_file() {
 
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] ibc transfer updates all balances" {
   # get initial balances
-  sval_dred_balance_start=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
-  hval_dred_balance_start=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
+  sval_dredger_balance_start=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
+  hval_dredger_balance_start=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
   sval_token_balance_start=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_start=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
@@ -105,16 +105,16 @@ setup_file() {
   WAIT_FOR_BLOCK $DREDGER_LOGS 8
 
   # get new balances
-  sval_dred_balance_end=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
-  hval_dred_balance_end=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
+  sval_dredger_balance_end=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
+  hval_dredger_balance_end=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
   sval_token_balance_end=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_end=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
-  # get all DRED balance diffs
-  sval_dred_balance_diff=$(($sval_dred_balance_start - $sval_dred_balance_end))
-  hval_dred_balance_diff=$(($hval_dred_balance_start - $hval_dred_balance_end))
-  assert_equal "$sval_dred_balance_diff" "$TRANSFER_AMOUNT"
-  assert_equal "$hval_dred_balance_diff" "-$TRANSFER_AMOUNT"
+  # get all DREDGER balance diffs
+  sval_dredger_balance_diff=$(($sval_dredger_balance_start - $sval_dredger_balance_end))
+  hval_dredger_balance_diff=$(($hval_dredger_balance_start - $hval_dredger_balance_end))
+  assert_equal "$sval_dredger_balance_diff" "$TRANSFER_AMOUNT"
+  assert_equal "$hval_dredger_balance_diff" "-$TRANSFER_AMOUNT"
 
   # get all host balance diffs
   sval_token_balance_diff=$(($sval_token_balance_start - $sval_token_balance_end))

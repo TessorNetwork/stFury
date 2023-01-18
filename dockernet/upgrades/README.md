@@ -27,7 +27,7 @@ make start-docker build=s
 bash dockernet/upgrades/submit_upgrade.sh
 ```
 * View the dredger logs - you should notice an update occuring at the specified upgrade height.
-* After the upgrade has occured, check a post-upgrade condition using `dockernet/upgrades/binaries/dred2`
+* After the upgrade has occured, check a post-upgrade condition using `dockernet/upgrades/binaries/dredger2`
 
 ## Testing Upgrades with Integration Tests
 * **WARNING**: The integration tests may change between versions - the following only works if there were not breaking changes. If there are breaking changes, you can replace the GAIA and JUNO integration test files with those from the old version.
@@ -35,5 +35,5 @@ bash dockernet/upgrades/submit_upgrade.sh
 * Run integration tests for GAIA and JUNO (comment out OSMO and STARS in `dockernet/tests/run_all_tests.sh`)
 * Once the tests pass, grab the current block height, modify `dockernet/upgrades/submit_upgrade.sh` to have an upgrade height ~50 blocks in the future, and run the script
 * Check the dredger logs to confirm the upgrade passes successfully
-* Modify `DREDGER_BINARY` in `config.sh` to point to the **new** binary (`DREDGER_BINARY="$UPGRADES/binaries/dred2"`)
+* Modify `DREDGER_BINARY` in `config.sh` to point to the **new** binary (`DREDGER_BINARY="$UPGRADES/binaries/dredger2"`)
 * Finally, run integration tests for OSMO and STARS (comment out GAIA and JUNO in `dockernet/tests/run_all_tests.sh`)

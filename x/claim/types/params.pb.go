@@ -83,7 +83,7 @@ type Airdrop struct {
 	ClaimDenom string `protobuf:"bytes,4,opt,name=claim_denom,json=claimDenom,proto3" json:"claim_denom,omitempty"`
 	// airdrop distribution account
 	DistributorAddress string `protobuf:"bytes,5,opt,name=distributor_address,json=distributorAddress,proto3" json:"distributor_address,omitempty"`
-	// udred tokens claimed so far in the current period
+	// udredger tokens claimed so far in the current period
 	ClaimedSoFar github_com_cosmos_cosmos_sdk_types.Int `protobuf:"bytes,6,opt,name=claimed_so_far,json=claimedSoFar,proto3,customtype=github.com/cosmos/cosmos-sdk/types.Int" json:"claimed_so_far"`
 }
 

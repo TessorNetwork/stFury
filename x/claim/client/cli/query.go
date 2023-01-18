@@ -143,7 +143,7 @@ func GetCmdQueryClaimableForAction() *cobra.Command {
 			fmt.Sprintf(`Query an address' claimable amount for a specific action
 
 Example:
-$ %s query claim claimable-for-action dred1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk ActionLiquidStake
+$ %s query claim claimable-for-action dredger1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk ActionLiquidStake
 `,
 				version.AppName,
 			),
@@ -186,7 +186,7 @@ func GetCmdQueryTotalClaimable() *cobra.Command {
 		Long: strings.TrimSpace(
 			fmt.Sprintf(`Query the total claimable amount remaining for an account.
 Example:
-$ %s query claim total-claimable dredger dred1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk true
+$ %s query claim total-claimable dredger dredger1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk true
 `,
 				version.AppName,
 			),
@@ -222,7 +222,7 @@ func GetCmdQueryUserVestings() *cobra.Command {
 		Long: strings.TrimSpace(
 			fmt.Sprintf(`Query user vestings for an account.
 Example:
-$ %s query claim user-vestings dred1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk
+$ %s query claim user-vestings dredger1h4astdfzjhcwahtfrh24qtvndzzh49xvqtfftk
 `,
 				version.AppName,
 			),

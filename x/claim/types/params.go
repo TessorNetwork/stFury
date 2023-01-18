@@ -5,7 +5,7 @@ import (
 )
 
 var (
-	DefaultClaimDenom                      = "udred"
+	DefaultClaimDenom                      = "udredger"
 	DefaultAirdropDuration                 = time.Hour * 24 * 30 * 12 * 3 // 3 years
 	DefaultVestingDurationForDelegateStake = time.Hour * 24 * 30 * 3      // 3 months
 	DefaultVestingDurationForLiquidStake   = time.Hour * 24 * 30 * 3      // 3 months

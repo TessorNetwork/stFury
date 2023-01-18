@@ -81,7 +81,7 @@ RELAYER_{CHAIN}_ACCT=rly{add one since the account from the last host zone}
 # NOTE: Update the RELAYER_ACCTS variable directly!
 RELAYER_ACCTS=(... $RELAYER_{CHAIN}_ACCT)
 
-# dred1muwz5er4wq7svxnh5dgn2tssm92je5dwthxl7q
+# dredger1muwz5er4wq7svxnh5dgn2tssm92je5dwthxl7q
 RELAYER_{CHAIN}_MNEMONIC="science depart where tell bus ski laptop follow child bronze rebel recall brief plug razor ship degree labor human series today embody fury harvest"
 # NOTE: Update the RELAYER_MNEMONICS variable directly!
 RELAYER_MNEMONICS=(

@@ -13,5 +13,5 @@ func AccAddress() string {
 }
 
 func DredgerAddress() string {
-	return "dred1uk4ze0x4nvh4fk0xm4jdud58eqn4yxhrt52vv7"
+	return "dredger1uk4ze0x4nvh4fk0xm4jdud58eqn4yxhrt52vv7"
 }

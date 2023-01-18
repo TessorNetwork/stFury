@@ -45,12 +45,12 @@ func init() {
 	addr2 = ed25519.GenPrivKey().PubKey().Address().Bytes()
 	distributorMnemonics = []string{
 		"chronic learn inflict great answer reward evidence stool open moon skate resource arch raccoon decade tell improve stay onion section blouse carry primary fabric",
-		"catalog govern other escape eye resemble dirt hundred birth build dirt jacket network blame credit palace similar carry knock auction exotic bus business machine",
+		"catalog govern other escape eye resemble dirt hundredger birth build dirt jacket network blame credit palace similar carry knock auction exotic bus business machine",
 	}
 
 	distributorAddrs = []string{
-		"dred1ajerf2nmxsg0u728ga7665fmlfguqxcd8e36vf",
-		"dred1zkfk3q70ranm3han4lvutvcvetncxg829j972a",
+		"dredger1ajerf2nmxsg0u728ga7665fmlfguqxcd8e36vf",
+		"dredger1zkfk3q70ranm3han4lvutvcvetncxg829j972a",
 	}
 }
 
@@ -165,13 +165,13 @@ func (s *IntegrationTestSuite) TestCmdTxSetAirdropAllocations() {
 
 	claimRecords := []claimtypes.ClaimRecord{
 		{
-			Address:           "dred1k8g9sagjpdwreqqf0qgqmd46l37595ea5ft9x6",
+			Address:           "dredger1k8g9sagjpdwreqqf0qgqmd46l37595ea5ft9x6",
 			Weight:            sdk.NewDecWithPrec(50, 2), // 50%
 			ActionCompleted:   []bool{false, false, false},
 			AirdropIdentifier: claimtypes.DefaultAirdropIdentifier,
 		},
 		{
-			Address:           "dred1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d",
+			Address:           "dredger1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d",
 			Weight:            sdk.NewDecWithPrec(30, 2), // 30%
 			ActionCompleted:   []bool{false, false, false},
 			AirdropIdentifier: claimtypes.DefaultAirdropIdentifier,

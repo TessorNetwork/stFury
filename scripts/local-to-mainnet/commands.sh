@@ -44,13 +44,13 @@ docker-compose -f scripts/local-to-mainnet/docker-compose.yml logs -f relayer | 
 
 #### REGISTER HOST
 # IBC Transfer from HOST to dredger (from relayer account)
-build/osmosisd tx ibc-transfer transfer transfer $transfer_channel dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 4000000uosmo --from hot --chain-id osmosis-1 -y --keyring-backend test --node http://osmo-fleet-direct.main.dredgernet.co:26657
+build/osmosisd tx ibc-transfer transfer transfer $transfer_channel dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 4000000uosmo --from hot --chain-id osmosis-1 -y --keyring-backend test --node http://osmo-fleet-direct.main.dredgernet.co:26657
 
 # Confirm funds were recieved on dredger and get IBC denom
-build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q bank balances dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 
 # Register host zone
-IBC_DENOM=$(build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 | grep ibc | awk '{print $2}' | tr -d '"') && echo $IBC_DENOM
+IBC_DENOM=$(build/dredger --home s q bank balances dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 | grep ibc | awk '{print $2}' | tr -d '"') && echo $IBC_DENOM
 build/dredger --home s tx stakeibc register-host-zone \
     connection-0 uosmo osmo $IBC_DENOM channel-0 1 \
     --from admin --gas 1000000 -y
@@ -67,14 +67,14 @@ build/dredger --home s q stakeibc list-host-zone
 build/dredger --home s tx stakeibc liquid-stake 1000000 uosmo --keyring-backend test --from admin -y --chain-id local-test-1 -y
 
 # Confirm stTokens, StakedBal, and Redemption Rate
-build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q bank balances dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 build/dredger --home s q stakeibc list-host-zone
 
 # Redeem
 build/dredger --home s tx stakeibc redeem-stake 1000 osmosis-1 osmo1c37n9aywapx2v0s6vk2yedydkkhq65zz38jfnc --from admin --keyring-backend test --chain-id local-test-1 -y
 
 # Confirm stTokens and StakedBal
-build/dredger --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+build/dredger --home s q bank balances dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 build/dredger --home s q stakeibc list-host-zone
 
 # Add another validator

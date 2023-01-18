@@ -15,11 +15,11 @@ import (
 var (
 	UpgradeName         = "v3"
 	airdropDistributors = []string{
-		"dred1cpvl8yf848karqauyhr5jzw6d9n9lnuuu974ev",
-		"dred1fmh0ysk5nt9y2cj8hddms5ffj2dhys55xkkjwz",
-		"dred1zlu2l3lx5tqvzspvjwsw9u0e907kelhqae3yhk",
-		"dred14k9g9zpgaycpey9840nnpa66l4nd6lu7g7t74c",
-		"dred12pum4adk5dhp32d90f8g8gfwujm0gwxqnrdlum",
+		"dredger1cpvl8yf848karqauyhr5jzw6d9n9lnuuu974ev",
+		"dredger1fmh0ysk5nt9y2cj8hddms5ffj2dhys55xkkjwz",
+		"dredger1zlu2l3lx5tqvzspvjwsw9u0e907kelhqae3yhk",
+		"dredger14k9g9zpgaycpey9840nnpa66l4nd6lu7g7t74c",
+		"dredger12pum4adk5dhp32d90f8g8gfwujm0gwxqnrdlum",
 	}
 	airdropIdentifiers = []string{"dredger", "gaia", "osmosis", "juno", "stars"}
 	airdropDuration    = time.Hour * 24 * 30 * 12 * 3 // 3 years
