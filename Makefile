@@ -8,7 +8,7 @@ DOCKER := $(shell which docker)
 DOCKER_BUF := $(DOCKER) run --rm -v $(CURDIR):/workspace --workdir /workspace bufbuild/buf:1.7.0
 DOCKERNET_HOME=./dockernet
 DOCKERNET_COMPOSE_FILE=$(DOCKERNET_HOME)/docker-compose.yml
-LOCALSTRIDE_HOME=./testutil/localstride
+LOCALSTRIDE_HOME=./testutil/localdredger
 LOCALNET_COMPOSE_FILE=$(LOCALSTRIDE_HOME)/localnet/docker-compose.yml
 STATE_EXPORT_COMPOSE_FILE=$(LOCALSTRIDE_HOME)/state-export/docker-compose.yml
 
@@ -52,8 +52,8 @@ build_tags_comma_sep := $(subst $(whitespace),$(comma),$(build_tags))
 
 # process linker flags
 
-ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=stride \
-		  -X github.com/cosmos/cosmos-sdk/version.AppName=strided \
+ldflags = -X github.com/cosmos/cosmos-sdk/version.Name=dredger \
+		  -X github.com/cosmos/cosmos-sdk/version.AppName=dred \
 		  -X github.com/cosmos/cosmos-sdk/version.Version=$(VERSION) \
 		  -X github.com/cosmos/cosmos-sdk/version.Commit=$(COMMIT) \
 		  -X "github.com/cosmos/cosmos-sdk/version.BuildTags=$(build_tags_comma_sep)"
@@ -79,7 +79,7 @@ build:
 	go build -mod=readonly -ldflags '$(ldflags)' -trimpath -o $(BUILDDIR) ./...;
 
 install: go.sum
-		go install $(BUILD_FLAGS) ./cmd/strided
+		go install $(BUILD_FLAGS) ./cmd/dred
 
 clean: 
 	rm -rf $(BUILDDIR)/* 
@@ -129,7 +129,7 @@ clean-docker:
 	docker image prune -a
 	
 stop-docker:
-	@pkill -f "docker-compose .*stride.* logs" | true
+	@pkill -f "docker-compose .*dredger.* logs" | true
 	@pkill -f "/bin/bash.*create_logs.sh" | true
 	@pkill -f "tail .*.log" | true
 	docker-compose -f $(DOCKERNET_COMPOSE_FILE) down
@@ -162,7 +162,7 @@ proto-lint:
 
 
 ###############################################################################
-###                             LocalStride                                 ###
+###                             LocalDredger                                 ###
 ###############################################################################
 
 localnet-keys:
@@ -171,7 +171,7 @@ localnet-keys:
 localnet-init: localnet-clean localnet-build
 
 localnet-clean:
-	@rm -rfI $(HOME)/.stride/
+	@rm -rfI $(HOME)/.dredger/
 
 localnet-build:
 	@docker-compose -f $(LOCALNET_COMPOSE_FILE) build

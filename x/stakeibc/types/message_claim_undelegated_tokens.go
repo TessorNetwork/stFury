@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/Stride-Labs/stride/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/utils"
 )
 
 const TypeMsgClaimUndelegatedTokens = "claim_undelegated_tokens"
@@ -46,8 +46,8 @@ func (msg *MsgClaimUndelegatedTokens) ValidateBasic() error {
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}
-	// sender must be a valid stride address
-	_, err = utils.AccAddressFromBech32(msg.Sender, "stride")
+	// sender must be a valid dredger address
+	_, err = utils.AccAddressFromBech32(msg.Sender, "dredger")
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid sender address (%s)", err)
 	}

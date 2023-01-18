@@ -21,9 +21,9 @@ ADMIN_TOKENS=1000000000
 PEER_PORT=26656
 RPC_PORT=26657
 VAL_PREFIX=val
-DENOM=ustrd
+DENOM=udred
 
-NODE_NAME="stride1"
+NODE_NAME="dredger1"
 STRIDE_VAL_MNEMONIC="close soup mirror crew erode defy knock trigger gather eyebrow tent farm gym gloom base lemon sleep weekend rich forget diagram hurt prize fly"
 HERMES_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
 RELAYER_MNEMONIC="pride narrow breeze fitness sign bounce dose smart squirrel spell length federal replace coral lunar thunder vital push nuclear crouch fun accident hood need"
@@ -33,9 +33,9 @@ STRIDE_VAL_ACCT=val1
 HERMES_ACCT=hrly1
 RELAYER_ACCT=rly1
 
-CMD="$SCRIPT_DIR/../../build/strided --home $SCRIPT_DIR/../state/stride1"
+CMD="$SCRIPT_DIR/../../build/dred --home $SCRIPT_DIR/../state/dredger1"
 
-echo "Initializing Stride chain..."
+echo "Initializing Dredger chain..."
 
 # Create a state directory for the current node and initialize the chain
 mkdir -p $STATE/$NODE_NAME
@@ -79,7 +79,7 @@ rm -rf ${client_toml}-E
 rm -rf ${genesis_json}-E
 rm -rf ${app_toml}-E
 
-# add Hermes and relayer accounts on Stride
+# add Hermes and relayer accounts on Dredger
 echo "$HERMES_MNEMONIC" | $CMD keys add $HERMES_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
 echo "$RELAYER_MNEMONIC" | $CMD keys add $RELAYER_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
 HERMES_ADDRESS=$($CMD keys show $HERMES_ACCT --keyring-backend test -a)
@@ -89,7 +89,7 @@ RELAYER_ADDRESS=$($CMD keys show $RELAYER_ACCT --keyring-backend test -a)
 $CMD add-genesis-account ${HERMES_ADDRESS} ${VAL_TOKENS}${DENOM}
 $CMD add-genesis-account ${RELAYER_ADDRESS} ${VAL_TOKENS}${DENOM}
 
-# add the stride admin account
+# add the dredger admin account
 echo "$STRIDE_ADMIN_MNEMONIC" | $CMD keys add $STRIDE_ADMIN_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
 STRIDE_ADMIN_ADDRESS=$($CMD keys show $STRIDE_ADMIN_ACCT --keyring-backend test -a)
 $CMD add-genesis-account ${STRIDE_ADMIN_ADDRESS} ${ADMIN_TOKENS}${DENOM}
@@ -102,7 +102,7 @@ sed -i -E "s|persistent_peers = .*|persistent_peers = \"\"|g" $config_toml
 
 # update params
 jq '(.app_state.epochs.epochs[] | select(.identifier=="day") ).duration = $epochLen' --arg epochLen $STRIDE_DAY_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
-jq '(.app_state.epochs.epochs[] | select(.identifier=="stride_epoch") ).duration = $epochLen' --arg epochLen $STRIDE_EPOCH_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
+jq '(.app_state.epochs.epochs[] | select(.identifier=="dredger_epoch") ).duration = $epochLen' --arg epochLen $STRIDE_EPOCH_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
 jq '.app_state.gov.deposit_params.max_deposit_period = $newVal' --arg newVal "$MAX_DEPOSIT_PERIOD" $genesis_json > json.tmp && mv json.tmp $genesis_json
 jq '.app_state.gov.voting_params.voting_period = $newVal' --arg newVal "$VOTING_PERIOD" $genesis_json > json.tmp && mv json.tmp $genesis_json
 

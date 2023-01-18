@@ -13,8 +13,8 @@ import (
 	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
 
-	icqkeeper "github.com/Stride-Labs/stride/v4/x/interchainquery/keeper"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	icqkeeper "github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
@@ -24,9 +24,9 @@ import (
 
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 
-	epochstypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icacallbackskeeper "github.com/Stride-Labs/stride/v4/x/icacallbacks/keeper"
-	recordsmodulekeeper "github.com/Stride-Labs/stride/v4/x/records/keeper"
+	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icacallbackskeeper "github.com/TessorNetwork/dredger/v4/x/icacallbacks/keeper"
+	recordsmodulekeeper "github.com/TessorNetwork/dredger/v4/x/records/keeper"
 )
 
 type (
@@ -168,8 +168,8 @@ func (k Keeper) GetConnectionId(ctx sdk.Context, portId string) (string, error) 
 }
 
 // helper to get what share of the curr epoch we're through
-func (k Keeper) GetStrideEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
-	// Get the current stride epoch
+func (k Keeper) GetDredgerEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
+	// Get the current dredger epoch
 	epochTracker, found := k.GetEpochTracker(ctx, epochstypes.STRIDE_EPOCH)
 	if !found {
 		errMsg := fmt.Sprintf("Failed to get epoch tracker for %s", epochstypes.STRIDE_EPOCH)
@@ -215,7 +215,7 @@ func (k Keeper) GetStrideEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
 
 // helper to check whether ICQs are valid in this portion of the epoch
 func (k Keeper) IsWithinBufferWindow(ctx sdk.Context) (bool, error) {
-	elapsedShareOfEpoch, err := k.GetStrideEpochElapsedShare(ctx)
+	elapsedShareOfEpoch, err := k.GetDredgerEpochElapsedShare(ctx)
 	if err != nil {
 		return false, err
 	}

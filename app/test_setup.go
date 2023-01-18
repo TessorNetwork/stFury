@@ -20,10 +20,10 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	cmdcfg "github.com/Stride-Labs/stride/v4/cmd/strided/config"
+	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
 )
 
-const Bech32Prefix = "stride"
+const Bech32Prefix = "dredger"
 
 func init() {
 	SetupConfig()
@@ -38,10 +38,10 @@ func SetupConfig() {
 	cmdcfg.SetAddressPrefixes(config)
 }
 
-// Initializes a new StrideApp without IBC functionality
-func InitStrideTestApp(initChain bool) *StrideApp {
+// Initializes a new DredgerApp without IBC functionality
+func InitDredgerTestApp(initChain bool) *DredgerApp {
 	db := dbm.NewMemDB()
-	app := NewStrideApp(
+	app := NewDredgerApp(
 		log.NewNopLogger(),
 		db,
 		nil,
@@ -71,7 +71,7 @@ func InitStrideTestApp(initChain bool) *StrideApp {
 	return app
 }
 
-func GenesisStateWithValSet(app *StrideApp) GenesisState {
+func GenesisStateWithValSet(app *DredgerApp) GenesisState {
 	privVal := mock.NewPV()
 	pubKey, _ := privVal.GetPubKey()
 	validator := tmtypes.NewValidator(pubKey, 1)
@@ -145,8 +145,8 @@ func GenesisStateWithValSet(app *StrideApp) GenesisState {
 	return genesisState
 }
 
-// Initializes a new Stride App casted as a TestingApp for IBC support
-func InitStrideIBCTestingApp() (ibctesting.TestingApp, map[string]json.RawMessage) {
-	app := InitStrideTestApp(false)
+// Initializes a new Dredger App casted as a TestingApp for IBC support
+func InitDredgerIBCTestingApp() (ibctesting.TestingApp, map[string]json.RawMessage) {
+	app := InitDredgerTestApp(false)
 	return app, NewDefaultGenesisState()
 }

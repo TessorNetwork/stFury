@@ -13,8 +13,8 @@ import (
 	tmclienttypes "github.com/cosmos/ibc-go/v5/modules/light-clients/07-tendermint/types"
 	"github.com/spf13/cast"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	"github.com/Stride-Labs/stride/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
 )
 
 type msgServer struct {
@@ -121,7 +121,7 @@ func (k Keeper) InvokeCallback(ctx sdk.Context, msg *types.MsgSubmitQueryRespons
 func (k msgServer) SubmitQueryResponse(goCtx context.Context, msg *types.MsgSubmitQueryResponse) (*types.MsgSubmitQueryResponseResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// check if the response has an associated query stored on stride
+	// check if the response has an associated query stored on dredger
 	query, found := k.GetQuery(ctx, msg.QueryId)
 	if !found {
 		k.Logger(ctx).Info("ICQ RESPONSE  | Ignoring non-existent query response (note: duplicate responses are nonexistent)")

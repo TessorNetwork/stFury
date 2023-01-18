@@ -27,13 +27,13 @@ build_local_and_docker() {
    fi
 
    echo "Building $title Docker...  "
-   if [[ "$module" == "stride" ]]; then
+   if [[ "$module" == "dredger" ]]; then
       image=Dockerfile
    else
       image=dockernet/dockerfiles/Dockerfile.$module
    fi
 
-   DOCKER_BUILDKIT=1 docker build --tag stridezone:$module -f $image . | true
+   DOCKER_BUILDKIT=1 docker build --tag dredgerzone:$module -f $image . | true
    docker_build_succeeded=${PIPESTATUS[0]}
 
    if [[ "$docker_build_succeeded" == "0" ]]; then
@@ -49,7 +49,7 @@ ADMINS_FILE_BACKUP=${DOCKERNET_HOME}/../utils/admins.go.main
 
 replace_admin_address() {
    cp $ADMINS_FILE $ADMINS_FILE_BACKUP
-   sed -i -E "s|stride1k8c2m5cn322akk5wy8lpt87dd2f4yh9azg7jlh|$STRIDE_ADMIN_ADDRESS|g" $ADMINS_FILE
+   sed -i -E "s|dredger1k8c2m5cn322akk5wy8lpt87dd2f4yh9azg7jlh|$STRIDE_ADMIN_ADDRESS|g" $ADMINS_FILE
 }
 
 revert_admin_address() {
@@ -60,9 +60,9 @@ revert_admin_address() {
 # build docker images and local binaries
 while getopts sgojthrn flag; do
    case "${flag}" in
-      # For stride, we need to update the admin address to one that we have the seed phrase for
+      # For dredger, we need to update the admin address to one that we have the seed phrase for
       s) replace_admin_address
-         if (build_local_and_docker stride .) ; then
+         if (build_local_and_docker dredger .) ; then
             revert_admin_address
          else
             revert_admin_address
@@ -76,7 +76,7 @@ while getopts sgojthrn flag; do
       n) continue ;; # build_local_and_docker {new-host-zone} deps/{new-host-zone} ;;
       r) build_local_and_docker relayer deps/relayer ;;  
       h) echo "Building Hermes Docker... ";
-         docker build --tag stridezone:hermes -f dockernet/dockerfiles/Dockerfile.hermes . ;
+         docker build --tag dredgerzone:hermes -f dockernet/dockerfiles/Dockerfile.hermes . ;
 
          printf '%s' "Building Hermes Locally... ";
          cd deps/hermes; 

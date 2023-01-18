@@ -19,7 +19,7 @@ $STRIDE_MAIN_CMD query gov proposals
 
 sleep 5 
 printf "\nDEPOSIT\n"
-$STRIDE_MAIN_CMD tx gov deposit $PROPOSAL_ID 10000001ustrd --from val1 -y | TRIM_TX
+$STRIDE_MAIN_CMD tx gov deposit $PROPOSAL_ID 10000001udred --from val1 -y | TRIM_TX
 
 sleep 5
 printf "\nDEPOSIT CONFIRMATION\n"

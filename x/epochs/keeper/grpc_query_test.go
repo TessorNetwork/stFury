@@ -6,7 +6,7 @@ import (
 
 	_ "github.com/stretchr/testify/suite"
 
-	"github.com/Stride-Labs/stride/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
 )
 
 func (suite *KeeperTestSuite) TestQueryEpochInfos() {
@@ -33,7 +33,7 @@ func (suite *KeeperTestSuite) TestQueryEpochInfos() {
 	suite.Require().Equal(epochInfosResponse.Epochs[1].CurrentEpoch, int64(0))
 	suite.Require().Equal(epochInfosResponse.Epochs[1].CurrentEpochStartTime, chainStartTime)
 	suite.Require().Equal(epochInfosResponse.Epochs[1].EpochCountingStarted, false)
-	suite.Require().Equal(epochInfosResponse.Epochs[2].Identifier, "stride_epoch")
+	suite.Require().Equal(epochInfosResponse.Epochs[2].Identifier, "dredger_epoch")
 	suite.Require().Equal(epochInfosResponse.Epochs[2].StartTime, chainStartTime)
 	suite.Require().Equal(epochInfosResponse.Epochs[2].Duration, time.Hour*6)
 	suite.Require().Equal(epochInfosResponse.Epochs[2].CurrentEpoch, int64(0))

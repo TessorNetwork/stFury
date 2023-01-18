@@ -6,15 +6,15 @@ category: 6392913957c533007128548e
 
 # The StakeIBC Module
 
-The StakeIBC Module contains Stride's main app logic:
+The StakeIBC Module contains Dredger's main app logic:
 
 - it exposes core liquid staking entry points to the user (liquid staking and redeeming)
 - it executes automated beginBlocker and endBlocker logic to stake funds on relevant host zones using Interchain Accounts  
 - it handles registering new host zones and adjusting host zone validator sets and weights
-- it defines Stride's core data structures (e.g. hostZone)
+- it defines Dredger's core data structures (e.g. hostZone)
 - it defines all the callbacks used when issuing Interchain Account logic
 
-Nearly all of Stride's functionality is built using interchain accounts (ICAs), which are a new functionality in Cosmos, and a critical component of IBC. ICAs allow accounts on Zone A to be controlled by Zone B. ICAs communicate with one another using Interchain Queries (ICQs), which involve Zone A querying Zone B for relevant information.
+Nearly all of Dredger's functionality is built using interchain accounts (ICAs), which are a new functionality in Cosmos, and a critical component of IBC. ICAs allow accounts on Zone A to be controlled by Zone B. ICAs communicate with one another using Interchain Queries (ICQs), which involve Zone A querying Zone B for relevant information.
 
 Two Zones communicate via a connection and channel. All communications between the Controller Zone (the chain that is querying) and the Host Zone (the chain that is being queried) is done through a dedicated IBC channel between the two chains, which is opened the first time the two chains interact.
 
@@ -28,7 +28,7 @@ DelegateInterval (default uint64 = 1)
 ReinvestInterval (default uint64 = 1)
 RewardsInterval (default uint64 = 1)
 RedemptionRateInterval (default uint64 = 1)
-StrideCommission (default uint64 = 10)
+DredgerCommission (default uint64 = 10)
 ValidatorRebalancingThreshold (default uint64 = 100)
 ICATimeoutNanos(default uint64 = 600000000000)
 BufferSize (default uint64 = 5)  

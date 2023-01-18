@@ -9,9 +9,9 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	keepertest "github.com/Stride-Labs/stride/v4/testutil/keeper"
-	"github.com/Stride-Labs/stride/v4/testutil/nullify"
-	"github.com/Stride-Labs/stride/v4/x/claim/types"
+	keepertest "github.com/TessorNetwork/dredger/v4/testutil/keeper"
+	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
+	"github.com/TessorNetwork/dredger/v4/x/claim/types"
 )
 
 func TestGenesis(t *testing.T) {
@@ -57,9 +57,9 @@ func TestGenesis(t *testing.T) {
 	got := k.ExportGenesis(ctx)
 	require.NotNil(t, got)
 
-	totalWeightStride, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
+	totalWeightDredger, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
 	require.NoError(t, err)
-	require.Equal(t, totalWeightStride, genesisState.ClaimRecords[0].Weight)
+	require.Equal(t, totalWeightDredger, genesisState.ClaimRecords[0].Weight)
 
 	totalWeightJuno, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
 	require.NoError(t, err)

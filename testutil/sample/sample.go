@@ -12,6 +12,6 @@ func AccAddress() string {
 	return sdk.AccAddress(addr).String()
 }
 
-func StrideAddress() string {
-	return "stride1uk4ze0x4nvh4fk0xm4jdud58eqn4yxhrt52vv7"
+func DredgerAddress() string {
+	return "dredger1uk4ze0x4nvh4fk0xm4jdud58eqn4yxhrt52vv7"
 }

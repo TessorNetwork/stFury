@@ -12,10 +12,10 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icacallbackstypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type TestDepositRecords struct {
@@ -178,14 +178,14 @@ func (s *KeeperTestSuite) SetupDepositRecords() DepositRecordsTestCase {
 	}
 
 	currentEpoch := uint64(2)
-	strideEpochTracker := stakeibctypes.EpochTracker{
+	dredgerEpochTracker := stakeibctypes.EpochTracker{
 		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
 		EpochNumber:        currentEpoch,
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 30_000_000_000), // dictates timeouts
 	}
 
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	initialDepositRecords := s.GetInitialDepositRecords(currentEpoch)
 	for _, depositRecord := range initialDepositRecords.GetAllRecords() {

@@ -5,7 +5,7 @@ import (
 
 	_ "github.com/stretchr/testify/suite"
 
-	"github.com/Stride-Labs/stride/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
 )
 
 func (suite *KeeperTestSuite) TestEpochLifeCycle() {
@@ -29,6 +29,6 @@ func (suite *KeeperTestSuite) TestEpochLifeCycle() {
 	suite.Require().Equal(allEpochs[0].Identifier, "day") // alphabetical order
 	suite.Require().Equal(allEpochs[1].Identifier, "mint")
 	suite.Require().Equal(allEpochs[2].Identifier, "monthly")
-	suite.Require().Equal(allEpochs[3].Identifier, "stride_epoch")
+	suite.Require().Equal(allEpochs[3].Identifier, "dredger_epoch")
 	suite.Require().Equal(allEpochs[4].Identifier, "week")
 }

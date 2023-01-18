@@ -93,8 +93,8 @@ setup_file() {
 
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] ibc transfer updates all balances" {
   # get initial balances
-  sval_strd_balance_start=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
-  hval_strd_balance_start=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_STRD_DENOM | GETBAL)
+  sval_dred_balance_start=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
+  hval_dred_balance_start=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
   sval_token_balance_start=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_start=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
@@ -105,16 +105,16 @@ setup_file() {
   WAIT_FOR_BLOCK $STRIDE_LOGS 8
 
   # get new balances
-  sval_strd_balance_end=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
-  hval_strd_balance_end=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_STRD_DENOM | GETBAL)
+  sval_dred_balance_end=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
+  hval_dred_balance_end=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_DRED_DENOM | GETBAL)
   sval_token_balance_end=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_end=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
-  # get all STRD balance diffs
-  sval_strd_balance_diff=$(($sval_strd_balance_start - $sval_strd_balance_end))
-  hval_strd_balance_diff=$(($hval_strd_balance_start - $hval_strd_balance_end))
-  assert_equal "$sval_strd_balance_diff" "$TRANSFER_AMOUNT"
-  assert_equal "$hval_strd_balance_diff" "-$TRANSFER_AMOUNT"
+  # get all DRED balance diffs
+  sval_dred_balance_diff=$(($sval_dred_balance_start - $sval_dred_balance_end))
+  hval_dred_balance_diff=$(($hval_dred_balance_start - $hval_dred_balance_end))
+  assert_equal "$sval_dred_balance_diff" "$TRANSFER_AMOUNT"
+  assert_equal "$hval_dred_balance_diff" "-$TRANSFER_AMOUNT"
 
   # get all host balance diffs
   sval_token_balance_diff=$(($sval_token_balance_start - $sval_token_balance_end))
@@ -124,7 +124,7 @@ setup_file() {
 }
 
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] liquid stake mint and transfer" {
-  # get initial balances on stride account
+  # get initial balances on dredger account
   token_balance_start=$($STRIDE_MAIN_CMD   q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   sttoken_balance_start=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom st$HOST_DENOM   | GETBAL)
 
@@ -135,7 +135,7 @@ setup_file() {
   # liquid stake
   $STRIDE_MAIN_CMD tx stakeibc liquid-stake $STAKE_AMOUNT $HOST_DENOM --from $STRIDE_VAL -y 
 
-  # sleep two block for the tx to settle on stride
+  # sleep two block for the tx to settle on dredger
   WAIT_FOR_STRING $STRIDE_LOGS "\[MINT ST ASSET\] success on $HOST_CHAIN_ID"
   WAIT_FOR_BLOCK $STRIDE_LOGS 2
 
@@ -195,7 +195,7 @@ setup_file() {
   # grab the epoch number for the first deposit record in the list od DRs
   EPOCH=$($STRIDE_MAIN_CMD q records list-user-redemption-record  | grep -Fiw 'epoch_number' | head -n 1 | grep -o -E '[0-9]+')
 
-  # claim the record (send to stride address)
+  # claim the record (send to dredger address)
   $STRIDE_MAIN_CMD tx stakeibc claim-undelegated-tokens $HOST_CHAIN_ID $EPOCH $(STRIDE_ADDRESS) \
     --from $STRIDE_VAL --keyring-backend test --chain-id $STRIDE_CHAIN_ID -y
 
@@ -230,6 +230,6 @@ setup_file() {
   WAIT_FOR_BLOCK $STRIDE_LOGS 8
 
   # check that balance went to revenue account
-  fee_stride_balance=$($STRIDE_MAIN_CMD q bank balances $STRIDE_FEE_ADDRESS --denom $HOST_IBC_DENOM | GETBAL)
-  assert_equal "$fee_stride_balance" "1"
+  fee_dredger_balance=$($STRIDE_MAIN_CMD q bank balances $STRIDE_FEE_ADDRESS --denom $HOST_IBC_DENOM | GETBAL)
+  assert_equal "$fee_dredger_balance" "1"
 }

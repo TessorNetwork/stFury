@@ -2,8 +2,8 @@
 
 # 🔨 Build from source
 ```
-git clone https://github.com/Stride-Labs/stride
-cd stride && git checkout v1.0.0
+git clone https://github.com/Stride-Labs/dredger
+cd dredger && git checkout v1.0.0
 make build
 ```
 

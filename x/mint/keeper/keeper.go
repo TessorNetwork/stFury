@@ -9,7 +9,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/Stride-Labs/stride/v4/x/mint/types"
+	"github.com/TessorNetwork/dredger/v4/x/mint/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -146,7 +146,7 @@ func (k Keeper) GetProportions(ctx sdk.Context, mintedCoin sdk.Coin, ratio sdk.D
 
 const (
 	// strategic reserve address F0
-	StrategicReserveAddress = "stride1alnn79kh0xka0r5h4h82uuaqfhpdmph6rvpf5f"
+	StrategicReserveAddress = "dredger1alnn79kh0xka0r5h4h82uuaqfhpdmph6rvpf5f"
 )
 
 // DistributeMintedCoins implements distribution of minted coins from mint to external modules.

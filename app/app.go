@@ -7,7 +7,7 @@ import (
 
 	porttypes "github.com/cosmos/ibc-go/v5/modules/core/05-port/types"
 
-	"github.com/Stride-Labs/stride/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/utils"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
@@ -54,12 +54,12 @@ import (
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	govtypesv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
-	claimvesting "github.com/Stride-Labs/stride/v4/x/claim/vesting"
-	claimvestingtypes "github.com/Stride-Labs/stride/v4/x/claim/vesting/types"
+	claimvesting "github.com/TessorNetwork/dredger/v4/x/claim/vesting"
+	claimvestingtypes "github.com/TessorNetwork/dredger/v4/x/claim/vesting/types"
 
-	"github.com/Stride-Labs/stride/v4/x/mint"
-	mintkeeper "github.com/Stride-Labs/stride/v4/x/mint/keeper"
-	minttypes "github.com/Stride-Labs/stride/v4/x/mint/types"
+	"github.com/TessorNetwork/dredger/v4/x/mint"
+	mintkeeper "github.com/TessorNetwork/dredger/v4/x/mint/keeper"
+	minttypes "github.com/TessorNetwork/dredger/v4/x/mint/types"
 
 	"github.com/cosmos/cosmos-sdk/x/params"
 	paramsclient "github.com/cosmos/cosmos-sdk/x/params/client"
@@ -106,27 +106,27 @@ import (
 	// monitoringp "github.com/tendermint/spn/x/monitoringp"
 	// monitoringpkeeper "github.com/tendermint/spn/x/monitoringp/keeper"
 
-	epochsmodule "github.com/Stride-Labs/stride/v4/x/epochs"
-	epochsmodulekeeper "github.com/Stride-Labs/stride/v4/x/epochs/keeper"
-	epochsmoduletypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
+	epochsmodule "github.com/TessorNetwork/dredger/v4/x/epochs"
+	epochsmodulekeeper "github.com/TessorNetwork/dredger/v4/x/epochs/keeper"
+	epochsmoduletypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
 
-	"github.com/Stride-Labs/stride/v4/x/interchainquery"
-	interchainquerykeeper "github.com/Stride-Labs/stride/v4/x/interchainquery/keeper"
-	interchainquerytypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/x/interchainquery"
+	interchainquerykeeper "github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
+	interchainquerytypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
 
-	"github.com/Stride-Labs/stride/v4/x/claim"
-	claimkeeper "github.com/Stride-Labs/stride/v4/x/claim/keeper"
-	claimtypes "github.com/Stride-Labs/stride/v4/x/claim/types"
-	icacallbacksmodule "github.com/Stride-Labs/stride/v4/x/icacallbacks"
-	icacallbacksmodulekeeper "github.com/Stride-Labs/stride/v4/x/icacallbacks/keeper"
-	icacallbacksmoduletypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	recordsmodule "github.com/Stride-Labs/stride/v4/x/records"
-	recordsmodulekeeper "github.com/Stride-Labs/stride/v4/x/records/keeper"
-	recordsmoduletypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibcmodule "github.com/Stride-Labs/stride/v4/x/stakeibc"
-	stakeibcclient "github.com/Stride-Labs/stride/v4/x/stakeibc/client"
-	stakeibcmodulekeeper "github.com/Stride-Labs/stride/v4/x/stakeibc/keeper"
-	stakeibcmoduletypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/x/claim"
+	claimkeeper "github.com/TessorNetwork/dredger/v4/x/claim/keeper"
+	claimtypes "github.com/TessorNetwork/dredger/v4/x/claim/types"
+	icacallbacksmodule "github.com/TessorNetwork/dredger/v4/x/icacallbacks"
+	icacallbacksmodulekeeper "github.com/TessorNetwork/dredger/v4/x/icacallbacks/keeper"
+	icacallbacksmoduletypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	recordsmodule "github.com/TessorNetwork/dredger/v4/x/records"
+	recordsmodulekeeper "github.com/TessorNetwork/dredger/v4/x/records/keeper"
+	recordsmoduletypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibcmodule "github.com/TessorNetwork/dredger/v4/x/stakeibc"
+	stakeibcclient "github.com/TessorNetwork/dredger/v4/x/stakeibc/client"
+	stakeibcmodulekeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
+	stakeibcmoduletypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
@@ -136,8 +136,8 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "stride"
-	Name                 = "stride"
+	AccountAddressPrefix = "dredger"
+	Name                 = "dredger"
 	Version              = "5.0.0"
 )
 
@@ -217,8 +217,8 @@ var (
 )
 
 var (
-	_ servertypes.Application = (*StrideApp)(nil)
-	_ ibctesting.TestingApp   = (*StrideApp)(nil)
+	_ servertypes.Application = (*DredgerApp)(nil)
+	_ ibctesting.TestingApp   = (*DredgerApp)(nil)
 )
 
 func init() {
@@ -230,10 +230,10 @@ func init() {
 	DefaultNodeHome = filepath.Join(userHomeDir, "."+Name)
 }
 
-// StrideApp extends an ABCI application, but with most of its parameters exported.
+// DredgerApp extends an ABCI application, but with most of its parameters exported.
 // They are exported for convenience in creating helper functions, as object
 // capabilities aren't needed for testing.
-type StrideApp struct {
+type DredgerApp struct {
 	*baseapp.BaseApp
 
 	cdc               *codec.LegacyAmino
@@ -293,7 +293,7 @@ type StrideApp struct {
 
 // RUN GOSEC
 // New returns a reference to an initialized blockchain app
-func NewStrideApp(
+func NewDredgerApp(
 	logger log.Logger,
 	db dbm.DB,
 	traceStore io.Writer,
@@ -304,7 +304,7 @@ func NewStrideApp(
 	encodingConfig EncodingConfig,
 	appOpts servertypes.AppOptions,
 	baseAppOptions ...func(*baseapp.BaseApp),
-) *StrideApp {
+) *DredgerApp {
 	appCodec := encodingConfig.Marshaler
 	cdc := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
@@ -331,7 +331,7 @@ func NewStrideApp(
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
 
-	app := &StrideApp{
+	app := &DredgerApp{
 		BaseApp:           bApp,
 		cdc:               cdc,
 		appCodec:          appCodec,
@@ -807,49 +807,49 @@ func NewStrideApp(
 }
 
 // Name returns the name of the App
-func (app *StrideApp) Name() string { return app.BaseApp.Name() }
+func (app *DredgerApp) Name() string { return app.BaseApp.Name() }
 
 // GetBaseApp returns the base app of the application
-func (app *StrideApp) GetBaseApp() *baseapp.BaseApp { return app.BaseApp }
+func (app *DredgerApp) GetBaseApp() *baseapp.BaseApp { return app.BaseApp }
 
 // GetStakingKeeper implements the TestingApp interface.
-func (app *StrideApp) GetStakingKeeper() ibctestingtypes.StakingKeeper {
+func (app *DredgerApp) GetStakingKeeper() ibctestingtypes.StakingKeeper {
 	return app.StakingKeeper
 }
 
 // GetIBCKeeper implements the TestingApp interface.
-func (app *StrideApp) GetTransferKeeper() *ibctransferkeeper.Keeper {
+func (app *DredgerApp) GetTransferKeeper() *ibctransferkeeper.Keeper {
 	return &app.TransferKeeper
 }
 
 // GetIBCKeeper implements the TestingApp interface.
-func (app *StrideApp) GetIBCKeeper() *ibckeeper.Keeper {
+func (app *DredgerApp) GetIBCKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
 }
 
 // GetScopedIBCKeeper implements the TestingApp interface.
-func (app *StrideApp) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
+func (app *DredgerApp) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
 	return app.ScopedIBCKeeper
 }
 
 // GetTxConfig implements the TestingApp interface.
-func (app *StrideApp) GetTxConfig() client.TxConfig {
+func (app *DredgerApp) GetTxConfig() client.TxConfig {
 	cfg := MakeEncodingConfig()
 	return cfg.TxConfig
 }
 
 // BeginBlocker application updates every begin block
-func (app *StrideApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+func (app *DredgerApp) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	return app.mm.BeginBlock(ctx, req)
 }
 
 // EndBlocker application updates every end block
-func (app *StrideApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *DredgerApp) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	return app.mm.EndBlock(ctx, req)
 }
 
 // InitChainer application update at chain initialization
-func (app *StrideApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *DredgerApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 	var genesisState GenesisState
 	if err := tmjson.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
@@ -859,12 +859,12 @@ func (app *StrideApp) InitChainer(ctx sdk.Context, req abci.RequestInitChain) ab
 }
 
 // LoadHeight loads a particular height
-func (app *StrideApp) LoadHeight(height int64) error {
+func (app *DredgerApp) LoadHeight(height int64) error {
 	return app.LoadVersion(height)
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *StrideApp) ModuleAccountAddrs() map[string]bool {
+func (app *DredgerApp) ModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	// DO NOT REMOVE: StringMapKeys fixes non-deterministic map iteration
 	for _, acc := range utils.StringMapKeys(maccPerms) {
@@ -875,7 +875,7 @@ func (app *StrideApp) ModuleAccountAddrs() map[string]bool {
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *StrideApp) BlacklistedModuleAccountAddrs() map[string]bool {
+func (app *DredgerApp) BlacklistedModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	// DO NOT REMOVE: StringMapKeys fixes non-deterministic map iteration
 	for _, acc := range utils.StringMapKeys(maccPerms) {
@@ -893,7 +893,7 @@ func (app *StrideApp) BlacklistedModuleAccountAddrs() map[string]bool {
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *StrideApp) LegacyAmino() *codec.LegacyAmino {
+func (app *DredgerApp) LegacyAmino() *codec.LegacyAmino {
 	return app.cdc
 }
 
@@ -901,47 +901,47 @@ func (app *StrideApp) LegacyAmino() *codec.LegacyAmino {
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *StrideApp) AppCodec() codec.Codec {
+func (app *DredgerApp) AppCodec() codec.Codec {
 	return app.appCodec
 }
 
 // InterfaceRegistry returns an InterfaceRegistry
-func (app *StrideApp) InterfaceRegistry() types.InterfaceRegistry {
+func (app *DredgerApp) InterfaceRegistry() types.InterfaceRegistry {
 	return app.interfaceRegistry
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *StrideApp) GetKey(storeKey string) *storetypes.KVStoreKey {
+func (app *DredgerApp) GetKey(storeKey string) *storetypes.KVStoreKey {
 	return app.keys[storeKey]
 }
 
 // GetTKey returns the TransientStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *StrideApp) GetTKey(storeKey string) *storetypes.TransientStoreKey {
+func (app *DredgerApp) GetTKey(storeKey string) *storetypes.TransientStoreKey {
 	return app.tkeys[storeKey]
 }
 
 // GetMemKey returns the MemStoreKey for the provided mem key.
 //
 // NOTE: This is solely used for testing purposes.
-func (app *StrideApp) GetMemKey(storeKey string) *storetypes.MemoryStoreKey {
+func (app *DredgerApp) GetMemKey(storeKey string) *storetypes.MemoryStoreKey {
 	return app.memKeys[storeKey]
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *StrideApp) GetSubspace(moduleName string) paramstypes.Subspace {
+func (app *DredgerApp) GetSubspace(moduleName string) paramstypes.Subspace {
 	subspace, _ := app.ParamsKeeper.GetSubspace(moduleName)
 	return subspace
 }
 
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
-func (app *StrideApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
+func (app *DredgerApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
 	clientCtx := apiSvr.ClientCtx
 	// Register new tx routes from grpc-gateway.
 	authtx.RegisterGRPCGatewayRoutes(clientCtx, apiSvr.GRPCGatewayRouter)
@@ -952,12 +952,12 @@ func (app *StrideApp) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.API
 }
 
 // RegisterTxService implements the Application.RegisterTxService method.
-func (app *StrideApp) RegisterTxService(clientCtx client.Context) {
+func (app *DredgerApp) RegisterTxService(clientCtx client.Context) {
 	authtx.RegisterTxService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.BaseApp.Simulate, app.interfaceRegistry)
 }
 
 // RegisterTendermintService implements the Application.RegisterTendermintService method.
-func (app *StrideApp) RegisterTendermintService(clientCtx client.Context) {
+func (app *DredgerApp) RegisterTendermintService(clientCtx client.Context) {
 	tmservice.RegisterTendermintService(clientCtx, app.BaseApp.GRPCQueryRouter(), app.interfaceRegistry, app.Query)
 }
 
@@ -999,6 +999,6 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 }
 
 // SimulationManager implements the SimulationApp interface
-func (app *StrideApp) SimulationManager() *module.SimulationManager {
+func (app *DredgerApp) SimulationManager() *module.SimulationManager {
 	return app.sm
 }

@@ -11,7 +11,7 @@ PEER_PORT=26656
 DOCKER_COMPOSE="docker-compose -f $DOCKERNET_HOME/docker-compose.yml"
 
 # Logs
-STRIDE_LOGS=$LOGS/stride.log
+STRIDE_LOGS=$LOGS/dredger.log
 TX_LOGS=$DOCKERNET_HOME/logs/tx.log
 KEYS_LOGS=$DOCKERNET_HOME/logs/keys.log
 
@@ -26,7 +26,7 @@ HOST_CHAINS=()
 #  - JUNO
 #  - OSMO
 #  - STARS
-#  - HOST (Stride chain enabled as a host zone)
+#  - HOST (Dredger chain enabled as a host zone)
 if [[ "${ALL_HOST_CHAINS:-false}" == "true" ]]; then 
   HOST_CHAINS=(GAIA OSMO HOST)
 elif [[ "${#HOST_CHAINS[@]}" == "0" ]]; then 
@@ -41,7 +41,7 @@ UPGRADE_OLD_COMMIT_HASH=""
 ATOM_DENOM="uatom"
 JUNO_DENOM="ujuno"
 OSMO_DENOM="uosmo"
-STRD_DENOM="ustrd"
+DRED_DENOM="udred"
 STARS_DENOM="ustars"
 WALK_DENOM="uwalk"
 STATOM_DENOM="stuatom"
@@ -50,7 +50,7 @@ STOSMO_DENOM="stuosmo"
 STSTARS_DENOM="stustars"
 STWALK_DENOM="stuwalk"
 
-IBC_STRD_DENOM='ibc/FF6C2E86490C1C4FBBD24F55032831D2415B9D7882F85C3CC9C2401D79362BEA'  
+IBC_DRED_DENOM='ibc/FF6C2E86490C1C4FBBD24F55032831D2415B9D7882F85C3CC9C2401D79362BEA'  
 
 IBC_GAIA_CHANNEL_0_DENOM='ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2'
 IBC_GAIA_CHANNEL_1_DENOM='ibc/C4CFF46FD6DE35CA4CF4CE031E643C8FDC9BA4B99AE598E9B0ED98FE3A2319F9'
@@ -123,21 +123,21 @@ REV_MNEMONIC="tonight bonus finish chaos orchard plastic view nurse salad regret
 
 # STRIDE 
 STRIDE_CHAIN_ID=STRIDE
-STRIDE_NODE_PREFIX=stride
+STRIDE_NODE_PREFIX=dredger
 STRIDE_NUM_NODES=3
 STRIDE_VAL_PREFIX=val
-STRIDE_DENOM=$STRD_DENOM
+STRIDE_DENOM=$DRED_DENOM
 STRIDE_RPC_PORT=26657
 STRIDE_ADMIN_ACCT=admin
-STRIDE_ADMIN_ADDRESS=stride1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+STRIDE_ADMIN_ADDRESS=dredger1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
 STRIDE_ADMIN_MNEMONIC="tone cause tribe this switch near host damage idle fragile antique tail soda alien depth write wool they rapid unfold body scan pledge soft"
-STRIDE_FEE_ADDRESS=stride1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
+STRIDE_FEE_ADDRESS=dredger1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
 
 # Binaries are contigent on whether we're doing an upgrade or not
 if [[ "$UPGRADE_NAME" == "" ]]; then 
-  STRIDE_BINARY="$DOCKERNET_HOME/../build/strided"
+  STRIDE_BINARY="$DOCKERNET_HOME/../build/dred"
 else
-  STRIDE_BINARY="$UPGRADES/binaries/strided1"
+  STRIDE_BINARY="$UPGRADES/binaries/dred1"
 fi
 STRIDE_MAIN_CMD="$STRIDE_BINARY --home $DOCKERNET_HOME/state/${STRIDE_NODE_PREFIX}1"
 
@@ -197,19 +197,19 @@ STARS_COIN_TYPE=$COSMOS_COIN_TYPE
 STARS_MAIN_CMD="$STARS_BINARY --home $DOCKERNET_HOME/state/${STARS_NODE_PREFIX}1"
 STARS_RECEIVER_ADDRESS='stars15dywcmy6gzsc8wfefkrx0c9czlwvwrjenqthyq'
 
-# HOST (Stride running as a host zone)
+# HOST (Dredger running as a host zone)
 HOST_CHAIN_ID=HOST
 HOST_NODE_PREFIX=host
 HOST_NUM_NODES=1
-HOST_BINARY="$DOCKERNET_HOME/../build/strided"
+HOST_BINARY="$DOCKERNET_HOME/../build/dred"
 HOST_VAL_PREFIX=hval
-HOST_ADDRESS_PREFIX=stride
+HOST_ADDRESS_PREFIX=dredger
 HOST_REV_ACCT=hrev1
 HOST_DENOM=$WALK_DENOM
 HOST_COIN_TYPE=$COSMOS_COIN_TYPE
 HOST_RPC_PORT=26157
 HOST_MAIN_CMD="$HOST_BINARY --home $DOCKERNET_HOME/state/${HOST_NODE_PREFIX}1"
-HOST_RECEIVER_ADDRESS='stride1trm75t8g83f26u4y8jfds7pms9l587a7q227k9'
+HOST_RECEIVER_ADDRESS='dredger1trm75t8g83f26u4y8jfds7pms9l587a7q227k9'
 
 # RELAYER
 RELAYER_CMD="$DOCKERNET_HOME/../build/relayer --home $STATE/relayer"

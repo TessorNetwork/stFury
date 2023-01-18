@@ -15,23 +15,23 @@ import (
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
 	banktestutil "github.com/cosmos/cosmos-sdk/x/bank/client/testutil"
 
-	strideclitestutil "github.com/Stride-Labs/stride/v4/testutil/cli"
+	dredgerclitestutil "github.com/TessorNetwork/dredger/v4/testutil/cli"
 
-	"github.com/Stride-Labs/stride/v4/testutil/network"
+	"github.com/TessorNetwork/dredger/v4/testutil/network"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/Stride-Labs/stride/v4/x/claim/client/cli"
+	"github.com/TessorNetwork/dredger/v4/x/claim/client/cli"
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/Stride-Labs/stride/v4/app"
-	cmdcfg "github.com/Stride-Labs/stride/v4/cmd/strided/config"
-	"github.com/Stride-Labs/stride/v4/x/claim/types"
-	claimtypes "github.com/Stride-Labs/stride/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/v4/app"
+	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
+	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	claimtypes "github.com/TessorNetwork/dredger/v4/x/claim/types"
 )
 
 var addr1 sdk.AccAddress
@@ -49,8 +49,8 @@ func init() {
 	}
 
 	distributorAddrs = []string{
-		"stride1ajerf2nmxsg0u728ga7665fmlfguqxcd8e36vf",
-		"stride1zkfk3q70ranm3han4lvutvcvetncxg829j972a",
+		"dredger1ajerf2nmxsg0u728ga7665fmlfguqxcd8e36vf",
+		"dredger1zkfk3q70ranm3han4lvutvcvetncxg829j972a",
 	}
 }
 
@@ -97,7 +97,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 			distributorAddr,
 			sdk.NewCoins(sdk.NewInt64Coin(s.cfg.BondDenom, 1020)), fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 			fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-			strideclitestutil.DefaultFeeString(s.cfg),
+			dredgerclitestutil.DefaultFeeString(s.cfg),
 		)
 		s.Require().NoError(err)
 	}
@@ -116,7 +116,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 		// common args
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 		fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-		strideclitestutil.DefaultFeeString(s.cfg),
+		dredgerclitestutil.DefaultFeeString(s.cfg),
 	})
 
 	s.Require().NoError(err)
@@ -165,13 +165,13 @@ func (s *IntegrationTestSuite) TestCmdTxSetAirdropAllocations() {
 
 	claimRecords := []claimtypes.ClaimRecord{
 		{
-			Address:           "stride1k8g9sagjpdwreqqf0qgqmd46l37595ea5ft9x6",
+			Address:           "dredger1k8g9sagjpdwreqqf0qgqmd46l37595ea5ft9x6",
 			Weight:            sdk.NewDecWithPrec(50, 2), // 50%
 			ActionCompleted:   []bool{false, false, false},
 			AirdropIdentifier: claimtypes.DefaultAirdropIdentifier,
 		},
 		{
-			Address:           "stride1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d",
+			Address:           "dredger1av5lwh0msnafn04xkhdyk6mrykxthrawy7uf3d",
 			Weight:            sdk.NewDecWithPrec(30, 2), // 30%
 			ActionCompleted:   []bool{false, false, false},
 			AirdropIdentifier: claimtypes.DefaultAirdropIdentifier,
@@ -194,7 +194,7 @@ func (s *IntegrationTestSuite) TestCmdTxSetAirdropAllocations() {
 				// common args
 				fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 				fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-				strideclitestutil.DefaultFeeString(s.cfg),
+				dredgerclitestutil.DefaultFeeString(s.cfg),
 			},
 			[]sdk.Coins{
 				sdk.NewCoins(sdk.NewCoin(s.cfg.BondDenom, sdkmath.NewInt(77))),
@@ -249,7 +249,7 @@ func (s *IntegrationTestSuite) TestCmdTxCreateAirdrop() {
 	val := s.network.Validators[0]
 
 	airdrop := claimtypes.Airdrop{
-		AirdropIdentifier:  "stride-1",
+		AirdropIdentifier:  "dredger-1",
 		AirdropStartTime:   time.Now(),
 		AirdropDuration:    claimtypes.DefaultAirdropDuration,
 		DistributorAddress: distributorAddrs[1],
@@ -264,7 +264,7 @@ func (s *IntegrationTestSuite) TestCmdTxCreateAirdrop() {
 		{
 			"create-airdrop tx",
 			[]string{
-				"stride-1",
+				"dredger-1",
 				strconv.Itoa(int(time.Now().Unix())),
 				strconv.Itoa(int(claimtypes.DefaultAirdropDuration.Seconds())),
 				s.cfg.BondDenom,
@@ -273,7 +273,7 @@ func (s *IntegrationTestSuite) TestCmdTxCreateAirdrop() {
 				// common args
 				fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 				fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-				strideclitestutil.DefaultFeeString(s.cfg),
+				dredgerclitestutil.DefaultFeeString(s.cfg),
 			},
 			airdrop,
 		},

@@ -1,4 +1,4 @@
-module github.com/Stride-Labs/stride/v4
+module github.com/TessorNetwork/dredger/v4
 
 go 1.19
 

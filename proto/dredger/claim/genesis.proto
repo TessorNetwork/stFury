@@ -1,0 +1,23 @@
+syntax = "proto3";
+package dredger.claim;
+
+import "gogoproto/gogo.proto";
+import "dredger/claim/claim.proto";
+import "dredger/claim/params.proto";
+
+option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
+
+// GenesisState defines the claim module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.moretags) = "yaml:\"params\"",
+    (gogoproto.nullable) = false
+  ];
+
+  // list of claim records, one for every airdrop recipient
+  repeated ClaimRecord claim_records = 2 [
+    (gogoproto.moretags) = "yaml:\"claim_records\"",
+    (gogoproto.nullable) = false
+  ];
+}

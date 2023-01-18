@@ -164,7 +164,7 @@ message Params {
 
 1. `airdrop_start_time` refers to the time when user can start to claim airdrop.
 2. `airdrop_duration` refers to the duration from start time to end time.
-3. `claim_denom` refers to the denomination of claiming tokens. As a default, it's `ustrd`.
+3. `claim_denom` refers to the denomination of claiming tokens. As a default, it's `udred`.
 4. `distributor_address` refers to the address of distribution account.
 
 ## Queries
@@ -185,25 +185,25 @@ service Query {
 
 ### CLI commands
 
-For the following commands, you can change `$(strided keys show -a {your key name})` with the address directly.
+For the following commands, you can change `$(dred keys show -a {your key name})` with the address directly.
 
 Query the claim record for a given address
 
 ```sh
-strided query claim claim-record $(strided keys show -a {your key name})
+dred query claim claim-record $(dred keys show -a {your key name})
 ```
 
 Query the claimable amount that would be earned if a specific action is completed right now.
 
 ```sh
 
-strided query claim claimable-for-action $(strided keys show -a {your key name}) ActionAddLiquidity
+dred query claim claimable-for-action $(dred keys show -a {your key name}) ActionAddLiquidity
 ```
 
 Query the total claimable amount that would be earned if all remaining actions were completed right now.
 
 ```sh
-strided query claim total-claimable $(strided keys show -a {your key name}) ActionAddLiquidity
+dred query claim total-claimable $(dred keys show -a {your key name}) ActionAddLiquidity
 ```
 
 ## Events

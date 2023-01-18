@@ -6,9 +6,9 @@ import (
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	_ "github.com/stretchr/testify/suite"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // ================================ 1: QueryValidatorExchangeRate =============================================
@@ -17,7 +17,7 @@ type QueryValidatorExchangeRateTestCase struct {
 	msg                types.MsgUpdateValidatorSharesExchRate
 	currentEpoch       uint64
 	hostZone           types.HostZone
-	strideEpochTracker types.EpochTracker
+	dredgerEpochTracker types.EpochTracker
 	dayEpochTracker    types.EpochTracker
 }
 
@@ -39,13 +39,13 @@ func (s *KeeperTestSuite) SetupQueryValidatorExchangeRate() QueryValidatorExchan
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
 
 	// This will make the current time 90% through the epoch
-	strideEpochTracker := types.EpochTracker{
+	dredgerEpochTracker := types.EpochTracker{
 		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
 		EpochNumber:        currentEpoch,
 		Duration:           10_000_000_000,                                               // 10 second epochs
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 1_000_000_000), // epoch ends in 1 second
 	}
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	// This will make the current time 50% through the day
 	dayEpochTracker := types.EpochTracker{
@@ -64,7 +64,7 @@ func (s *KeeperTestSuite) SetupQueryValidatorExchangeRate() QueryValidatorExchan
 		},
 		currentEpoch:       currentEpoch,
 		hostZone:           hostZone,
-		strideEpochTracker: strideEpochTracker,
+		dredgerEpochTracker: dredgerEpochTracker,
 		dayEpochTracker:    dayEpochTracker,
 	}
 }
@@ -84,10 +84,10 @@ func (s *KeeperTestSuite) TestQueryValidatorExchangeRate_Successful() {
 func (s *KeeperTestSuite) TestQueryValidatorExchangeRate_BeforeBufferWindow() {
 	tc := s.SetupQueryValidatorExchangeRate()
 
-	// set the time to be 50% through the stride_epoch
-	strideEpochTracker := tc.strideEpochTracker
-	strideEpochTracker.NextEpochStartTime = uint64(s.Coordinator.CurrentTime.UnixNano() + int64(strideEpochTracker.Duration)/2) // 50% through the epoch
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	// set the time to be 50% through the dredger_epoch
+	dredgerEpochTracker := tc.dredgerEpochTracker
+	dredgerEpochTracker.NextEpochStartTime = uint64(s.Coordinator.CurrentTime.UnixNano() + int64(dredgerEpochTracker.Duration)/2) // 50% through the epoch
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	resp, err := s.App.StakeibcKeeper.QueryValidatorExchangeRate(s.Ctx, &tc.msg)
 	s.Require().ErrorContains(err, "outside the buffer time during which ICQs are allowed")
@@ -147,7 +147,7 @@ func (s *KeeperTestSuite) TestQueryValidatorExchangeRate_MissingConnectionId() {
 type QueryDelegationsIcqTestCase struct {
 	hostZone           types.HostZone
 	valoperAddr        string
-	strideEpochTracker types.EpochTracker
+	dredgerEpochTracker types.EpochTracker
 	dayEpochTracker    types.EpochTracker
 }
 
@@ -174,13 +174,13 @@ func (s *KeeperTestSuite) SetupQueryDelegationsIcq() QueryDelegationsIcqTestCase
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
 
 	// This will make the current time 90% through the epoch
-	strideEpochTracker := types.EpochTracker{
+	dredgerEpochTracker := types.EpochTracker{
 		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
 		EpochNumber:        currentEpoch,
 		Duration:           10_000_000_000,                                               // 10 second epochs
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 1_000_000_000), // epoch ends in 1 second
 	}
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	// This will make the current time 50% through the day
 	dayEpochTracker := types.EpochTracker{
@@ -194,7 +194,7 @@ func (s *KeeperTestSuite) SetupQueryDelegationsIcq() QueryDelegationsIcqTestCase
 	return QueryDelegationsIcqTestCase{
 		hostZone:           hostZone,
 		valoperAddr:        valoperAddr,
-		strideEpochTracker: strideEpochTracker,
+		dredgerEpochTracker: dredgerEpochTracker,
 		dayEpochTracker:    dayEpochTracker,
 	}
 }
@@ -230,10 +230,10 @@ func (s *KeeperTestSuite) TestQueryDelegationsIcq_Successful() {
 func (s *KeeperTestSuite) TestQueryDelegationsIcq_BeforeBufferWindow() {
 	tc := s.SetupQueryDelegationsIcq()
 
-	// set the time to be 50% through the stride_epoch
-	strideEpochTracker := tc.strideEpochTracker
-	strideEpochTracker.NextEpochStartTime = uint64(s.Coordinator.CurrentTime.UnixNano() + int64(strideEpochTracker.Duration)/2) // 50% through the epoch
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	// set the time to be 50% through the dredger_epoch
+	dredgerEpochTracker := tc.dredgerEpochTracker
+	dredgerEpochTracker.NextEpochStartTime = uint64(s.Coordinator.CurrentTime.UnixNano() + int64(dredgerEpochTracker.Duration)/2) // 50% through the epoch
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	err := s.App.StakeibcKeeper.QueryDelegationsIcq(s.Ctx, tc.hostZone, tc.valoperAddr)
 	s.Require().ErrorContains(err, "outside the buffer time during which ICQs are allowed")

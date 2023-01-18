@@ -6,7 +6,7 @@ category: 6392913957c533007128548e
 
 # The ICACallbacks Module
 
-Add `icacallbacks` module. Interchain accounts are very useful, but ICA calls triggered by automated logic on Stride are limited in functionality and difficult to work with due to a lack of callbacks. Most of Stride's interchain account logic is triggered epochly from the `BeginBlocker`, and state updates on Stride must be made after ICA calls are issued, based on the success / failure of those calls.
+Add `icacallbacks` module. Interchain accounts are very useful, but ICA calls triggered by automated logic on Dredger are limited in functionality and difficult to work with due to a lack of callbacks. Most of Dredger's interchain account logic is triggered epochly from the `BeginBlocker`, and state updates on Dredger must be made after ICA calls are issued, based on the success / failure of those calls.
 
 The challenges faced before creating the icacallbacks modules were:
 (1) Messages must be handled one-off (by matching on message type) - really what we want to do is update state in acks based on the _transaction_ sent

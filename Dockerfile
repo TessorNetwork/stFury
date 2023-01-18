@@ -23,20 +23,20 @@ RUN LINK_STATICALLY=true make build
 # Add to a distroless container
 FROM ${RUNNER_IMAGE}
 
-COPY --from=builder /opt/build/strided /usr/local/bin/strided
+COPY --from=builder /opt/build/dred /usr/local/bin/dred
 RUN apk add bash vim sudo dasel \
-    && addgroup -g 1000 stride \
-    && adduser -S -h /home/stride -D stride -u 1000 -G stride 
+    && addgroup -g 1000 dredger \
+    && adduser -S -h /home/dredger -D dredger -u 1000 -G dredger 
 
 RUN mkdir -p /etc/sudoers.d \
     && echo '%wheel ALL=(ALL) ALL' > /etc/sudoers.d/wheel \
     && echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers \
-    && adduser stride wheel 
+    && adduser dredger wheel 
 
 USER 1000
-ENV HOME /home/stride
+ENV HOME /home/dredger
 WORKDIR $HOME
 
 EXPOSE 26657 26656 1317 9090
 
-CMD ["strided", "start"]
+CMD ["dred", "start"]

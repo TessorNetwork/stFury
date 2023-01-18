@@ -11,9 +11,9 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	"github.com/spf13/cast"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // Create a new deposit record for each host zone for the given epoch
@@ -34,7 +34,7 @@ func (k Keeper) CreateDepositRecordsForEpoch(ctx sdk.Context, epochNumber uint64
 	}
 }
 
-// Iterate each deposit record marked TRANSFER_QUEUE and IBC transfer tokens from the Stride controller account to the delegation ICAs on each host zone
+// Iterate each deposit record marked TRANSFER_QUEUE and IBC transfer tokens from the Dredger controller account to the delegation ICAs on each host zone
 func (k Keeper) TransferExistingDepositsToHostZones(ctx sdk.Context, epochNumber uint64, depositRecords []recordstypes.DepositRecord) {
 	k.Logger(ctx).Info("Transfering deposit records...")
 

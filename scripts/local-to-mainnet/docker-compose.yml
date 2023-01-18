@@ -1,24 +1,24 @@
 version: "3"
 services:
-  stride1:
-    image: stridezone:stride
+  dredger1:
+    image: dredgerzone:dredger
     volumes:
-      - ../state/stride1:/home/stride/.stride
+      - ../state/dredger1:/home/dredger/.dredger
     ports:
       - "26657:26657"
       - "1317:1317"
       - "9090:9090"
 
   hermes:
-    image: stridezone:hermes
+    image: dredgerzone:hermes
     volumes:
       - ~/.hermes:/home/hermes/.hermes
       - ../state/hermes/config.toml:/home/hermes/.hermes/config.toml
     restart: always
 
   relayer:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ../state/relayer:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-host" ]
+    command: [ "bash", "start.sh", "dredger-host" ]

@@ -6,14 +6,14 @@ import (
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 	_ "github.com/stretchr/testify/suite"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
 
-	icacallbacktypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	recordtypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibckeeper "github.com/Stride-Labs/stride/v4/x/stakeibc/keeper"
+	icacallbacktypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
 
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
-	stakeibc "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	stakeibc "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type ReinvestCallbackState struct {
@@ -153,6 +153,6 @@ func (s *KeeperTestSuite) TestReinvestCallback_MissingEpoch() {
 	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.STRIDE_EPOCH)
 
 	err := stakeibckeeper.ReinvestCallback(s.App.StakeibcKeeper, s.Ctx, invalidArgs.packet, invalidArgs.ackResponse, invalidArgs.args)
-	s.Require().ErrorContains(err, "no number for epoch (stride_epoch)")
+	s.Require().ErrorContains(err, "no number for epoch (dredger_epoch)")
 	s.checkReinvestStateIfCallbackFailed(tc)
 }
