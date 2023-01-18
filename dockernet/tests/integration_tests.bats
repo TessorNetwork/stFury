@@ -28,9 +28,9 @@ setup_file() {
   HOST_RECEIVER_ADDRESS=$(GET_VAR_VALUE ${CHAIN_NAME}_RECEIVER_ADDRESS)
 
   HOST_VAL="$(GET_VAR_VALUE ${CHAIN_NAME}_VAL_PREFIX)1"
-  STRIDE_VAL=${STRIDE_VAL_PREFIX}1
+  DREDGER_VAL=${DREDGER_VAL_PREFIX}1
 
-  STRIDE_TRANFER_CHANNEL="channel-${TRANSFER_CHANNEL_NUMBER}"
+  DREDGER_TRANFER_CHANNEL="channel-${TRANSFER_CHANNEL_NUMBER}"
   HOST_TRANSFER_CHANNEL="channel-0"
 
   TRANSFER_AMOUNT=500000
@@ -75,7 +75,7 @@ setup_file() {
 ##############################################################################################
 # confirm host zone is registered
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] host zones successfully registered" {
-  run $STRIDE_MAIN_CMD q stakeibc show-host-zone $HOST_CHAIN_ID
+  run $DREDGER_MAIN_CMD q stakeibc show-host-zone $HOST_CHAIN_ID
   assert_line "  host_denom: $HOST_DENOM"
   assert_line "  chain_id: $HOST_CHAIN_ID"
   assert_line "  transfer_channel_id: channel-$TRANSFER_CHANNEL_NUMBER"
@@ -87,27 +87,27 @@ setup_file() {
 }
 
 ##############################################################################################
-######                TEST BASIC STRIDE FUNCTIONALITY                                   ######
+######                TEST BASIC DREDGER FUNCTIONALITY                                   ######
 ##############################################################################################
 
 
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] ibc transfer updates all balances" {
   # get initial balances
-  sval_strd_balance_start=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
+  sval_strd_balance_start=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
   hval_strd_balance_start=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_STRD_DENOM | GETBAL)
-  sval_token_balance_start=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
+  sval_token_balance_start=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_start=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
   # do IBC transfer
-  $STRIDE_MAIN_CMD tx ibc-transfer transfer transfer $STRIDE_TRANFER_CHANNEL $HOST_VAL_ADDRESS ${TRANSFER_AMOUNT}${STRIDE_DENOM} --from $STRIDE_VAL -y &
-  $HOST_MAIN_CMD   tx ibc-transfer transfer transfer $HOST_TRANSFER_CHANNEL  $(STRIDE_ADDRESS) ${TRANSFER_AMOUNT}${HOST_DENOM} --from $HOST_VAL -y &
+  $DREDGER_MAIN_CMD tx ibc-transfer transfer transfer $DREDGER_TRANFER_CHANNEL $HOST_VAL_ADDRESS ${TRANSFER_AMOUNT}${DREDGER_DENOM} --from $DREDGER_VAL -y &
+  $HOST_MAIN_CMD   tx ibc-transfer transfer transfer $HOST_TRANSFER_CHANNEL  $(DREDGER_ADDRESS) ${TRANSFER_AMOUNT}${HOST_DENOM} --from $HOST_VAL -y &
 
-  WAIT_FOR_BLOCK $STRIDE_LOGS 8
+  WAIT_FOR_BLOCK $DREDGER_LOGS 8
 
   # get new balances
-  sval_strd_balance_end=$($STRIDE_MAIN_CMD  q bank balances $(STRIDE_ADDRESS) --denom $STRIDE_DENOM   | GETBAL)
+  sval_strd_balance_end=$($DREDGER_MAIN_CMD  q bank balances $(DREDGER_ADDRESS) --denom $DREDGER_DENOM   | GETBAL)
   hval_strd_balance_end=$($HOST_MAIN_CMD    q bank balances $HOST_VAL_ADDRESS --denom $IBC_STRD_DENOM | GETBAL)
-  sval_token_balance_end=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
+  sval_token_balance_end=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   hval_token_balance_end=$($HOST_MAIN_CMD   q bank balances $HOST_VAL_ADDRESS --denom $HOST_DENOM     | GETBAL)
 
   # get all STRD balance diffs
@@ -125,27 +125,27 @@ setup_file() {
 
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] liquid stake mint and transfer" {
   # get initial balances on dredger account
-  token_balance_start=$($STRIDE_MAIN_CMD   q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
-  sttoken_balance_start=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom st$HOST_DENOM   | GETBAL)
+  token_balance_start=$($DREDGER_MAIN_CMD   q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
+  sttoken_balance_start=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom st$HOST_DENOM   | GETBAL)
 
   # get initial ICA accound balance
   delegation_address=$(GET_ICA_ADDR $HOST_CHAIN_ID delegation)
   delegation_ica_balance_start=$($HOST_MAIN_CMD q bank balances $delegation_address --denom $HOST_DENOM | GETBAL)
 
   # liquid stake
-  $STRIDE_MAIN_CMD tx stakeibc liquid-stake $STAKE_AMOUNT $HOST_DENOM --from $STRIDE_VAL -y 
+  $DREDGER_MAIN_CMD tx stakeibc liquid-stake $STAKE_AMOUNT $HOST_DENOM --from $DREDGER_VAL -y 
 
   # sleep two block for the tx to settle on dredger
-  WAIT_FOR_STRING $STRIDE_LOGS "\[MINT ST ASSET\] success on $HOST_CHAIN_ID"
-  WAIT_FOR_BLOCK $STRIDE_LOGS 2
+  WAIT_FOR_STRING $DREDGER_LOGS "\[MINT ST ASSET\] success on $HOST_CHAIN_ID"
+  WAIT_FOR_BLOCK $DREDGER_LOGS 2
 
   # make sure IBC_DENOM went down
-  token_balance_end=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
+  token_balance_end=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom $HOST_IBC_DENOM | GETBAL)
   token_balance_diff=$(($token_balance_start - $token_balance_end))
   assert_equal "$token_balance_diff" $STAKE_AMOUNT
 
   # make sure stToken went up
-  sttoken_balance_end=$($STRIDE_MAIN_CMD q bank balances $(STRIDE_ADDRESS) --denom st$HOST_DENOM | GETBAL)
+  sttoken_balance_end=$($DREDGER_MAIN_CMD q bank balances $(DREDGER_ADDRESS) --denom st$HOST_DENOM | GETBAL)
   sttoken_balance_diff=$(($sttoken_balance_end-$sttoken_balance_start))
   assert_equal "$sttoken_balance_diff" $STAKE_AMOUNT
 
@@ -161,8 +161,8 @@ setup_file() {
 # check that tokens on the host are staked
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] tokens on $CHAIN_NAME were staked" {
   # wait for another epoch to pass so that tokens are staked
-  WAIT_FOR_STRING $STRIDE_LOGS "\[DELEGATION\] success on $HOST_CHAIN_ID"
-  WAIT_FOR_BLOCK $STRIDE_LOGS 2
+  WAIT_FOR_STRING $DREDGER_LOGS "\[DELEGATION\] success on $HOST_CHAIN_ID"
+  WAIT_FOR_BLOCK $DREDGER_LOGS 2
 
   # check staked tokens
   NEW_STAKE=$($HOST_MAIN_CMD q staking delegation $(GET_ICA_ADDR $HOST_CHAIN_ID delegation) $(GET_VAL_ADDR $CHAIN_NAME 1) | GETSTAKE)
@@ -176,11 +176,11 @@ setup_file() {
   redemption_ica_balance_start=$($HOST_MAIN_CMD q bank balances $(GET_ICA_ADDR $HOST_CHAIN_ID redemption) --denom $HOST_DENOM | GETBAL)
 
   # call redeem-stake
-  $STRIDE_MAIN_CMD tx stakeibc redeem-stake $REDEEM_AMOUNT $HOST_CHAIN_ID $HOST_RECEIVER_ADDRESS \
-      --from $STRIDE_VAL --keyring-backend test --chain-id $STRIDE_CHAIN_ID -y
+  $DREDGER_MAIN_CMD tx stakeibc redeem-stake $REDEEM_AMOUNT $HOST_CHAIN_ID $HOST_RECEIVER_ADDRESS \
+      --from $DREDGER_VAL --keyring-backend test --chain-id $DREDGER_CHAIN_ID -y
 
-  WAIT_FOR_STRING $STRIDE_LOGS "\[REDEMPTION] completed on $HOST_CHAIN_ID"
-  WAIT_FOR_BLOCK $STRIDE_LOGS 2
+  WAIT_FOR_STRING $DREDGER_LOGS "\[REDEMPTION] completed on $HOST_CHAIN_ID"
+  WAIT_FOR_BLOCK $DREDGER_LOGS 2
 
   # check that the tokens were transferred to the redemption account
   redemption_ica_balance_end=$($HOST_MAIN_CMD q bank balances $(GET_ICA_ADDR $HOST_CHAIN_ID redemption) --denom $HOST_DENOM | GETBAL)
@@ -193,14 +193,14 @@ setup_file() {
   start_balance=$($HOST_MAIN_CMD q bank balances $HOST_RECEIVER_ADDRESS --denom $HOST_DENOM | GETBAL)
 
   # grab the epoch number for the first deposit record in the list od DRs
-  EPOCH=$($STRIDE_MAIN_CMD q records list-user-redemption-record  | grep -Fiw 'epoch_number' | head -n 1 | grep -o -E '[0-9]+')
+  EPOCH=$($DREDGER_MAIN_CMD q records list-user-redemption-record  | grep -Fiw 'epoch_number' | head -n 1 | grep -o -E '[0-9]+')
 
   # claim the record (send to dredger address)
-  $STRIDE_MAIN_CMD tx stakeibc claim-undelegated-tokens $HOST_CHAIN_ID $EPOCH $(STRIDE_ADDRESS) \
-    --from $STRIDE_VAL --keyring-backend test --chain-id $STRIDE_CHAIN_ID -y
+  $DREDGER_MAIN_CMD tx stakeibc claim-undelegated-tokens $HOST_CHAIN_ID $EPOCH $(DREDGER_ADDRESS) \
+    --from $DREDGER_VAL --keyring-backend test --chain-id $DREDGER_CHAIN_ID -y
 
-  WAIT_FOR_STRING $STRIDE_LOGS "\[CLAIM\] success on $HOST_CHAIN_ID"
-  WAIT_FOR_BLOCK $STRIDE_LOGS 2
+  WAIT_FOR_STRING $DREDGER_LOGS "\[CLAIM\] success on $HOST_CHAIN_ID"
+  WAIT_FOR_BLOCK $DREDGER_LOGS 2
 
   # check that the tokens were transferred to the sender account
   end_balance=$($HOST_MAIN_CMD q bank balances $HOST_RECEIVER_ADDRESS --denom $HOST_DENOM | GETBAL)
@@ -214,7 +214,7 @@ setup_file() {
 @test "[INTEGRATION-BASIC-$CHAIN_NAME] rewards are being reinvested, exchange rate updating" {
   # check that the exchange rate has increased (i.e. redemption rate is greater than 1)
   MULT=1000000
-  redemption_rate=$($STRIDE_MAIN_CMD q stakeibc show-host-zone $HOST_CHAIN_ID | grep -Fiw 'redemption_rate' | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
+  redemption_rate=$($DREDGER_MAIN_CMD q stakeibc show-host-zone $HOST_CHAIN_ID | grep -Fiw 'redemption_rate' | grep -Eo '[+-]?[0-9]+([.][0-9]+)?')
   redemption_rate_increased=$(( $(FLOOR $(DECMUL $redemption_rate $MULT)) > $(FLOOR $(DECMUL 1.00000000000000000 $MULT))))
   assert_equal "$redemption_rate_increased" "1"
 }
@@ -226,10 +226,10 @@ setup_file() {
   assert_equal "$fee_ica_balance_positive" "1"
 
   # call clear balance (with amount = 1)
-  $STRIDE_MAIN_CMD tx stakeibc clear-balance $HOST_CHAIN_ID 1 $HOST_TRANSFER_CHANNEL --from $STRIDE_ADMIN_ACCT -y
-  WAIT_FOR_BLOCK $STRIDE_LOGS 8
+  $DREDGER_MAIN_CMD tx stakeibc clear-balance $HOST_CHAIN_ID 1 $HOST_TRANSFER_CHANNEL --from $DREDGER_ADMIN_ACCT -y
+  WAIT_FOR_BLOCK $DREDGER_LOGS 8
 
   # check that balance went to revenue account
-  fee_stride_balance=$($STRIDE_MAIN_CMD q bank balances $STRIDE_FEE_ADDRESS --denom $HOST_IBC_DENOM | GETBAL)
-  assert_equal "$fee_stride_balance" "1"
+  fee_dredger_balance=$($DREDGER_MAIN_CMD q bank balances $DREDGER_FEE_ADDRESS --denom $HOST_IBC_DENOM | GETBAL)
+  assert_equal "$fee_dredger_balance" "1"
 }

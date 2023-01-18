@@ -178,14 +178,14 @@ func (s *KeeperTestSuite) SetupDepositRecords() DepositRecordsTestCase {
 	}
 
 	currentEpoch := uint64(2)
-	strideEpochTracker := stakeibctypes.EpochTracker{
-		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
+	dredgerEpochTracker := stakeibctypes.EpochTracker{
+		EpochIdentifier:    epochtypes.DREDGER_EPOCH,
 		EpochNumber:        currentEpoch,
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 30_000_000_000), // dictates timeouts
 	}
 
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	initialDepositRecords := s.GetInitialDepositRecords(currentEpoch)
 	for _, depositRecord := range initialDepositRecords.GetAllRecords() {

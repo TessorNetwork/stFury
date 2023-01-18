@@ -19,7 +19,7 @@ func TestGenesis(t *testing.T) {
 			Address: "78",
 		},
 		EpochTrackerList: []types.EpochTracker{
-			{EpochIdentifier: "stride_epoch"},
+			{EpochIdentifier: "dredger_epoch"},
 		},
 		// this line is used by starport scaffolding # genesis/test/state
 	}

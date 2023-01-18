@@ -13,9 +13,9 @@ RUN apk add --update vim bash \
     && addgroup -g 1000 dredger \
     && adduser -S -h /home/dredger -D dredger -u 1000 -G dredger
 
-COPY --from=stridezone:cosmovisor /opt/cosmos-sdk/cosmovisor/cosmovisor /usr/local/bin/cosmovisor
-COPY --from=stridezone:cosmovisor --chown=dredger:dredger /opt/build/dred1 ${COSMOVISOR_HOME}/genesis/bin/dred
-COPY --from=stridezone:dredger --chown=dredger:dredger /usr/local/bin/dred ${COSMOVISOR_HOME}/upgrades/${UPGRADE_NAME}/bin/dred
+COPY --from=dredgerzone:cosmovisor /opt/cosmos-sdk/cosmovisor/cosmovisor /usr/local/bin/cosmovisor
+COPY --from=dredgerzone:cosmovisor --chown=dredger:dredger /opt/build/dred1 ${COSMOVISOR_HOME}/genesis/bin/dred
+COPY --from=dredgerzone:dredger --chown=dredger:dredger /usr/local/bin/dred ${COSMOVISOR_HOME}/upgrades/${UPGRADE_NAME}/bin/dred
 
 USER dredger
 WORKDIR /home/dredger

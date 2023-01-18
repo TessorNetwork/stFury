@@ -24,7 +24,7 @@ BONDED_TOKENS_POOL_MODULE_ADDRESS = "dred1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm
 config = {
     "governance_voting_period": "180s",
     "epoch_day_duration": '3600s',
-    "epoch_stride_duration": "3600s",
+    "epoch_dredger_duration": "3600s",
 }
 
 def replace(d, old_value, new_value):
@@ -77,8 +77,8 @@ def create_parser():
         '-c',
         '--chain-id',
         type = str,
-        default="localstride",
-        help='Chain ID for the testnet \nDefault: localstride\n'
+        default="localdredger",
+        help='Chain ID for the testnet \nDefault: localdredger\n'
     )
 
     parser.add_argument(
@@ -166,8 +166,8 @@ def main():
         moniker = "Mendel",
         pubkey = "idsN6Oq6FjHf/woVuEo2yQfRqDcO2L3g6uJfDDJtoXo=",
         hex_address = "2F811FD9BAD33E72A674DCA98A15EBAF241341A7",
-        operator_address = "stridevaloper1h2r2k24349gtx7e4kfxxl8gzqz8tn6zym65uxc",
-        consensus_address = "stridevalcons197q3lkd66vl89fn5mj5c590t4ujpxsd8rus25g"
+        operator_address = "dredgervaloper1h2r2k24349gtx7e4kfxxl8gzqz8tn6zym65uxc",
+        consensus_address = "dredgervalcons197q3lkd66vl89fn5mj5c590t4ujpxsd8rus25g"
     )
 
     new_account = Account(
@@ -204,8 +204,8 @@ def main():
         if epoch['identifier'] == "day": 
             epoch['duration'] = config["epoch_day_duration"]
 
-        elif epoch['identifier'] == "stride_epoch":
-            epoch['duration'] = config["epoch_stride_duration"]
+        elif epoch['identifier'] == "dredger_epoch":
+            epoch['duration'] = config["epoch_dredger_duration"]
 
         epoch['current_epoch_start_time'] = datetime.now().isoformat() + 'Z'
 

@@ -34,7 +34,7 @@ func (k Keeper) BeforeEpochStart(ctx sdk.Context, epochInfo epochstypes.EpochInf
 	}
 
 	// Dredger Epoch - Process Deposits and Delegations
-	if epochInfo.Identifier == epochstypes.STRIDE_EPOCH {
+	if epochInfo.Identifier == epochstypes.DREDGER_EPOCH {
 		// Get cadence intervals
 		redemptionRateInterval := k.GetParam(ctx, types.KeyRedemptionRateInterval)
 		depositInterval := k.GetParam(ctx, types.KeyDepositInterval)

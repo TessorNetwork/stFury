@@ -1,6 +1,6 @@
-# LocalStride
+# LocalDredger
 
-Inspired by LocalOsmosis, LocalStride is a complete Dredger testnet containerized with Docker and orchestrated with a simple docker-compose file. LocalStride comes pre-configured with opinionated, sensible defaults for a standard testing environment.
+Inspired by LocalOsmosis, LocalDredger is a complete Dredger testnet containerized with Docker and orchestrated with a simple docker-compose file. LocalDredger comes pre-configured with opinionated, sensible defaults for a standard testing environment.
 
 ## Prerequisites
 
@@ -16,13 +16,13 @@ sudo apt install docker.io -y
 sudo apt install docker-compose -y
 ```
 
-## 1. LocalStride - No Initial State
+## 1. LocalDredger - No Initial State
 
 The following commands must be executed from the root folder of the Dredger repository.
 
 1. Make any change to the dredger code that you want to test
 
-2. Initialize LocalStride:
+2. Initialize LocalDredger:
 
 ```bash
 make localnet-init
@@ -33,7 +33,7 @@ The command:
 - Builds a local docker image with the latest changes
 - Cleans the `$HOME/.dredger` folder
 
-3. Start LocalStride:
+3. Start LocalDredger:
 
 ```bash
 make localnet-start
@@ -41,7 +41,7 @@ make localnet-start
 
 > Note
 >
-> You can also start LocalStride in detach mode with:
+> You can also start LocalDredger in detach mode with:
 >
 > `make localnet-startd`
 
@@ -54,7 +54,7 @@ make localnet-keys
 - These keys are added to your `--keyring-backend test`
 - If the keys are already on your keyring, you will get an `"Error: aborted"`
 - Ensure you use the name of the account as listed in the table below, as well as ensure you append the `--keyring-backend test` to your txs
-- Example: `dred tx bank send ls-test2 dred1kwax6g0q2nwny5n43fswexgefedge033t5g95j --keyring-backend test --chain-id localstride`
+- Example: `dred tx bank send ls-test2 dred1kwax6g0q2nwny5n43fswexgefedge033t5g95j --keyring-backend test --chain-id localdredger`
 
 5. You can stop the chain, keeping the state with
 
@@ -68,10 +68,10 @@ make localnet-stop
 make localnet-clean
 ```
 
-## 2. LocalStride - With Mainnet State
+## 2. LocalDredger - With Mainnet State
 
 A few things to note before getting started. The below method will only work if you are using the same version as mainnet. In other words,
-if mainnet is on v8.0.0 and you try to do this on a v9.0.0 tag or on main, you will run into an error when initializing the genesis. What you can do though is run localstride on the mainnet version, then go through the upgrade process to ensure the upgrade with mainnet state goes smoothly.
+if mainnet is on v8.0.0 and you try to do this on a v9.0.0 tag or on main, you will run into an error when initializing the genesis. What you can do though is run localdredger on the mainnet version, then go through the upgrade process to ensure the upgrade with mainnet state goes smoothly.
 
 ### Create a mainnet state export
 
@@ -89,12 +89,12 @@ dred export > state_export.json
 
 This will create a file called `state_export.json` which is a snapshot of the current mainnet state.
 
-### Use the state export in LocalStride
+### Use the state export in LocalDredger
 
-1. Copy the `state_export.json` to the `localstride/state_export` folder within the dredger repo
+1. Copy the `state_export.json` to the `localdredger/state_export` folder within the dredger repo
 
 ```sh
-cp $HOME/state_export.json $HOME/dredger/testutil/localstride/state_export/
+cp $HOME/state_export.json $HOME/dredger/testutil/localdredger/state_export/
 ```
 
 6. Ensure you have docker and docker-compose installed:
@@ -120,7 +120,7 @@ The command:
 - Builds a local docker image with the latest changes
 - Cleans the `$HOME/.dredger` folder
 
-3. Start LocalStride:
+3. Start LocalDredger:
 
 ```bash
 make localnet-state-export-start
@@ -128,7 +128,7 @@ make localnet-state-export-start
 
 > Note
 >
-> You can also start LocalStride in detach mode with:
+> You can also start LocalDredger in detach mode with:
 >
 > `make localnet-state-export-startd`
 
@@ -159,7 +159,7 @@ dred status
 11. Here is an example command to ensure complete understanding:
 
 ```sh
-dred tx bank send val dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000ustrd --chain-id localstride --keyring-backend test
+dred tx bank send val dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000ustrd --chain-id localdredger --keyring-backend test
 ```
 
 12. You can stop chain, keeping the state with
@@ -179,13 +179,13 @@ Note: At some point, all the validators (except yours) will get jailed at the sa
 When this happens, it may take a little bit of time to process. Once all validators are jailed, you will continue to hit blocks as you did before.
 If you are only running the validator for a short time (< 24 hours) you will not experience this.
 
-## LocalStride Accounts
+## LocalDredger Accounts
 
-LocalStride is pre-configured with one validator and 10 accounts with dredger balances.
+LocalDredger is pre-configured with one validator and 10 accounts with dredger balances.
 
 | Account   | Address                                                                                                | Mnemonic                                                                                                                                                                   |
 | --------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| val    | `dred1wal8dgs7whmykpdaz0chan2f54ynythkz0cazc`<br/>`stridevaloper1wal8dgs7whmykpdaz0chan2f54ynythkp6upwa` | `deer gaze swear marine one perfect hero twice turkey symbol mushroom hub escape accident prevent rifle horse arena secret endless panel equal rely payment`                    |
+| val    | `dred1wal8dgs7whmykpdaz0chan2f54ynythkz0cazc`<br/>`dredgervaloper1wal8dgs7whmykpdaz0chan2f54ynythkp6upwa` | `deer gaze swear marine one perfect hero twice turkey symbol mushroom hub escape accident prevent rifle horse arena secret endless panel equal rely payment`                    |
 | ls-test1  | `dred1u9klnra0d4zq9ffalpnr3nhz5859yc7ckdk9wt`                                                          | `journey envelope color ensure fruit assault soup air ozone math beyond miracle very bring bid retire cargo exhaust garden helmet spread sentence insect treat`                       |
 | ls-test2  | `dred1kwax6g0q2nwny5n43fswexgefedge033t5g95j`                                                          | `update minimum pyramid initial napkin guilt minute spread diamond dinosaur force observe lounge siren region forest annual citizen mule pilot style horse prize trophy`              |
 | ls-test3  | `dred1dv0ecm36ywdyc6zjftw0q62zy6v3mndrwxde03`                                                          | `between flight suffer century action army insane position egg napkin tumble silent enemy crisp club february lake push coral rice few patch hockey ostrich`        |

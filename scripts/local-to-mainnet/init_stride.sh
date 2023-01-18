@@ -3,15 +3,15 @@
 set -eu 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-STRIDE_CHAIN_ID="$1"
+DREDGER_CHAIN_ID="$1"
 STATE=$SCRIPT_DIR/../state
 LOGS=$SCRIPT_DIR/../logs
 KEYS_LOGS=$LOGS/keys.log
 
 # CHAIN PARAMS
 BLOCK_TIME='5s'
-STRIDE_DAY_EPOCH_DURATION="120s"
-STRIDE_EPOCH_EPOCH_DURATION="120s"
+DREDGER_DAY_EPOCH_DURATION="120s"
+DREDGER_EPOCH_EPOCH_DURATION="120s"
 MAX_DEPOSIT_PERIOD="30s"
 VOTING_PERIOD="30s"
 INITIAL_ANNUAL_PROVISIONS="10000000000000.000000000000000000"
@@ -24,12 +24,12 @@ VAL_PREFIX=val
 DENOM=ustrd
 
 NODE_NAME="dred1"
-STRIDE_VAL_MNEMONIC="close soup mirror crew erode defy knock trigger gather eyebrow tent farm gym gloom base lemon sleep weekend rich forget diagram hurt prize fly"
+DREDGER_VAL_MNEMONIC="close soup mirror crew erode defy knock trigger gather eyebrow tent farm gym gloom base lemon sleep weekend rich forget diagram hurt prize fly"
 HERMES_MNEMONIC="alter old invest friend relief slot swear pioneer syrup economy vendor tray focus hedgehog artist legend antenna hair almost donkey spice protect sustain increase"
 RELAYER_MNEMONIC="pride narrow breeze fitness sign bounce dose smart squirrel spell length federal replace coral lunar thunder vital push nuclear crouch fun accident hood need"
 
-STRIDE_ADMIN_ACCT=admin
-STRIDE_VAL_ACCT=val1
+DREDGER_ADMIN_ACCT=admin
+DREDGER_VAL_ACCT=val1
 HERMES_ACCT=hrly1
 RELAYER_ACCT=rly1
 
@@ -39,7 +39,7 @@ echo "Initializing Dredger chain..."
 
 # Create a state directory for the current node and initialize the chain
 mkdir -p $STATE/$NODE_NAME
-$CMD init STRIDE --chain-id $STRIDE_CHAIN_ID --overwrite &> /dev/null
+$CMD init DREDGER --chain-id $DREDGER_CHAIN_ID --overwrite &> /dev/null
 
 # Update node networking configuration 
 config_toml="${STATE}/${NODE_NAME}/config/config.toml"
@@ -56,7 +56,7 @@ sed -i -E "s|minimum-gas-prices = \".*\"|minimum-gas-prices = \"0${DENOM}\"|g" $
 sed -i -E '/\[api\]/,/^enable = .*$/ s/^enable = .*$/enable = true/' $app_toml
 sed -i -E 's|unsafe-cors = .*|unsafe-cors = true|g' $app_toml
 
-sed -i -E "s|chain-id = \"\"|chain-id = \"${STRIDE_CHAIN_ID}\"|g" $client_toml
+sed -i -E "s|chain-id = \"\"|chain-id = \"${DREDGER_CHAIN_ID}\"|g" $client_toml
 sed -i -E "s|keyring-backend = \"os\"|keyring-backend = \"test\"|g" $client_toml
 sed -i -E "s|node = \".*\"|node = \"tcp://localhost:$RPC_PORT\"|g" $client_toml
 
@@ -67,12 +67,12 @@ node_id=$($CMD tendermint show-node-id)@$NODE_NAME:$PEER_PORT
 echo "Node ID: $node_id"
 
 # add a validator account
-echo "$STRIDE_VAL_MNEMONIC" | $CMD keys add $STRIDE_VAL_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
-VAL_ADDR=$($CMD keys show $STRIDE_VAL_ACCT --keyring-backend test -a)
+echo "$DREDGER_VAL_MNEMONIC" | $CMD keys add $DREDGER_VAL_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
+VAL_ADDR=$($CMD keys show $DREDGER_VAL_ACCT --keyring-backend test -a)
 # Add this account to the current node
 $CMD add-genesis-account ${VAL_ADDR} ${VAL_TOKENS}${DENOM}
 # actually set this account as a validator on the current node 
-$CMD gentx $STRIDE_VAL_ACCT ${STAKE_TOKENS}${DENOM} --chain-id $STRIDE_CHAIN_ID --keyring-backend test &> /dev/null
+$CMD gentx $DREDGER_VAL_ACCT ${STAKE_TOKENS}${DENOM} --chain-id $DREDGER_CHAIN_ID --keyring-backend test &> /dev/null
 
 # Cleanup from seds
 rm -rf ${client_toml}-E
@@ -90,9 +90,9 @@ $CMD add-genesis-account ${HERMES_ADDRESS} ${VAL_TOKENS}${DENOM}
 $CMD add-genesis-account ${RELAYER_ADDRESS} ${VAL_TOKENS}${DENOM}
 
 # add the dredger admin account
-echo "$STRIDE_ADMIN_MNEMONIC" | $CMD keys add $STRIDE_ADMIN_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
-STRIDE_ADMIN_ADDRESS=$($CMD keys show $STRIDE_ADMIN_ACCT --keyring-backend test -a)
-$CMD add-genesis-account ${STRIDE_ADMIN_ADDRESS} ${ADMIN_TOKENS}${DENOM}
+echo "$DREDGER_ADMIN_MNEMONIC" | $CMD keys add $DREDGER_ADMIN_ACCT --recover --keyring-backend=test >> $KEYS_LOGS 2>&1
+DREDGER_ADMIN_ADDRESS=$($CMD keys show $DREDGER_ADMIN_ACCT --keyring-backend test -a)
+$CMD add-genesis-account ${DREDGER_ADMIN_ADDRESS} ${ADMIN_TOKENS}${DENOM}
 
 # now we process gentx txs on the main node
 $CMD collect-gentxs &> /dev/null
@@ -101,8 +101,8 @@ $CMD collect-gentxs &> /dev/null
 sed -i -E "s|persistent_peers = .*|persistent_peers = \"\"|g" $config_toml
 
 # update params
-jq '(.app_state.epochs.epochs[] | select(.identifier=="day") ).duration = $epochLen' --arg epochLen $STRIDE_DAY_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
-jq '(.app_state.epochs.epochs[] | select(.identifier=="stride_epoch") ).duration = $epochLen' --arg epochLen $STRIDE_EPOCH_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
+jq '(.app_state.epochs.epochs[] | select(.identifier=="day") ).duration = $epochLen' --arg epochLen $DREDGER_DAY_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
+jq '(.app_state.epochs.epochs[] | select(.identifier=="dredger_epoch") ).duration = $epochLen' --arg epochLen $DREDGER_EPOCH_EPOCH_DURATION $genesis_json > json.tmp && mv json.tmp $genesis_json
 jq '.app_state.gov.deposit_params.max_deposit_period = $newVal' --arg newVal "$MAX_DEPOSIT_PERIOD" $genesis_json > json.tmp && mv json.tmp $genesis_json
 jq '.app_state.gov.voting_params.voting_period = $newVal' --arg newVal "$VOTING_PERIOD" $genesis_json > json.tmp && mv json.tmp $genesis_json
 

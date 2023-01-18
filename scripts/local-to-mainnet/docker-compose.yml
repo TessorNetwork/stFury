@@ -1,7 +1,7 @@
 version: "3"
 services:
   dred1:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ../state/dred1:/home/dredger/.dredger
     ports:
@@ -10,14 +10,14 @@ services:
       - "9090:9090"
 
   hermes:
-    image: stridezone:hermes
+    image: dredgerzone:hermes
     volumes:
       - ~/.hermes:/home/hermes/.hermes
       - ../state/hermes/config.toml:/home/hermes/.hermes/config.toml
     restart: always
 
   relayer:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ../state/relayer:/home/relayer/.relayer
     restart: always

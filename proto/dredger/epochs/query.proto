@@ -12,16 +12,16 @@ option go_package = "github.com/TessorNetwork/dredger/x/epochs/types";
 service Query {
   // EpochInfos provide running epochInfos
   rpc EpochInfos(QueryEpochsInfoRequest) returns (QueryEpochsInfoResponse) {
-    option (google.api.http).get = "/Stridelabs/dredger/epochs";
+    option (google.api.http).get = "/Tessornetwork/dredger/epochs";
   }
   // CurrentEpoch provide current epoch of specified identifier
   rpc CurrentEpoch(QueryCurrentEpochRequest)
       returns (QueryCurrentEpochResponse) {
-    option (google.api.http).get = "/Stridelabs/dredger/epochs/current_epoch";
+    option (google.api.http).get = "/Tessornetwork/dredger/epochs/current_epoch";
   }
   // CurrentEpoch provide current epoch of specified identifier
   rpc EpochInfo(QueryEpochInfoRequest) returns (QueryEpochInfoResponse) {
-    option (google.api.http).get = "/Stridelabs/dredger/epochs/epoch_info";
+    option (google.api.http).get = "/Tessornetwork/dredger/epochs/epoch_info";
   }
 }
 
@@ -57,7 +57,7 @@ message QueryEpochInfoResponse {
 // service Query {
 //   // Parameters queries the parameters of the module.
 //   rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
-//     option (google.api.http).get = "/Stridelabs/dredger/epochs/params";
+//     option (google.api.http).get = "/Tessornetwork/dredger/epochs/params";
 //   }
 //   // this line is used by starport scaffolding # 2
 // }

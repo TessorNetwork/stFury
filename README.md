@@ -2,7 +2,7 @@
 
 # Multichain Liquid Staking
 
-[Twitter](https://twitter.com/stride_zone) | [Discord](http://dredger.zone/discord) | [Website](https://dredger.zone/)
+[Twitter](https://twitter.com/dredger_zone) | [Discord](http://dredger.zone/discord) | [Website](https://dredger.zone/)
 ## What is Dredger?
 
 
@@ -15,7 +15,7 @@ Dredger is a blockchain ("zone") that provides liquidity for staked assets. Usin
 ![](https://drive.google.com/uc?id=1RuK2YeMH7O6P9-8ro_ybOg5n79ySwFjN)
 
 ## Running a Mainnet Node
-If you want to setup your node for the Dredger mainnet, find the relevant files and instructions [here](https://github.com/Dredger-Labs/mainnet/blob/main/mainnet/README.md)
+If you want to setup your node for the Dredger mainnet, find the relevant files and instructions [here](https://github.com/Stride-Labs/mainnet/blob/main/mainnet/README.md)
 
 ## Getting Started as a Developer
 ### Developing on Dredger

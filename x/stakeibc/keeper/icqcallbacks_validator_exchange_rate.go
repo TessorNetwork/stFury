@@ -57,10 +57,10 @@ func ValidatorExchangeRateCallback(k Keeper, ctx sdk.Context, args []byte, query
 	}
 
 	// Get the dredger epoch number
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	dredgerEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DREDGER_EPOCH)
 	if !found {
 		k.Logger(ctx).Error("failed to find dredger epoch")
-		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.STRIDE_EPOCH)
+		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.DREDGER_EPOCH)
 	}
 
 	// If the validator's delegation shares is 0, we'll get a division by zero error when trying to get the exchange rate
@@ -77,7 +77,7 @@ func ValidatorExchangeRateCallback(k Keeper, ctx sdk.Context, args []byte, query
 	//    and the returned number of tokens will be equal to the internal exchange rate
 	validator.InternalExchangeRate = &types.ValidatorExchangeRate{
 		InternalTokensToSharesRate: queriedValidator.TokensFromShares(sdk.NewDec(1.0)),
-		EpochNumber:                strideEpochTracker.GetEpochNumber(),
+		EpochNumber:                dredgerEpochTracker.GetEpochNumber(),
 	}
 	hostZone.Validators[valIndex] = &validator
 	k.SetHostZone(ctx, hostZone)

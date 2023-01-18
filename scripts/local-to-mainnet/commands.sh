@@ -44,7 +44,7 @@ docker-compose -f scripts/local-to-mainnet/docker-compose.yml logs -f relayer | 
 
 #### REGISTER HOST
 # IBC Transfer from HOST to dredger (from relayer account)
-build/osmosisd tx ibc-transfer transfer transfer $transfer_channel dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 4000000uosmo --from hot --chain-id osmosis-1 -y --keyring-backend test --node http://osmo-fleet-direct.main.stridenet.co:26657
+build/osmosisd tx ibc-transfer transfer transfer $transfer_channel dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8 4000000uosmo --from hot --chain-id osmosis-1 -y --keyring-backend test --node http://osmo-fleet-direct.main.dredgernet.co:26657
 
 # Confirm funds were recieved on dredger and get IBC denom
 build/dred --home s q bank balances dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8

@@ -34,11 +34,11 @@ func (k Keeper) LoadAllocationData(ctx sdk.Context, allocationData string) bool 
 		airdropIdentifier := data[0]
 		sourceChainAddr := data[1]
 		airdropWeight := data[2]
-		strideAddr := utils.ConvertAddressToStrideAddress(sourceChainAddr)
-		if strideAddr == "" {
+		dredgerAddr := utils.ConvertAddressToDredgerAddress(sourceChainAddr)
+		if dredgerAddr == "" {
 			continue
 		}
-		allocationIdentifier := airdropIdentifier + strideAddr
+		allocationIdentifier := airdropIdentifier + dredgerAddr
 
 		// Round weight value so that it always has 10 decimal places
 		weightFloat64, err := strconv.ParseFloat(airdropWeight, 64)
@@ -56,14 +56,14 @@ func (k Keeper) LoadAllocationData(ctx sdk.Context, allocationData string) bool 
 			continue
 		}
 
-		_, err = sdk.AccAddressFromBech32(strideAddr)
+		_, err = sdk.AccAddressFromBech32(dredgerAddr)
 		if err != nil {
 			continue
 		}
 
 		records = append(records, types.ClaimRecord{
 			AirdropIdentifier: airdropIdentifier,
-			Address:           strideAddr,
+			Address:           dredgerAddr,
 			Weight:            weight,
 			ActionCompleted:   []bool{false, false, false},
 		})
@@ -84,8 +84,8 @@ func (k Keeper) GetUnallocatedUsers(ctx sdk.Context, identifier string, users []
 	newUsers := []string{}
 	newWeights := []sdk.Dec{}
 	for idx, user := range users {
-		strideAddr := utils.ConvertAddressToStrideAddress(user)
-		addr, _ := sdk.AccAddressFromBech32(strideAddr)
+		dredgerAddr := utils.ConvertAddressToDredgerAddress(user)
+		addr, _ := sdk.AccAddressFromBech32(dredgerAddr)
 		// If new user, then append user and weight
 		if !prefixStore.Has(addr) {
 			newUsers = append(newUsers, user)
@@ -402,11 +402,11 @@ func (k Keeper) GetClaimableAmountForAction(ctx sdk.Context, addr sdk.AccAddress
 // GetUserVestings returns all vestings associated to the user account
 func (k Keeper) GetUserVestings(ctx sdk.Context, addr sdk.AccAddress) (vestingtypes.Periods, sdk.Coins) {
 	acc := k.accountKeeper.GetAccount(ctx, addr)
-	strideVestingAcc, isStrideVestingAccount := acc.(*vestingtypes.StridePeriodicVestingAccount)
-	if !isStrideVestingAccount {
+	dredgerVestingAcc, isDredgerVestingAccount := acc.(*vestingtypes.DredgerPeriodicVestingAccount)
+	if !isDredgerVestingAccount {
 		return vestingtypes.Periods{}, sdk.Coins{}
 	} else {
-		return strideVestingAcc.VestingPeriods, strideVestingAcc.GetVestedCoins(ctx.BlockTime())
+		return dredgerVestingAcc.VestingPeriods, dredgerVestingAcc.GetVestedCoins(ctx.BlockTime())
 	}
 }
 
@@ -513,9 +513,9 @@ func (k Keeper) ClaimCoinsForAction(ctx sdk.Context, addr sdk.AccAddress, action
 	// Claims don't vest if action type is ActionFree or initial period of vesting is passed
 	if !isPassed {
 		acc = k.accountKeeper.GetAccount(ctx, addr)
-		strideVestingAcc, isStrideVestingAccount := acc.(*vestingtypes.StridePeriodicVestingAccount)
+		dredgerVestingAcc, isDredgerVestingAccount := acc.(*vestingtypes.DredgerPeriodicVestingAccount)
 		// Check if vesting tokens already exist for this account.
-		if !isStrideVestingAccount {
+		if !isDredgerVestingAccount {
 			// Convert user account into dredger veting account.
 			baseAccount := k.accountKeeper.NewAccountWithAddress(ctx, addr)
 			if _, ok := baseAccount.(*authtypes.BaseAccount); !ok {
@@ -523,7 +523,7 @@ func (k Keeper) ClaimCoinsForAction(ctx sdk.Context, addr sdk.AccAddress, action
 			}
 
 			periodLength := GetAirdropDurationForAction(action)
-			vestingAcc := vestingtypes.NewStridePeriodicVestingAccount(baseAccount.(*authtypes.BaseAccount), claimableAmount, []vestingtypes.Period{{
+			vestingAcc := vestingtypes.NewDredgerPeriodicVestingAccount(baseAccount.(*authtypes.BaseAccount), claimableAmount, []vestingtypes.Period{{
 				StartTime:  ctx.BlockTime().Unix(),
 				Length:     periodLength,
 				Amount:     claimableAmount,
@@ -533,13 +533,13 @@ func (k Keeper) ClaimCoinsForAction(ctx sdk.Context, addr sdk.AccAddress, action
 		} else {
 			// Grant a new vesting to the existing dredger vesting account
 			periodLength := GetAirdropDurationForAction(action)
-			strideVestingAcc.AddNewGrant(vestingtypes.Period{
+			dredgerVestingAcc.AddNewGrant(vestingtypes.Period{
 				StartTime:  ctx.BlockTime().Unix(),
 				Length:     periodLength,
 				Amount:     claimableAmount,
 				ActionType: int32(action),
 			})
-			k.accountKeeper.SetAccount(ctx, strideVestingAcc)
+			k.accountKeeper.SetAccount(ctx, dredgerVestingAcc)
 		}
 	}
 

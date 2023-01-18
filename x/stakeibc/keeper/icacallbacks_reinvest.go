@@ -69,10 +69,10 @@ func ReinvestCallback(k Keeper, ctx sdk.Context, packet channeltypes.Packet, ack
 		icacallbackstypes.AckResponseStatus_SUCCESS, packet))
 
 	// Get the current dredger epoch number
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	dredgerEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DREDGER_EPOCH)
 	if !found {
 		k.Logger(ctx).Error("failed to find epoch")
-		return sdkerrors.Wrapf(types.ErrInvalidLengthEpochTracker, "no number for epoch (%s)", epochtypes.STRIDE_EPOCH)
+		return sdkerrors.Wrapf(types.ErrInvalidLengthEpochTracker, "no number for epoch (%s)", epochtypes.DREDGER_EPOCH)
 	}
 
 	// Create a new deposit record so that rewards are reinvested
@@ -82,7 +82,7 @@ func ReinvestCallback(k Keeper, ctx sdk.Context, packet channeltypes.Packet, ack
 		HostZoneId:         reinvestCallback.HostZoneId,
 		Status:             recordstypes.DepositRecord_DELEGATION_QUEUE,
 		Source:             recordstypes.DepositRecord_WITHDRAWAL_ICA,
-		DepositEpochNumber: strideEpochTracker.EpochNumber,
+		DepositEpochNumber: dredgerEpochTracker.EpochNumber,
 	}
 	k.RecordsKeeper.AppendDepositRecord(ctx, record)
 

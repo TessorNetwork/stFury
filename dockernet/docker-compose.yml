@@ -1,26 +1,26 @@
 version: "3"
 services:
   dred1:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
-      - ./state/dred1:/home/dredger/.dredger
+      - ./state/dredger1:/home/dredger/.dredger
     ports:
       - "26657:26657"
       - "1317:1317"
       - "9090:9090"
 
-  stride2:
-    image: stridezone:dredger
+  dredger2:
+    image: dredgerzone:dredger
     volumes:
-      - ./state/stride2:/home/dredger/.dredger
+      - ./state/dredger2:/home/dredger/.dredger
 
-  stride3:
-    image: stridezone:dredger
+  dredger3:
+    image: dredgerzone:dredger
     volumes:
-      - ./state/stride3:/home/dredger/.dredger
+      - ./state/dredger3:/home/dredger/.dredger
 
   gaia1:
-    image: stridezone:gaia
+    image: dredgerzone:gaia
     volumes:
       - ./state/gaia1:/home/gaia/.gaia
     ports:
@@ -29,27 +29,27 @@ services:
       - "9080:9090"
 
   gaia2:
-    image: stridezone:gaia
+    image: dredgerzone:gaia
     volumes:
       - ./state/gaia2:/home/gaia/.gaia
 
   gaia3:
-    image: stridezone:gaia
+    image: dredgerzone:gaia
     volumes:
       - ./state/gaia3:/home/gaia/.gaia
 
   gaia4:
-    image: stridezone:gaia
+    image: dredgerzone:gaia
     volumes:
       - ./state/gaia4:/home/gaia/.gaia
 
   gaia5:
-    image: stridezone:gaia
+    image: dredgerzone:gaia
     volumes:
       - ./state/gaia5:/home/gaia/.gaia
 
   juno1:
-    image: stridezone:juno
+    image: dredgerzone:juno
     volumes:
       - ./state/juno1:/home/juno/.juno
     ports:
@@ -58,27 +58,27 @@ services:
       - "9070:9090"
 
   juno2:
-    image: stridezone:juno
+    image: dredgerzone:juno
     volumes:
       - ./state/juno2:/home/juno/.juno
 
   juno3:
-    image: stridezone:juno
+    image: dredgerzone:juno
     volumes:
       - ./state/juno3:/home/juno/.juno
 
   juno4:
-    image: stridezone:juno
+    image: dredgerzone:juno
     volumes:
       - ./state/juno4:/home/juno/.juno
 
   juno5:
-    image: stridezone:juno
+    image: dredgerzone:juno
     volumes:
       - ./state/juno5:/home/juno/.juno
 
   osmo1:
-    image: stridezone:osmo
+    image: dredgerzone:osmo
     volumes:
       - ./state/osmo1:/home/osmosis/.osmosisd
     ports:
@@ -87,27 +87,27 @@ services:
       - "9060:9090"
 
   osmo2:
-    image: stridezone:osmo
+    image: dredgerzone:osmo
     volumes:
       - ./state/osmo2:/home/osmosis/.osmosisd
 
   osmo3:
-    image: stridezone:osmo
+    image: dredgerzone:osmo
     volumes:
       - ./state/osmo3:/home/osmosis/.osmosisd
 
   osmo4:
-    image: stridezone:osmo
+    image: dredgerzone:osmo
     volumes:
       - ./state/osmo4:/home/osmosis/.osmosisd
 
   osmo5:
-    image: stridezone:osmo
+    image: dredgerzone:osmo
     volumes:
       - ./state/osmo5:/home/osmosis/.osmosisd
 
   stars1:
-    image: stridezone:stars
+    image: dredgerzone:stars
     volumes:
       - ./state/stars1:/home/stars/.starsd
     ports:
@@ -116,27 +116,27 @@ services:
       - "9050:9090"
 
   stars2:
-    image: stridezone:stars
+    image: dredgerzone:stars
     volumes:
       - ./state/stars2:/home/stars/.starsd
 
   stars3:
-    image: stridezone:stars
+    image: dredgerzone:stars
     volumes:
       - ./state/stars3:/home/stars/.starsd
 
   stars4:
-    image: stridezone:stars
+    image: dredgerzone:stars
     volumes:
       - ./state/stars4:/home/stars/.starsd
 
   stars5:
-    image: stridezone:stars
+    image: dredgerzone:stars
     volumes:
       - ./state/stars5:/home/stars/.starsd
 
   host1:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ./state/host1:/home/dredger/.dredger
     ports:
@@ -145,64 +145,64 @@ services:
       - "9040:9090"
 
   host2:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ./state/host2:/home/dredger/.dredger
 
   host3:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ./state/host3:/home/dredger/.dredger
 
   host4:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ./state/host4:/home/dredger/.dredger
 
   host5:
-    image: stridezone:dredger
+    image: dredgerzone:dredger
     volumes:
       - ./state/host5:/home/dredger/.dredger
 
   # Fill in new host zone being tested here
 
   hermes:
-    image: stridezone:hermes
+    image: dredgerzone:hermes
     volumes:
       - ~/.hermes:/home/hermes/.hermes
       - ./state/hermes/config.toml:/home/hermes/.hermes/config.toml
     restart: always
 
   relayer-gaia:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-gaia:/home/relayer/.relayer
     restart: always
     command: [ "bash", "start.sh", "dredger-gaia" ]
 
   relayer-juno:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-juno:/home/relayer/.relayer
     restart: always
     command: [ "bash", "start.sh", "dredger-juno" ]
 
   relayer-osmo:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-osmo:/home/relayer/.relayer
     restart: always
     command: [ "bash", "start.sh", "dredger-osmo" ]
 
   relayer-stars:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-stars:/home/relayer/.relayer
     restart: always
     command: [ "bash", "start.sh", "dredger-stars" ]
 
   relayer-host:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-host:/home/relayer/.relayer
     restart: always

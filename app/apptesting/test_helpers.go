@@ -27,7 +27,7 @@ import (
 )
 
 var (
-	StrideChainID = "STRIDE"
+	DredgerChainID = "DREDGER"
 
 	TestIcaVersion = string(icatypes.ModuleCdc.MustMarshalJSON(&icatypes.Metadata{
 		Version:                icatypes.Version,
@@ -41,12 +41,12 @@ var (
 type AppTestHelper struct {
 	suite.Suite
 
-	App     *app.StrideApp
+	App     *app.DredgerApp
 	HostApp *simapp.SimApp
 
 	IbcEnabled   bool
 	Coordinator  *ibctesting.Coordinator
-	StrideChain  *ibctesting.TestChain
+	DredgerChain  *ibctesting.TestChain
 	HostChain    *ibctesting.TestChain
 	TransferPath *ibctesting.Path
 
@@ -58,8 +58,8 @@ type AppTestHelper struct {
 
 // AppTestHelper Constructor
 func (s *AppTestHelper) Setup() {
-	s.App = app.InitStrideTestApp(true)
-	s.Ctx = s.App.BaseApp.NewContext(false, tmtypes.Header{Height: 1, ChainID: StrideChainID})
+	s.App = app.InitDredgerTestApp(true)
+	s.Ctx = s.App.BaseApp.NewContext(false, tmtypes.Header{Height: 1, ChainID: DredgerChainID})
 	s.QueryHelper = &baseapp.QueryServiceTestHelper{
 		GRPCQueryRouter: s.App.GRPCQueryRouter(),
 		Ctx:             s.Ctx,
@@ -104,9 +104,9 @@ func CreateRandomAccounts(numAccts int) []sdk.AccAddress {
 func (s *AppTestHelper) SetupIBCChains(hostChainID string) {
 	s.Coordinator = ibctesting.NewCoordinator(s.T(), 0)
 
-	// Initialize a dredger testing app by casting a StrideApp -> TestingApp
-	ibctesting.DefaultTestingAppInit = app.InitStrideIBCTestingApp
-	s.StrideChain = ibctesting.NewTestChain(s.T(), s.Coordinator, StrideChainID)
+	// Initialize a dredger testing app by casting a DredgerApp -> TestingApp
+	ibctesting.DefaultTestingAppInit = app.InitDredgerIBCTestingApp
+	s.DredgerChain = ibctesting.NewTestChain(s.T(), s.Coordinator, DredgerChainID)
 
 	// Initialize a host testing app using SimApp -> TestingApp
 	ibctesting.DefaultTestingAppInit = ibctesting.SetupTestingApp
@@ -114,7 +114,7 @@ func (s *AppTestHelper) SetupIBCChains(hostChainID string) {
 
 	// Update coordinator
 	s.Coordinator.Chains = map[string]*ibctesting.TestChain{
-		StrideChainID: s.StrideChain,
+		DredgerChainID: s.DredgerChain,
 		hostChainID:   s.HostChain,
 	}
 	s.IbcEnabled = true
@@ -130,13 +130,13 @@ func (s *AppTestHelper) CreateTransferChannel(hostChainID string) {
 		"The testing app has already been initialized with a different chainID (%s)", s.HostChain.ChainID)
 
 	// Create clients, connections, and a transfer channel
-	s.TransferPath = NewTransferPath(s.StrideChain, s.HostChain)
+	s.TransferPath = NewTransferPath(s.DredgerChain, s.HostChain)
 	s.Coordinator.Setup(s.TransferPath)
 
 	// Replace dredger and host apps with those from TestingApp
-	s.App = s.StrideChain.App.(*app.StrideApp)
+	s.App = s.DredgerChain.App.(*app.DredgerApp)
 	s.HostApp = s.HostChain.GetSimApp()
-	s.Ctx = s.StrideChain.GetContext()
+	s.Ctx = s.DredgerChain.GetContext()
 
 	// Finally confirm the channel was setup properly
 	s.Require().Equal(ibctesting.FirstClientID, s.TransferPath.EndpointA.ClientID, "dredger clientID")
@@ -162,7 +162,7 @@ func (s *AppTestHelper) CreateICAChannel(owner string) string {
 	}
 
 	// Create ICA Path and then copy over the client and connection from the transfer path
-	icaPath := NewIcaPath(s.StrideChain, s.HostChain)
+	icaPath := NewIcaPath(s.DredgerChain, s.HostChain)
 	icaPath = CopyConnectionAndClientToPath(icaPath, s.TransferPath)
 
 	// Register the ICA and complete the handshake
@@ -177,7 +177,7 @@ func (s *AppTestHelper) CreateICAChannel(owner string) string {
 	err = icaPath.EndpointB.ChanOpenConfirm()
 	s.Require().NoError(err, "ChanOpenConfirm error")
 
-	s.Ctx = s.StrideChain.GetContext()
+	s.Ctx = s.DredgerChain.GetContext()
 
 	// Confirm the ICA channel was created properly
 	portID := icaPath.EndpointA.ChannelConfig.PortID

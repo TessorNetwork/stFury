@@ -51,7 +51,7 @@ func (s *KeeperTestSuite) SetupReinvestCallback() ReinvestCallbackTestCase {
 		Source:             recordtypes.DepositRecord_WITHDRAWAL_ICA,
 	}
 	epochTracker := stakeibc.EpochTracker{
-		EpochIdentifier: epochtypes.STRIDE_EPOCH,
+		EpochIdentifier: epochtypes.DREDGER_EPOCH,
 		EpochNumber:     1,
 	}
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
@@ -150,9 +150,9 @@ func (s *KeeperTestSuite) TestReinvestCallback_MissingEpoch() {
 	invalidArgs := tc.validArgs
 
 	// Remove epoch tracker
-	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.STRIDE_EPOCH)
+	s.App.StakeibcKeeper.RemoveEpochTracker(s.Ctx, epochtypes.DREDGER_EPOCH)
 
 	err := stakeibckeeper.ReinvestCallback(s.App.StakeibcKeeper, s.Ctx, invalidArgs.packet, invalidArgs.ackResponse, invalidArgs.args)
-	s.Require().ErrorContains(err, "no number for epoch (stride_epoch)")
+	s.Require().ErrorContains(err, "no number for epoch (dredger_epoch)")
 	s.checkReinvestStateIfCallbackFailed(tc)
 }

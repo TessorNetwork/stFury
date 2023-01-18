@@ -65,12 +65,12 @@ func (msg *MsgSetAirdropAllocations) ValidateBasic() error {
 	}
 
 	for _, user := range msg.Users {
-		strideAddr := utils.ConvertAddressToStrideAddress(user)
-		if strideAddr == "" {
+		dredgerAddr := utils.ConvertAddressToDredgerAddress(user)
+		if dredgerAddr == "" {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid bech32 address")
 		}
 
-		_, err := sdk.AccAddressFromBech32(strideAddr)
+		_, err := sdk.AccAddressFromBech32(dredgerAddr)
 		if err != nil {
 			return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid user address (%s)", err)
 		}

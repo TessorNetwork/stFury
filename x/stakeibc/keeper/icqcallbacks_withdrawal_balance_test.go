@@ -72,21 +72,21 @@ func (s *KeeperTestSuite) SetupWithdrawalBalanceCallbackTest() WithdrawalBalance
 		},
 	}
 
-	strideEpochTracker := stakeibctypes.EpochTracker{
-		EpochIdentifier:    epochtypes.STRIDE_EPOCH,
+	dredgerEpochTracker := stakeibctypes.EpochTracker{
+		EpochIdentifier:    epochtypes.DREDGER_EPOCH,
 		EpochNumber:        1,
 		NextEpochStartTime: uint64(s.Coordinator.CurrentTime.UnixNano() + 30_000_000_000), // dictates timeouts
 	}
 
 	s.App.StakeibcKeeper.SetHostZone(s.Ctx, hostZone)
-	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, strideEpochTracker)
+	s.App.StakeibcKeeper.SetEpochTracker(s.Ctx, dredgerEpochTracker)
 
 	withdrawalBalance := int64(1000)
 	commission := uint64(10)
 	expectedReinvestment := sdk.NewCoin(Atom, sdkmath.NewInt(int64(900)))
 
 	params := s.App.StakeibcKeeper.GetParams(s.Ctx)
-	params.StrideCommission = uint64(commission)
+	params.DredgerCommission = uint64(commission)
 
 	queryResponse := s.CreateBalanceQueryResponse(withdrawalBalance, Atom)
 

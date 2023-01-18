@@ -168,11 +168,11 @@ func (k Keeper) GetConnectionId(ctx sdk.Context, portId string) (string, error) 
 }
 
 // helper to get what share of the curr epoch we're through
-func (k Keeper) GetStrideEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
+func (k Keeper) GetDredgerEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
 	// Get the current dredger epoch
-	epochTracker, found := k.GetEpochTracker(ctx, epochstypes.STRIDE_EPOCH)
+	epochTracker, found := k.GetEpochTracker(ctx, epochstypes.DREDGER_EPOCH)
 	if !found {
-		errMsg := fmt.Sprintf("Failed to get epoch tracker for %s", epochstypes.STRIDE_EPOCH)
+		errMsg := fmt.Sprintf("Failed to get epoch tracker for %s", epochstypes.DREDGER_EPOCH)
 		k.Logger(ctx).Error(errMsg)
 		return sdk.ZeroDec(), sdkerrors.Wrapf(sdkerrors.ErrNotFound, errMsg)
 	}
@@ -215,7 +215,7 @@ func (k Keeper) GetStrideEpochElapsedShare(ctx sdk.Context) (sdk.Dec, error) {
 
 // helper to check whether ICQs are valid in this portion of the epoch
 func (k Keeper) IsWithinBufferWindow(ctx sdk.Context) (bool, error) {
-	elapsedShareOfEpoch, err := k.GetStrideEpochElapsedShare(ctx)
+	elapsedShareOfEpoch, err := k.GetDredgerEpochElapsedShare(ctx)
 	if err != nil {
 		return false, err
 	}

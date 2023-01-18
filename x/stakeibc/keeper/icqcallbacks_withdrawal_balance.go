@@ -62,19 +62,19 @@ func WithdrawalBalanceCallback(k Keeper, ctx sdk.Context, args []byte, query icq
 
 	// Determine the dredger commission rate to the relevant portion can be sent to the fee account
 	params := k.GetParams(ctx)
-	strideCommissionInt, err := cast.ToInt64E(params.StrideCommission)
+	dredgerCommissionInt, err := cast.ToInt64E(params.DredgerCommission)
 	if err != nil {
 		return err
 	}
 
 	// check that dredger commission is between 0 and 1
-	strideCommission := sdk.NewDec(strideCommissionInt).Quo(sdk.NewDec(100))
-	if strideCommission.LT(sdk.ZeroDec()) || strideCommission.GT(sdk.OneDec()) {
+	dredgerCommission := sdk.NewDec(dredgerCommissionInt).Quo(sdk.NewDec(100))
+	if dredgerCommission.LT(sdk.ZeroDec()) || dredgerCommission.GT(sdk.OneDec()) {
 		return sdkerrors.Wrap(sdkerrors.ErrInvalidRequest, "Aborting withdrawal balance callback -- Dredger commission must be between 0 and 1!")
 	}
 
 	// Split out the reinvestment amount from the fee amount
-	feeAmount := strideCommission.Mul(sdk.NewDecFromInt(withdrawalBalanceAmount)).TruncateInt()
+	feeAmount := dredgerCommission.Mul(sdk.NewDecFromInt(withdrawalBalanceAmount)).TruncateInt()
 	reinvestAmount := withdrawalBalanceAmount.Sub(feeAmount)
 
 	// Safety check, balances should add to original amount
@@ -119,7 +119,7 @@ func WithdrawalBalanceCallback(k Keeper, ctx sdk.Context, args []byte, query icq
 	}
 
 	// Send the transaction through SubmitTx
-	_, err = k.SubmitTxsStrideEpoch(ctx, hostZone.ConnectionId, msgs, *withdrawalAccount, ICACallbackID_Reinvest, marshalledCallbackArgs)
+	_, err = k.SubmitTxsDredgerEpoch(ctx, hostZone.ConnectionId, msgs, *withdrawalAccount, ICACallbackID_Reinvest, marshalledCallbackArgs)
 	if err != nil {
 		return sdkerrors.Wrapf(types.ErrICATxFailed, "Failed to SubmitTxs, Messages: %v, err: %s", msgs, err.Error())
 	}

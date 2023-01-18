@@ -8,7 +8,7 @@ chains:
     type: cosmos
     value:
       key: rly1
-      chain-id: STRIDE_CHAIN_ID
+      chain-id: DREDGER_CHAIN_ID
       rpc-addr: http://dred1:26657
       account-prefix: dredger
       keyring-backend: test
@@ -35,7 +35,7 @@ chains:
 paths:
   dredger-host:
     src:
-      chain-id: STRIDE_CHAIN_ID
+      chain-id: DREDGER_CHAIN_ID
     dst:
       chain-id: HOST_CHAIN_ID
     src-channel-filter:

@@ -15,7 +15,7 @@ import (
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
 	banktestutil "github.com/cosmos/cosmos-sdk/x/bank/client/testutil"
 
-	strideclitestutil "github.com/TessorNetwork/dredger/testutil/cli"
+	dredgerclitestutil "github.com/TessorNetwork/dredger/testutil/cli"
 
 	"github.com/TessorNetwork/dredger/testutil/network"
 
@@ -97,7 +97,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 			distributorAddr,
 			sdk.NewCoins(sdk.NewInt64Coin(s.cfg.BondDenom, 1020)), fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 			fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-			strideclitestutil.DefaultFeeString(s.cfg),
+			dredgerclitestutil.DefaultFeeString(s.cfg),
 		)
 		s.Require().NoError(err)
 	}
@@ -116,7 +116,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 		// common args
 		fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 		fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-		strideclitestutil.DefaultFeeString(s.cfg),
+		dredgerclitestutil.DefaultFeeString(s.cfg),
 	})
 
 	s.Require().NoError(err)
@@ -194,7 +194,7 @@ func (s *IntegrationTestSuite) TestCmdTxSetAirdropAllocations() {
 				// common args
 				fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 				fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-				strideclitestutil.DefaultFeeString(s.cfg),
+				dredgerclitestutil.DefaultFeeString(s.cfg),
 			},
 			[]sdk.Coins{
 				sdk.NewCoins(sdk.NewCoin(s.cfg.BondDenom, sdkmath.NewInt(77))),
@@ -273,7 +273,7 @@ func (s *IntegrationTestSuite) TestCmdTxCreateAirdrop() {
 				// common args
 				fmt.Sprintf("--%s=true", flags.FlagSkipConfirmation),
 				fmt.Sprintf("--%s=%s", flags.FlagBroadcastMode, flags.BroadcastBlock),
-				strideclitestutil.DefaultFeeString(s.cfg),
+				dredgerclitestutil.DefaultFeeString(s.cfg),
 			},
 			airdrop,
 		},

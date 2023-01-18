@@ -31,7 +31,7 @@ go install -ldflags '-w -s -X github.com/cosmos/cosmos-sdk/types.DBBackend=pebbl
 dred init test
 
 # Get Genesis
-wget https://raw.githubusercontent.com/Dredger-Labs/testnet/main/mainnet/genesis.json
+wget https://raw.githubusercontent.com/Stride-Labs/testnet/main/mainnet/genesis.json
 mv genesis.json ~/.dredger/config/genesis.json
 
 # Get "trust_hash" and "trust_height".
@@ -45,15 +45,15 @@ echo "trust_height: $BLOCK_HEIGHT"
 echo "trust_hash: $TRUST_HASH"
 
 # Export state sync variables.
-export STRIDED_STATESYNC_ENABLE=true
-export STRIDED_P2P_MAX_NUM_OUTBOUND_PEERS=200
-export STRIDED_STATESYNC_RPC_SERVERS="https://dredger-rpc.polkachu.com:443,https://dredger-rpc.polkachu.com:443"
-export STRIDED_STATESYNC_TRUST_HEIGHT=$BLOCK_HEIGHT
-export STRIDED_STATESYNC_TRUST_HASH=$TRUST_HASH
+export DREDGERD_STATESYNC_ENABLE=true
+export DREDGERD_P2P_MAX_NUM_OUTBOUND_PEERS=200
+export DREDGERD_STATESYNC_RPC_SERVERS="https://dredger-rpc.polkachu.com:443,https://dredger-rpc.polkachu.com:443"
+export DREDGERD_STATESYNC_TRUST_HEIGHT=$BLOCK_HEIGHT
+export DREDGERD_STATESYNC_TRUST_HASH=$TRUST_HASH
 
 # Fetch and set list of seeds from chain registry.
-STRIDED_P2P_SEEDS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/dredger/chain.json | jq -r '[foreach .peers.seeds[] as $item (""; "\($item.id)@\($item.address)")] | join(",")')
-export STRIDED_P2P_SEEDS
+DREDGERD_P2P_SEEDS=$(curl -s https://raw.githubusercontent.com/cosmos/chain-registry/master/dredger/chain.json | jq -r '[foreach .peers.seeds[] as $item (""; "\($item.id)@\($item.address)")] | join(",")')
+export DREDGERD_P2P_SEEDS
 
 # Start chain.
 dred start --x-crisis-skip-assert-invariants --db_backend pebbledb

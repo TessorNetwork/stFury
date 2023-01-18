@@ -31,5 +31,5 @@ jobs:
         run: make build
       - uses: actions/upload-artifact@v3
         with:
-          name: dred ${{ matrix.targetos }} ${{ matrix.arch }}
-          path: build/dred
+          name: dredger ${{ matrix.targetos }} ${{ matrix.arch }}
+          path: build/dredger

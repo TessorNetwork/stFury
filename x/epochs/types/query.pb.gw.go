@@ -321,11 +321,11 @@ func RegisterQueryHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 }
 
 var (
-	pattern_Query_EpochInfos_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"Stridelabs", "dredger", "epochs"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_EpochInfos_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"Tessornetwork", "dredger", "epochs"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_CurrentEpoch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"Stridelabs", "dredger", "epochs", "current_epoch"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_CurrentEpoch_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"Tessornetwork", "dredger", "epochs", "current_epoch"}, "", runtime.AssumeColonVerbOpt(false)))
 
-	pattern_Query_EpochInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"Stridelabs", "dredger", "epochs", "epoch_info"}, "", runtime.AssumeColonVerbOpt(false)))
+	pattern_Query_EpochInfo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"Tessornetwork", "dredger", "epochs", "epoch_info"}, "", runtime.AssumeColonVerbOpt(false)))
 )
 
 var (

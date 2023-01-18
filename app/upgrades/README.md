@@ -54,7 +54,7 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 )
 
-func (app *StrideApp) setupUpgradeHandlers() {
+func (app *DredgerApp) setupUpgradeHandlers() {
 	// {upgradeVersion} upgrade handler
 	app.UpgradeKeeper.SetUpgradeHandler(
 		{upgradeVersion}.UpgradeName,
@@ -114,7 +114,7 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-    {upgradeVersion} "github.com/TessorNetwork/dredger/v3/x/records/migrations/{upgradeVersion}"
+    {upgradeVersion} "github.com/TessorNetwork/dredger/x/records/migrations/{upgradeVersion}"
 )
 
 type Migrator struct {
@@ -137,7 +137,7 @@ package {upgradeVersion}
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	{oldVersion} "github.com/TessorNetwork/dredger/v3/x/records/migrations/{oldVersion}"
+	{oldVersion} "github.com/TessorNetwork/dredger/x/records/migrations/{oldVersion}"
 )
 
 // TODO: Add migration logic to deserialize with old protos and re-serialize with new ones

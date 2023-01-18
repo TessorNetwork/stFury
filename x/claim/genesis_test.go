@@ -57,9 +57,9 @@ func TestGenesis(t *testing.T) {
 	got := k.ExportGenesis(ctx)
 	require.NotNil(t, got)
 
-	totalWeightStride, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
+	totalWeightDredger, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
 	require.NoError(t, err)
-	require.Equal(t, totalWeightStride, genesisState.ClaimRecords[0].Weight)
+	require.Equal(t, totalWeightDredger, genesisState.ClaimRecords[0].Weight)
 
 	totalWeightJuno, err := k.GetTotalWeight(ctx, types.DefaultAirdropIdentifier)
 	require.NoError(t, err)

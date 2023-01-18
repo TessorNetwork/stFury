@@ -26,12 +26,12 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 // Params defines the parameters for the module.
 // next id: 18
 type Params struct {
-	// define epoch lengths, in stride_epochs
+	// define epoch lengths, in dredger_epochs
 	RewardsInterval        uint64 `protobuf:"varint,1,opt,name=rewards_interval,json=rewardsInterval,proto3" json:"rewards_interval,omitempty"`
 	DelegateInterval       uint64 `protobuf:"varint,6,opt,name=delegate_interval,json=delegateInterval,proto3" json:"delegate_interval,omitempty"`
 	DepositInterval        uint64 `protobuf:"varint,2,opt,name=deposit_interval,json=depositInterval,proto3" json:"deposit_interval,omitempty"`
 	RedemptionRateInterval uint64 `protobuf:"varint,3,opt,name=redemption_rate_interval,json=redemptionRateInterval,proto3" json:"redemption_rate_interval,omitempty"`
-	StrideCommission       uint64 `protobuf:"varint,4,opt,name=stride_commission,json=strideCommission,proto3" json:"stride_commission,omitempty"`
+	DredgerCommission       uint64 `protobuf:"varint,4,opt,name=dredger_commission,json=dredgerCommission,proto3" json:"dredger_commission,omitempty"`
 	// zone_com_address stores which addresses to
 	// send the Dredger commission too, as well as what portion
 	// of the fee each address is entitled to
@@ -111,9 +111,9 @@ func (m *Params) GetRedemptionRateInterval() uint64 {
 	return 0
 }
 
-func (m *Params) GetStrideCommission() uint64 {
+func (m *Params) GetDredgerCommission() uint64 {
 	if m != nil {
-		return m.StrideCommission
+		return m.DredgerCommission
 	}
 	return 0
 }
@@ -372,8 +372,8 @@ func (m *Params) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0x2a
 		}
 	}
-	if m.StrideCommission != 0 {
-		i = encodeVarintParams(dAtA, i, uint64(m.StrideCommission))
+	if m.DredgerCommission != 0 {
+		i = encodeVarintParams(dAtA, i, uint64(m.DredgerCommission))
 		i--
 		dAtA[i] = 0x20
 	}
@@ -421,8 +421,8 @@ func (m *Params) Size() (n int) {
 	if m.RedemptionRateInterval != 0 {
 		n += 1 + sovParams(uint64(m.RedemptionRateInterval))
 	}
-	if m.StrideCommission != 0 {
-		n += 1 + sovParams(uint64(m.StrideCommission))
+	if m.DredgerCommission != 0 {
+		n += 1 + sovParams(uint64(m.DredgerCommission))
 	}
 	if len(m.ZoneComAddress) > 0 {
 		for k, v := range m.ZoneComAddress {
@@ -568,9 +568,9 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 			}
 		case 4:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field StrideCommission", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field DredgerCommission", wireType)
 			}
-			m.StrideCommission = 0
+			m.DredgerCommission = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowParams
@@ -580,7 +580,7 @@ func (m *Params) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.StrideCommission |= uint64(b&0x7F) << shift
+				m.DredgerCommission |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

@@ -11,7 +11,7 @@ PEER_PORT=26656
 DOCKER_COMPOSE="docker-compose -f $DOCKERNET_HOME/docker-compose.yml"
 
 # Logs
-STRIDE_LOGS=$LOGS/dredger.log
+DREDGER_LOGS=$LOGS/dredger.log
 TX_LOGS=$DOCKERNET_HOME/logs/tx.log
 KEYS_LOGS=$DOCKERNET_HOME/logs/keys.log
 
@@ -91,8 +91,8 @@ IBC_STARS_DENOM=$IBC_STARS_CHANNEL_3_DENOM
 
 # CHAIN PARAMS
 BLOCK_TIME='1s'
-STRIDE_DAY_EPOCH_DURATION="100s"
-STRIDE_EPOCH_EPOCH_DURATION="40s"
+DREDGER_DAY_EPOCH_DURATION="100s"
+DREDGER_EPOCH_EPOCH_DURATION="40s"
 HOST_DAY_EPOCH_DURATION="60s"
 HOST_HOUR_EPOCH_DURATION="60s"
 HOST_WEEK_EPOCH_DURATION="60s"
@@ -121,25 +121,25 @@ VAL_MNEMONICS=(
 )
 REV_MNEMONIC="tonight bonus finish chaos orchard plastic view nurse salad regret pause awake link bacon process core talent whale million hope luggage sauce card weasel"
 
-# STRIDE 
-STRIDE_CHAIN_ID=STRIDE
-STRIDE_NODE_PREFIX=dredger
-STRIDE_NUM_NODES=3
-STRIDE_VAL_PREFIX=val
-STRIDE_DENOM=$STRD_DENOM
-STRIDE_RPC_PORT=26657
-STRIDE_ADMIN_ACCT=admin
-STRIDE_ADMIN_ADDRESS=dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
-STRIDE_ADMIN_MNEMONIC="tone cause tribe this switch near host damage idle fragile antique tail soda alien depth write wool they rapid unfold body scan pledge soft"
-STRIDE_FEE_ADDRESS=dred1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
+# DREDGER 
+DREDGER_CHAIN_ID=DREDGER
+DREDGER_NODE_PREFIX=dredger
+DREDGER_NUM_NODES=3
+DREDGER_VAL_PREFIX=val
+DREDGER_DENOM=$STRD_DENOM
+DREDGER_RPC_PORT=26657
+DREDGER_ADMIN_ACCT=admin
+DREDGER_ADMIN_ADDRESS=dred1u20df3trc2c2zdhm8qvh2hdjx9ewh00sv6eyy8
+DREDGER_ADMIN_MNEMONIC="tone cause tribe this switch near host damage idle fragile antique tail soda alien depth write wool they rapid unfold body scan pledge soft"
+DREDGER_FEE_ADDRESS=dred1czvrk3jkvtj8m27kqsqu2yrkhw3h3ykwj3rxh6
 
 # Binaries are contigent on whether we're doing an upgrade or not
 if [[ "$UPGRADE_NAME" == "" ]]; then 
-  STRIDE_BINARY="$DOCKERNET_HOME/../build/dred"
+  DREDGER_BINARY="$DOCKERNET_HOME/../build/dred"
 else
-  STRIDE_BINARY="$UPGRADES/binaries/dred1"
+  DREDGER_BINARY="$UPGRADES/binaries/dred1"
 fi
-STRIDE_MAIN_CMD="$STRIDE_BINARY --home $DOCKERNET_HOME/state/${STRIDE_NODE_PREFIX}1"
+DREDGER_MAIN_CMD="$DREDGER_BINARY --home $DOCKERNET_HOME/state/${DREDGER_NODE_PREFIX}1"
 
 # GAIA 
 GAIA_CHAIN_ID=GAIA
@@ -219,7 +219,7 @@ RELAYER_OSMO_EXEC="$DOCKER_COMPOSE run --rm relayer-osmo"
 RELAYER_STARS_EXEC="$DOCKER_COMPOSE run --rm relayer-stars"
 RELAYER_HOST_EXEC="$DOCKER_COMPOSE run --rm relayer-host"
 
-RELAYER_STRIDE_ACCT=rly1
+RELAYER_DREDGER_ACCT=rly1
 RELAYER_GAIA_ACCT=rly2
 RELAYER_JUNO_ACCT=rly3
 RELAYER_OSMO_ACCT=rly4
@@ -240,8 +240,8 @@ RELAYER_MNEMONICS=(
   "$RELAYER_HOST_MNEMONIC"
 )
 
-STRIDE_ADDRESS() { 
-  $STRIDE_MAIN_CMD keys show ${STRIDE_VAL_PREFIX}1 --keyring-backend test -a 
+DREDGER_ADDRESS() { 
+  $DREDGER_MAIN_CMD keys show ${DREDGER_VAL_PREFIX}1 --keyring-backend test -a 
 }
 GAIA_ADDRESS() { 
   $GAIA_MAIN_CMD keys show ${GAIA_VAL_PREFIX}1 --keyring-backend test -a 
@@ -298,7 +298,7 @@ WAIT_FOR_BALANCE_CHANGE() {
       break
     fi
 
-    WAIT_FOR_BLOCK $STRIDE_LOGS 1
+    WAIT_FOR_BLOCK $DREDGER_LOGS 1
   done
 }
 
@@ -314,7 +314,7 @@ GET_ICA_ADDR() {
   chain_id="$1"
   ica_type="$2" #delegation, fee, redemption, or withdrawal
 
-  $STRIDE_MAIN_CMD q stakeibc show-host-zone $chain_id | grep ${ica_type}_account -A 1 | grep address | awk '{print $2}'
+  $DREDGER_MAIN_CMD q stakeibc show-host-zone $chain_id | grep ${ica_type}_account -A 1 | grep address | awk '{print $2}'
 }
 
 TRIM_TX() {

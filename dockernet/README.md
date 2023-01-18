@@ -24,7 +24,7 @@ while getopts sgojhir{n} flag; do
 * Add the host zone and relayer to `dockernet/docker-compose.yml`. Add 5 nodes, adding port forwarding to the first node only. Add the relayer. Drop the RPC port number by 100, and the API/gRPC port by 10, relative to the last host zone that was added.
 ```
   {new-host-zone}1:
-    image: stridezone:{new-host-zone}
+    image: dredgerzone:{new-host-zone}
     volumes:
       - ./dockernet/state/{new-host-zone}1:/home/{new-host-zone}/.{new-host-zone}d
     ports:
@@ -33,19 +33,19 @@ while getopts sgojhir{n} flag; do
       - "{grpc-port}:9090"
 
   {new-host-zone}2:
-    image: stridezone:{new-host-zone}
+    image: dredgerzone:{new-host-zone}
     volumes:
       - ./dockernet/state/{new-host-zone}2:/home/{new-host-zone}/.{new-host-zone}d
 
     ...
 
   {new-host-zone}5:
-    image: stridezone:{new-host-zone}
+    image: dredgerzone:{new-host-zone}
     volumes:
       - ./dockernet/state/{new-host-zone}5:/home/{new-host-zone}/.{new-host-zone}d
   ...
   relayer-{chain_id}:
-    image: stridezone:relayer
+    image: dredgerzone:relayer
     volumes:
       - ./state/relayer-{chain_id}:/home/relayer/.relayer
     restart: always
@@ -119,7 +119,7 @@ paths:
   ...
     dredger-{new-host-zone}:
     src:
-      chain-id: STRIDE
+      chain-id: DREDGER
     dst:
       chain-id: {CHAIN_ID}
     src-channel-filter:

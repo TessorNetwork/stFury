@@ -1975,7 +1975,7 @@
             "current_epoch_start_height": "0"
           },
           {
-            "identifier": "stride_epoch",
+            "identifier": "dredger_epoch",
             "start_time": "0001-01-01T00:00:00Z",
             "duration": "21600s",
             "current_epoch": "0",
@@ -2021,7 +2021,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1w66lr45r2f4yqlp5zn2quldanatd5ktsl32nuz",
-                  "validator_address": "stridevaloper1w66lr45r2f4yqlp5zn2quldanatd5ktsuyw0s8",
+                  "validator_address": "dredgervaloper1w66lr45r2f4yqlp5zn2quldanatd5ktsuyw0s8",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "0oQ8NC1Fji5bvMZ59SMDU1GGUlat2d6MnmHkCtwnzPg="
@@ -2082,7 +2082,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred106y6thy7gphzrsqq443hl69vfdvntgz2stfwh3",
-                  "validator_address": "stridevaloper106y6thy7gphzrsqq443hl69vfdvntgz2n7djm5",
+                  "validator_address": "dredgervaloper106y6thy7gphzrsqq443hl69vfdvntgz2n7djm5",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "o6UXua6miKw8236XjA1i4fUmhRr6edoN2r5WwKRtoUk="
@@ -2143,7 +2143,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1md2j38ls8hg94vjfafu0a2p9htwlkjmhlnp9ef",
-                  "validator_address": "stridevaloper1md2j38ls8hg94vjfafu0a2p9htwlkjmhux9e4v",
+                  "validator_address": "dredgervaloper1md2j38ls8hg94vjfafu0a2p9htwlkjmhux9e4v",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "bKK/CcpHj3Ynnh8Jv4CQ+5oR9r79ux+JeJ66chCJ1H8="
@@ -2204,7 +2204,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1jj9z2xwxesuy65n90dujsak554eqkrr2ygyan2",
-                  "validator_address": "stridevaloper1jj9z2xwxesuy65n90dujsak554eqkrr28aqpl0",
+                  "validator_address": "dredgervaloper1jj9z2xwxesuy65n90dujsak554eqkrr28aqpl0",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "1/7sl6WRQdIq1ypQXZxCLafMuoKKJKT+PlF5VKFAJao="
@@ -2265,7 +2265,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1elqugvhgmn9esv47e2g56gkgzmydc5yt9veagw",
-                  "validator_address": "stridevaloper1elqugvhgmn9esv47e2g56gkgzmydc5ytxeapyt",
+                  "validator_address": "dredgervaloper1elqugvhgmn9esv47e2g56gkgzmydc5ytxeapyt",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "7nNP9VVOfn+c0XCcGoVA/thFifDjDLIqVDuXWFTTtLI="
@@ -2326,7 +2326,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred19d8a9dr4kh85zcl5kq7fj64ad9r9dqfk8s43y9",
-                  "validator_address": "stridevaloper19d8a9dr4kh85zcl5kq7fj64ad9r9dqfky93dgq",
+                  "validator_address": "dredgervaloper19d8a9dr4kh85zcl5kq7fj64ad9r9dqfky93dgq",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "bVZ/Pqoj9ztW8hr+yD8Azf+y462DDM5XtQgm2A9WQBs="
@@ -2387,7 +2387,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1ej2es5fjztqjcd4pwa0zyvaevtjd2y5wqe4vsj",
-                  "validator_address": "stridevaloper1ej2es5fjztqjcd4pwa0zyvaevtjd2y5wrv3suh",
+                  "validator_address": "dredgervaloper1ej2es5fjztqjcd4pwa0zyvaevtjd2y5wrv3suh",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "HtzEbkGYhQd5rMyNvVnrRZVYwAoHwlB76S6n4/gErTc="
@@ -2448,7 +2448,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1dtqsnk3mlqrcxgfvu39lm0jm3pyd0mkrcajj4a",
-                  "validator_address": "stridevaloper1dtqsnk3mlqrcxgfvu39lm0jm3pyd0mkrmgkwec",
+                  "validator_address": "dredgervaloper1dtqsnk3mlqrcxgfvu39lm0jm3pyd0mkrmgkwec",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "fwpN2mfLehF0K1H0aq4K1aLaN3q8qWsWLb8qknXqNgQ="
@@ -2509,7 +2509,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1j8gkhtllnp252l6g6zwzea30e7pvzqttqs6xtk",
-                  "validator_address": "stridevaloper1j8gkhtllnp252l6g6zwzea30e7pvzqttr9768n",
+                  "validator_address": "dredgervaloper1j8gkhtllnp252l6g6zwzea30e7pvzqttr9768n",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "0iSp6SZeKcGhvdXH2t2ijLwKkgT4cFQRy+dPWD2FpNU="
@@ -2570,7 +2570,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred140l6y2gp3gxvay6qtn70re7z2s0gn57z0jncjd",
-                  "validator_address": "stridevaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zv8hy7g",
+                  "validator_address": "dredgervaloper140l6y2gp3gxvay6qtn70re7z2s0gn57zv8hy7g",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "zNwkSx66rJsZ2zZrW0srhrmfpZ0nceGuo/qDLJaRfjU="
@@ -2631,7 +2631,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1dqpg0hfva0k0awzhxwarjpgzj82hlmvrsnm7ug",
-                  "validator_address": "stridevaloper1dqpg0hfva0k0awzhxwarjpgzj82hlmvrnxlzsd",
+                  "validator_address": "dredgervaloper1dqpg0hfva0k0awzhxwarjpgzj82hlmvrnxlzsd",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "adzEHa8q+S8dBlujhvX2omeEptDJCPJ9eDCKbQL2Gn8="
@@ -2692,7 +2692,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1gp957czryfgyvxwn3tfnyy2f0t9g2p4pxxdj7c",
-                  "validator_address": "stridevaloper1gp957czryfgyvxwn3tfnyy2f0t9g2p4p9nfwja",
+                  "validator_address": "dredgervaloper1gp957czryfgyvxwn3tfnyy2f0t9g2p4p9nfwja",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "LIdoBWSBlJoo4EGrTHBDPf/hoAjnxbpXkDfpMDCaaQs="
@@ -2753,7 +2753,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1hw06c3nsx4a577x45kc4ln5dzct3wk0q2sxyuj",
-                  "validator_address": "stridevaloper1hw06c3nsx4a577x45kc4ln5dzct3wk0qf9zcsh",
+                  "validator_address": "dredgervaloper1hw06c3nsx4a577x45kc4ln5dzct3wk0qf9zcsh",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "VMYK7DXVOY2SlTIAvd5CeyA9YduaQ2cmegJcMagKalI="
@@ -2814,7 +2814,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred169n80dfyqukc8m9uewsxs8h5yc0c80us4meepn",
-                  "validator_address": "stridevaloper169n80dfyqukc8m9uewsxs8h5yc0c80uskwa9dk",
+                  "validator_address": "dredgervaloper169n80dfyqukc8m9uewsxs8h5yc0c80uskwa9dk",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "msv5ZDGweiuEy9ejgXZ6W4HO9KHeng+yAImpr1AN1lc="
@@ -2875,7 +2875,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1mjr7m233g7yklzvfjp7jvtpsjm286dv2qdqh7h",
-                  "validator_address": "stridevaloper1mjr7m233g7yklzvfjp7jvtpsjm286dv2rcytjj",
+                  "validator_address": "dredgervaloper1mjr7m233g7yklzvfjp7jvtpsjm286dv2rcytjj",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "0Et15+28jcLBKbG+5Ju9QBBRus5YqNU/D+z8a7vfugY="
@@ -2936,7 +2936,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred16vxc4n67usd6cvtyrz0as0kegny2t5l7j33qhy",
-                  "validator_address": "stridevaloper16vxc4n67usd6cvtyrz0as0kegny2t5l73y4ump",
+                  "validator_address": "dredgervaloper16vxc4n67usd6cvtyrz0as0kegny2t5l73y4ump",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "jeWIPjuDcYRbF+Oe2Mi2imrcH/UcYfpdFJSJHzGB6h8="
@@ -2997,7 +2997,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1dae4zycvmyd2qt5td9zzgdjdnwyawp79mp0q4a",
-                  "validator_address": "stridevaloper1dae4zycvmyd2qt5td9zzgdjdnwyawp79c5tuec",
+                  "validator_address": "dredgervaloper1dae4zycvmyd2qt5td9zzgdjdnwyawp79c5tuec",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "bbDKcC459U0gv4AY/SYhBMi+9G74+sUXvdz9Z6RFLKA="
@@ -3058,7 +3058,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred1x0agh4jnvamn6y5ss94s6ktugwkljp6yf7jwrt",
-                  "validator_address": "stridevaloper1x0agh4jnvamn6y5ss94s6ktugwkljp6y2tkj0w",
+                  "validator_address": "dredgervaloper1x0agh4jnvamn6y5ss94s6ktugwkljp6y2tkj0w",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "kCXfrQ7ZHKc1jccVYVeuT2BYy2nvppz6+4HQYI1Ay7A="
@@ -3119,7 +3119,7 @@
                   },
                   "min_self_delegation": "1",
                   "delegator_address": "dred16a28swex9y3knnsls7ae072cu30sj6u56060d2",
-                  "validator_address": "stridevaloper16a28swex9y3knnsls7ae072cu30sj6u5e67np0",
+                  "validator_address": "dredgervaloper16a28swex9y3knnsls7ae072cu30sj6u5e67np0",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "nGWbpgoHGTYTgZo1jwJUIcs9pj6fKcEIYqQ52v5s/08="
@@ -3291,7 +3291,7 @@
           "delegate_interval": "1",
           "deposit_interval": "1",
           "redemption_rate_interval": "1",
-          "stride_commission": "10",
+          "dredger_commission": "10",
           "zone_com_address": {},
           "reinvest_interval": "1",
           "validator_rebalancing_threshold": "100",

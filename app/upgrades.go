@@ -15,7 +15,7 @@ import (
 	claimtypes "github.com/TessorNetwork/dredger/x/claim/types"
 )
 
-func (app *StrideApp) setupUpgradeHandlers() {
+func (app *DredgerApp) setupUpgradeHandlers() {
 	// v2 upgrade handler
 	app.UpgradeKeeper.SetUpgradeHandler(
 		v2.UpgradeName,

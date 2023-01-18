@@ -36,7 +36,7 @@ When an epoch triggers the execution of code, that code is executed at the first
 Dredger uses three epoch identifiers as found in `x/epochs/genesis.go`
 
 1. `DAY_EPOCH`: this identifies an epoch that lasts 24 hours.
-2. `STRIDE_EPOCH`: this identifies an epoch that lasts 5 minutes on local mode tesnet (although this may be changed) and longer on public testnet and mainnet, and is used in the `x/stakeibc/` module as a time interval in accordance with which the Dredger app chain performs certain functions, such as autocompound stakig rewards.
+2. `DREDGER_EPOCH`: this identifies an epoch that lasts 5 minutes on local mode tesnet (although this may be changed) and longer on public testnet and mainnet, and is used in the `x/stakeibc/` module as a time interval in accordance with which the Dredger app chain performs certain functions, such as autocompound stakig rewards.
 
 ## State
 
@@ -140,7 +140,7 @@ If in a `day` identifier it:
 3. cleans up old records
 4. creates empty epoch unbonding records for the next day
 
-If in a `stride_epoch` identifier it: 5. creates and deposits records on each host zone 6. sets withdrawal addresses 7. updates redemption rates (if the epoch coincides with the correct interval) 8. processes `TRANSFER_QUEUE` deposit records to the delegation Interchain Account (if the epoch coincides with the correct interval) 9. processes `DELEGATION_QUEUE` deposit records to the delegation Interchain Account (if the epoch coincides with the correct interval) 10. Query the rewards account using interchain queries, with the transfer callback to a delegation account as a staked record (if at proper interval)
+If in a `dredger_epoch` identifier it: 5. creates and deposits records on each host zone 6. sets withdrawal addresses 7. updates redemption rates (if the epoch coincides with the correct interval) 8. processes `TRANSFER_QUEUE` deposit records to the delegation Interchain Account (if the epoch coincides with the correct interval) 9. processes `DELEGATION_QUEUE` deposit records to the delegation Interchain Account (if the epoch coincides with the correct interval) 10. Query the rewards account using interchain queries, with the transfer callback to a delegation account as a staked record (if at proper interval)
 
 ### How modules receive hooks
 

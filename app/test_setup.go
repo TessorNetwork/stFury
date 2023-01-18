@@ -23,7 +23,7 @@ import (
 	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
 )
 
-const Bech32Prefix = "dredger"
+const Bech32Prefix = "dred"
 
 func init() {
 	SetupConfig()
@@ -38,10 +38,10 @@ func SetupConfig() {
 	cmdcfg.SetAddressPrefixes(config)
 }
 
-// Initializes a new StrideApp without IBC functionality
-func InitStrideTestApp(initChain bool) *StrideApp {
+// Initializes a new DredgerApp without IBC functionality
+func InitDredgerTestApp(initChain bool) *DredgerApp {
 	db := dbm.NewMemDB()
-	app := NewStrideApp(
+	app := NewDredgerApp(
 		log.NewNopLogger(),
 		db,
 		nil,
@@ -71,7 +71,7 @@ func InitStrideTestApp(initChain bool) *StrideApp {
 	return app
 }
 
-func GenesisStateWithValSet(app *StrideApp) GenesisState {
+func GenesisStateWithValSet(app *DredgerApp) GenesisState {
 	privVal := mock.NewPV()
 	pubKey, _ := privVal.GetPubKey()
 	validator := tmtypes.NewValidator(pubKey, 1)
@@ -146,7 +146,7 @@ func GenesisStateWithValSet(app *StrideApp) GenesisState {
 }
 
 // Initializes a new Dredger App casted as a TestingApp for IBC support
-func InitStrideIBCTestingApp() (ibctesting.TestingApp, map[string]json.RawMessage) {
-	app := InitStrideTestApp(false)
+func InitDredgerIBCTestingApp() (ibctesting.TestingApp, map[string]json.RawMessage) {
+	app := InitDredgerTestApp(false)
 	return app, NewDefaultGenesisState()
 }

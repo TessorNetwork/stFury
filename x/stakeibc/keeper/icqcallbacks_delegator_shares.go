@@ -60,13 +60,13 @@ func DelegatorSharesCallback(k Keeper, ctx sdk.Context, args []byte, query icqty
 	}
 
 	// Get the validator's internal exchange rate, aborting if it hasn't been updated this epoch
-	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
+	dredgerEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.DREDGER_EPOCH)
 	if !found {
-		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "unable to get epoch tracker for epoch (%s)", epochtypes.STRIDE_EPOCH)
+		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "unable to get epoch tracker for epoch (%s)", epochtypes.DREDGER_EPOCH)
 	}
-	if validator.InternalExchangeRate.EpochNumber != strideEpochTracker.EpochNumber {
+	if validator.InternalExchangeRate.EpochNumber != dredgerEpochTracker.EpochNumber {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest,
-			"validator (%s) internal exchange rate has not been updated this epoch (epoch #%d)", validator.Address, strideEpochTracker.EpochNumber)
+			"validator (%s) internal exchange rate has not been updated this epoch (epoch #%d)", validator.Address, dredgerEpochTracker.EpochNumber)
 	}
 
 	// Calculate the number of tokens delegated (using the internal exchange rate)

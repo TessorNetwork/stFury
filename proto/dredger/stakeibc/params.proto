@@ -10,13 +10,13 @@ option go_package = "github.com/TessorNetwork/dredger/x/stakeibc/types";
 message Params {
   option (gogoproto.goproto_stringer) = false;
 
-  // define epoch lengths, in stride_epochs
+  // define epoch lengths, in dredger_epochs
   uint64 rewards_interval = 1;
   uint64 delegate_interval = 6;
   uint64 deposit_interval = 2;
   uint64 redemption_rate_interval = 3;
 
-  uint64 stride_commission = 4;
+  uint64 dredger_commission = 4;
   // zone_com_address stores which addresses to
   // send the Dredger commission too, as well as what portion
   // of the fee each address is entitled to
