@@ -159,7 +159,7 @@ dred status
 11. Here is an example command to ensure complete understanding:
 
 ```sh
-dred tx bank send val dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000ustrd --chain-id localdredger --keyring-backend test
+dred tx bank send val dred1qym804u6sa2gvxedfy96c0v9jc0ww7593uechw 10000000udred --chain-id localdredger --keyring-backend test
 ```
 
 12. You can stop chain, keeping the state with

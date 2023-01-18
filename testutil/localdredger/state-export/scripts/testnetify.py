@@ -301,27 +301,27 @@ def main():
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == new_account.address:
             for coin in balance['coins']:
-                if coin['denom'] == "ustrd":
+                if coin['denom'] == "udred":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} ustrd balance to {}".format(new_account.address, coin["amount"]))
+                    print("\tUpdate {} udred balance to {}".format(new_account.address, coin["amount"]))
                     break
             break
 
-    # Add 1 BN ustrd to bonded_tokens_pool module address
+    # Add 1 BN udred to bonded_tokens_pool module address
     for balance in genesis['app_state']['bank']['balances']:
         if balance['address'] == BONDED_TOKENS_POOL_MODULE_ADDRESS:
-            # Find ustrd
+            # Find udred
             for coin in balance['coins']:
-                if coin['denom'] == "ustrd":
+                if coin['denom'] == "udred":
                     coin["amount"] = str(int(coin["amount"]) + 1000000000000000)
-                    print("\tUpdate {} (bonded_tokens_pool_module) ustrd balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
+                    print("\tUpdate {} (bonded_tokens_pool_module) udred balance to {}".format(BONDED_TOKENS_POOL_MODULE_ADDRESS, coin["amount"]))
                     break
             break
 
     # Update bank balance
     for supply in genesis['app_state']['bank']['supply']:
-        if supply["denom"] == "ustrd":
-            print("\tUpdate total ustrd supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
+        if supply["denom"] == "udred":
+            print("\tUpdate total udred supply from {} to {}".format(supply["amount"], str(int(supply["amount"]) + 2000000000000000)))
             supply["amount"] = str(int(supply["amount"]) + 2000000000000000)
             break
 

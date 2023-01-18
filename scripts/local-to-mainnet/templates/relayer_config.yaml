@@ -13,7 +13,7 @@ chains:
       account-prefix: dredger
       keyring-backend: test
       gas-adjustment: 1.2
-      gas-prices: 0.01ustrd
+      gas-prices: 0.01udred
       debug: false
       timeout: 20s
       output-format: json

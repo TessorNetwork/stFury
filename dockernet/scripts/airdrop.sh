@@ -22,13 +22,13 @@ echo "Funding accounts..."
 $GAIA_MAIN_CMD tx ibc-transfer transfer transfer channel-0 dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr 1000000uatom --from ${GAIA_VAL_PREFIX}1 -y 
 sleep 5
 # Fund the distributor account
-$DREDGER_MAIN_CMD tx bank send val1 dred1z835j3j65nqr6ng257q0xkkc9gta72gf48txwl 600000ustrd --from val1 -y
+$DREDGER_MAIN_CMD tx bank send val1 dred1z835j3j65nqr6ng257q0xkkc9gta72gf48txwl 600000udred --from val1 -y
 sleep 5
 # Fund the airdrop account
-$DREDGER_MAIN_CMD tx bank send val1 dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr 1000000000ustrd --from val1 -y
+$DREDGER_MAIN_CMD tx bank send val1 dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr 1000000000udred --from val1 -y
 sleep 5
 # Create the airdrop, so that the airdrop account can claim tokens
-$DREDGER_MAIN_CMD tx claim create-airdrop dredger 1666792900 40000000 ustrd --from distributor-test -y
+$DREDGER_MAIN_CMD tx claim create-airdrop dredger 1666792900 40000000 udred --from distributor-test -y
 sleep 5
 # Set airdrop allocations
 $DREDGER_MAIN_CMD tx claim set-airdrop-allocations dredger dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr 1 --from distributor-test -y
@@ -47,7 +47,7 @@ echo "Balance after claim:"
 $DREDGER_MAIN_CMD query bank balances dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr
 # Stake, to claim another 20%
 echo "Staking..."
-$DREDGER_MAIN_CMD tx staking delegate dredgervaloper1nnurja9zt97huqvsfuartetyjx63tc5zrj5x9f 100ustrd --from airdrop-test --gas 400000
+$DREDGER_MAIN_CMD tx staking delegate dredgervaloper1nnurja9zt97huqvsfuartetyjx63tc5zrj5x9f 100udred --from airdrop-test --gas 400000
 sleep 5
 echo "Balance after stake:" 
 $DREDGER_MAIN_CMD query bank balances dred1nf6v2paty9m22l3ecm7dpakq2c92ueyununayr
