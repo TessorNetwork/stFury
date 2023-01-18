@@ -17,11 +17,11 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 
-	"github.com/TessorNetwork/dredger/v4/x/mint/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/mint/keeper"
+	"github.com/TessorNetwork/dredger/x/mint/client/cli"
+	"github.com/TessorNetwork/dredger/x/mint/keeper"
 
-	//"github.com/TessorNetwork/dredger/v4/x/mint/simulation"
-	"github.com/TessorNetwork/dredger/v4/x/mint/types"
+	//"github.com/TessorNetwork/dredger/x/mint/simulation"
+	"github.com/TessorNetwork/dredger/x/mint/types"
 )
 
 var (

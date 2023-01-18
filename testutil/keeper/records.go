@@ -7,8 +7,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	strideapp "github.com/TessorNetwork/dredger/v4/app"
-	"github.com/TessorNetwork/dredger/v4/x/records/keeper"
+	strideapp "github.com/TessorNetwork/dredger/app"
+	"github.com/TessorNetwork/dredger/x/records/keeper"
 )
 
 func RecordsKeeper(t testing.TB) (*keeper.Keeper, sdk.Context) {

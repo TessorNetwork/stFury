@@ -12,8 +12,8 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	vestexported "github.com/TessorNetwork/dredger/v4/x/claim/vesting/exported"
+	"github.com/TessorNetwork/dredger/utils"
+	vestexported "github.com/TessorNetwork/dredger/x/claim/vesting/exported"
 )
 
 // Compile-time type assertions

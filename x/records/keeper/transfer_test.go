@@ -9,8 +9,8 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
-	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/x/records/types"
+	recordtypes "github.com/TessorNetwork/dredger/x/records/types"
 )
 
 type TransferTestCase struct {

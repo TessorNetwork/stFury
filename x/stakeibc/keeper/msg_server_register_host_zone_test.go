@@ -12,10 +12,10 @@ import (
 
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	recordtypes "github.com/TessorNetwork/dredger/x/records/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 type RegisterHostZoneTestCase struct {

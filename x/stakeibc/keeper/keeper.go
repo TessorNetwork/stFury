@@ -13,8 +13,8 @@ import (
 	capabilitykeeper "github.com/cosmos/cosmos-sdk/x/capability/keeper"
 	capabilitytypes "github.com/cosmos/cosmos-sdk/x/capability/types"
 
-	icqkeeper "github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	icqkeeper "github.com/TessorNetwork/dredger/x/interchainquery/keeper"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
@@ -24,9 +24,9 @@ import (
 
 	storetypes "github.com/cosmos/cosmos-sdk/store/types"
 
-	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	icacallbackskeeper "github.com/TessorNetwork/dredger/v4/x/icacallbacks/keeper"
-	recordsmodulekeeper "github.com/TessorNetwork/dredger/v4/x/records/keeper"
+	epochstypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	icacallbackskeeper "github.com/TessorNetwork/dredger/x/icacallbacks/keeper"
+	recordsmodulekeeper "github.com/TessorNetwork/dredger/x/records/keeper"
 )
 
 type (

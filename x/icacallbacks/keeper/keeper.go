@@ -14,8 +14,8 @@ import (
 
 	ibckeeper "github.com/cosmos/ibc-go/v5/modules/core/keeper"
 
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
 
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 

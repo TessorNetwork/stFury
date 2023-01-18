@@ -7,7 +7,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/spf13/cobra"
 
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 func CmdListCallbackData() *cobra.Command {

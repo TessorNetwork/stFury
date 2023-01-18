@@ -1,4 +1,4 @@
-module github.com/TessorNetwork/dredger/v4
+module github.com/TessorNetwork/dredger
 
 go 1.19
 
@@ -170,7 +170,7 @@ replace (
 	github.com/ignite-hq/cli => github.com/ignite-hq/cli v0.21.0
 
 	// fork cast to add additional error checking
-	github.com/spf13/cast => github.com/Dredger-Labs/cast v0.0.3
+	github.com/spf13/cast => github.com/Stride-Labs/cast v0.0.3
 
 	// use the version of grpc compatible with the regen networks protobufs.
 	google.golang.org/grpc => google.golang.org/grpc v1.50.1

@@ -4,7 +4,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // SetMinValidatorRequirements set minValidatorRequirements in the store

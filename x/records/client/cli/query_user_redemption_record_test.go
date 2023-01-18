@@ -14,10 +14,10 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/network"
-	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
-	"github.com/TessorNetwork/dredger/v4/x/records/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/testutil/network"
+	"github.com/TessorNetwork/dredger/testutil/nullify"
+	"github.com/TessorNetwork/dredger/x/records/client/cli"
+	"github.com/TessorNetwork/dredger/x/records/types"
 )
 
 func networkWithUserRedemptionRecordObjects(t *testing.T, n int) (*network.Network, []types.UserRedemptionRecord) {

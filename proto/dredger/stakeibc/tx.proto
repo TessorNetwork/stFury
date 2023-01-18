@@ -4,7 +4,7 @@ package dredger.stakeibc;
 import "dredger/stakeibc/ica_account.proto";
 // this line is used by starport scaffolding # proto/tx/import
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/x/stakeibc/types";
 import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
 

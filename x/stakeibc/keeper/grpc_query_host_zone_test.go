@@ -11,9 +11,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	keepertest "github.com/TessorNetwork/dredger/v4/testutil/keeper"
-	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	keepertest "github.com/TessorNetwork/dredger/testutil/keeper"
+	"github.com/TessorNetwork/dredger/testutil/nullify"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 func TestHostZoneQuerySingle(t *testing.T) {

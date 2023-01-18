@@ -3,7 +3,7 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 func (k Keeper) AddValidatorProposal(ctx sdk.Context, msg *types.AddValidatorProposal) error {

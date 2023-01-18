@@ -3,7 +3,7 @@ package dredger.claim;
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/x/claim/types";
 
 enum Action {
   option (gogoproto.goproto_enum_prefix) = false;

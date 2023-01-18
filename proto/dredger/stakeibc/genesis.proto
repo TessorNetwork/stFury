@@ -8,7 +8,7 @@ import "dredger/stakeibc/host_zone.proto";
 import "dredger/stakeibc/epoch_tracker.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/x/stakeibc/types";
 
 // GenesisState defines the stakeibc module's genesis state.
 message GenesisState {

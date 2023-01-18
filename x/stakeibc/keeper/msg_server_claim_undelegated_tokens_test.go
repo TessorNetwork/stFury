@@ -10,10 +10,10 @@ import (
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	_ "github.com/stretchr/testify/suite"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
-	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	recordtypes "github.com/TessorNetwork/dredger/x/records/types"
+	stakeibckeeper "github.com/TessorNetwork/dredger/x/stakeibc/keeper"
+	stakeibctypes "github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 type ClaimUndelegatedState struct {

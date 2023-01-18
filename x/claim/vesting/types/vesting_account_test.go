@@ -11,7 +11,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/vesting/types"
+	"github.com/TessorNetwork/dredger/x/claim/vesting/types"
 )
 
 var (

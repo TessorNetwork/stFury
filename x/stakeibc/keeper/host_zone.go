@@ -12,8 +12,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/utils"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // GetHostZoneCount get the total number of hostZone

@@ -6,7 +6,7 @@ import (
 
 	_ "github.com/stretchr/testify/suite"
 
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 func (suite *KeeperTestSuite) TestQueryEpochInfos() {

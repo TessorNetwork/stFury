@@ -7,10 +7,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/spf13/cast"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/utils"
+	epochstypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 func (k Keeper) BeforeEpochStart(ctx sdk.Context, epochInfo epochstypes.EpochInfo) {

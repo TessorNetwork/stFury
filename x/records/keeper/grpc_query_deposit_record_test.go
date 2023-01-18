@@ -10,13 +10,13 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	keepertest "github.com/TessorNetwork/dredger/v4/testutil/keeper"
-	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
+	keepertest "github.com/TessorNetwork/dredger/testutil/keeper"
+	"github.com/TessorNetwork/dredger/testutil/nullify"
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/x/records/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/x/records/keeper"
+	"github.com/TessorNetwork/dredger/x/records/types"
 )
 
 func createNDepositRecord(keeper *keeper.Keeper, ctx sdk.Context, n int) []types.DepositRecord {

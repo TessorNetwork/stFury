@@ -4,7 +4,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
+	"github.com/TessorNetwork/dredger/utils"
 )
 
 const TypeMsgChangeValidatorWeight = "change_validator_weight"

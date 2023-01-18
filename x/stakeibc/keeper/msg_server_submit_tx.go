@@ -8,11 +8,11 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/spf13/cast"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/utils"
+	icacallbackstypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
 
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
@@ -20,8 +20,8 @@ import (
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	epochstypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/x/interchainquery/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	icatypes "github.com/cosmos/ibc-go/v5/modules/apps/27-interchain-accounts/types"

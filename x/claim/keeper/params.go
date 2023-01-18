@@ -3,7 +3,7 @@ package keeper
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 // GetParams get params

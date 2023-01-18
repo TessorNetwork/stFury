@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
-	testkeeper "github.com/TessorNetwork/dredger/v4/testutil/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	testkeeper "github.com/TessorNetwork/dredger/testutil/keeper"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 func TestParamsQuery(t *testing.T) {

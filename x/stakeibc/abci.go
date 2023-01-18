@@ -6,8 +6,8 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/telemetry"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/keeper"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )

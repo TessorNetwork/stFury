@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/TessorNetwork/dredger/v4/app/apptesting"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/app/apptesting"
+	"github.com/TessorNetwork/dredger/x/stakeibc/keeper"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 const (

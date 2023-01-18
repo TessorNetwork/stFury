@@ -17,9 +17,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/client/cli"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/keeper"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 var (

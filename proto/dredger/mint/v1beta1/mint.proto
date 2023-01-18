@@ -1,7 +1,7 @@
 syntax = "proto3";
 package dredger.mint.v1beta1;
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/mint/types";
+option go_package = "github.com/TessorNetwork/dredger/x/mint/types";
 
 import "gogoproto/gogo.proto";
 

@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/TessorNetwork/dredger/v4/app/apptesting"
+	"github.com/TessorNetwork/dredger/app/apptesting"
 )
 
 const dummyUpgradeHeight = 5

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/TessorNetwork/dredger/v4/x/epochs"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/epochs"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 func (suite *KeeperTestSuite) TestEpochInfoChangesBeginBlockerAndInitGenesis() {

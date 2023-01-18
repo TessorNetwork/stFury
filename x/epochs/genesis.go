@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/epochs/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/epochs/keeper"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

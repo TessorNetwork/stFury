@@ -4,7 +4,7 @@ package dredger.mint.v1beta1;
 import "gogoproto/gogo.proto";
 import "dredger/mint/v1beta1/mint.proto";
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/mint/types";
+option go_package = "github.com/TessorNetwork/dredger/x/mint/types";
 
 // GenesisState defines the mint module's genesis state.
 message GenesisState {

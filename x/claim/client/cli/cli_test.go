@@ -15,23 +15,23 @@ import (
 	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
 	banktestutil "github.com/cosmos/cosmos-sdk/x/bank/client/testutil"
 
-	strideclitestutil "github.com/TessorNetwork/dredger/v4/testutil/cli"
+	strideclitestutil "github.com/TessorNetwork/dredger/testutil/cli"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/network"
+	"github.com/TessorNetwork/dredger/testutil/network"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/suite"
 
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/client/cli"
+	"github.com/TessorNetwork/dredger/x/claim/client/cli"
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/app"
-	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
-	claimtypes "github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/app"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
+	"github.com/TessorNetwork/dredger/x/claim/types"
+	claimtypes "github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 var addr1 sdk.AccAddress

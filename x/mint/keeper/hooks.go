@@ -3,8 +3,8 @@ package keeper
 import (
 	"fmt"
 
-	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	"github.com/TessorNetwork/dredger/v4/x/mint/types"
+	epochstypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/mint/types"
 
 	"github.com/cosmos/cosmos-sdk/telemetry"
 	sdk "github.com/cosmos/cosmos-sdk/types"

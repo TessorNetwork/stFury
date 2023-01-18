@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 func (suite *KeeperTestSuite) createTestICAAccount() types.ICAAccount {

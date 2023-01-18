@@ -12,9 +12,9 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/TessorNetwork/dredger/v4/app"
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
-	minttypes "github.com/TessorNetwork/dredger/v4/x/mint/types"
+	"github.com/TessorNetwork/dredger/app"
+	"github.com/TessorNetwork/dredger/x/claim/types"
+	minttypes "github.com/TessorNetwork/dredger/x/mint/types"
 )
 
 type KeeperTestSuite struct {

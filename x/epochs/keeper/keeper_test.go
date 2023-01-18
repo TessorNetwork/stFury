@@ -5,8 +5,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/TessorNetwork/dredger/v4/app/apptesting"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/app/apptesting"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 type KeeperTestSuite struct {

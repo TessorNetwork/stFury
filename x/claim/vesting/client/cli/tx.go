@@ -5,7 +5,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/vesting/types"
+	"github.com/TessorNetwork/dredger/x/claim/vesting/types"
 )
 
 // GetTxCmd returns dredger vesting module's transaction commands.

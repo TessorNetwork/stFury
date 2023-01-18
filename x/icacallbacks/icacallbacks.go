@@ -10,7 +10,7 @@ import (
 	"github.com/gogo/protobuf/proto"
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 // Parses ICA tx responses and returns a list of each serialized response

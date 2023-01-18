@@ -10,9 +10,9 @@ import (
 	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
 	"github.com/cosmos/cosmos-sdk/x/simulation"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/sample"
-	recordssimulation "github.com/TessorNetwork/dredger/v4/x/records/simulation"
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/testutil/sample"
+	recordssimulation "github.com/TessorNetwork/dredger/x/records/simulation"
+	"github.com/TessorNetwork/dredger/x/records/types"
 )
 
 // avoid unused import issue

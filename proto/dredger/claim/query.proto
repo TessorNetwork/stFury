@@ -8,7 +8,7 @@ import "dredger/claim/claim.proto";
 import "dredger/claim/params.proto";
 import "dredger/vesting/vesting.proto";
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/x/claim/types";
 
 // Query defines the gRPC querier service.
 service Query {

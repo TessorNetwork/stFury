@@ -11,7 +11,7 @@ import "dredger/stakeibc/host_zone.proto";
 import "dredger/stakeibc/epoch_tracker.proto";
 // this line is used by starport scaffolding # 1
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/x/stakeibc/types";
 
 // Query defines the gRPC querier service.
 service Query {

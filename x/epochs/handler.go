@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/x/epochs/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/epochs/keeper"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 // NewHandler returns a handler for epochs module messages

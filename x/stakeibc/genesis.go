@@ -3,8 +3,8 @@ package stakeibc
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/keeper"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

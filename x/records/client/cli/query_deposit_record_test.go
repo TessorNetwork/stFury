@@ -11,10 +11,10 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/network"
-	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
-	"github.com/TessorNetwork/dredger/v4/x/records/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/testutil/network"
+	"github.com/TessorNetwork/dredger/testutil/nullify"
+	"github.com/TessorNetwork/dredger/x/records/client/cli"
+	"github.com/TessorNetwork/dredger/x/records/types"
 )
 
 func networkWithDepositRecordObjects(t *testing.T, n int) (*network.Network, []types.DepositRecord) {

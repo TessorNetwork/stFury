@@ -8,9 +8,9 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	icatypes "github.com/cosmos/ibc-go/v5/modules/apps/27-interchain-accounts/types"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"

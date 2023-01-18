@@ -19,9 +19,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/client/cli"
+	"github.com/TessorNetwork/dredger/x/stakeibc/keeper"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 var (

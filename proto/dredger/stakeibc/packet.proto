@@ -3,7 +3,7 @@ package dredger.stakeibc;
 
 // this line is used by starport scaffolding # proto/packet/import
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/stakeibc/types";
+option go_package = "github.com/TessorNetwork/dredger/x/stakeibc/types";
 
 message StakeibcPacketData {
   oneof packet {

@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/x/interchainquery/keeper"
+	"github.com/TessorNetwork/dredger/x/interchainquery/types"
 )
 
 // NewHandler returns a handler for interchainquery module messages

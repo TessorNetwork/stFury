@@ -7,7 +7,7 @@ import (
 
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 type msgServer struct {

@@ -8,8 +8,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 func (k msgServer) LiquidStake(goCtx context.Context, msg *types.MsgLiquidStake) (*types.MsgLiquidStakeResponse, error) {

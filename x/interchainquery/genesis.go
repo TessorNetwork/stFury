@@ -3,8 +3,8 @@ package interchainquery
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/interchainquery/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/x/interchainquery/keeper"
+	"github.com/TessorNetwork/dredger/x/interchainquery/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

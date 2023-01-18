@@ -5,7 +5,7 @@ import "gogoproto/gogo.proto";
 import "dredger/claim/claim.proto";
 import "dredger/claim/params.proto";
 
-option go_package = "github.com/TessorNetwork/dredger/v4/x/claim/types";
+option go_package = "github.com/TessorNetwork/dredger/x/claim/types";
 
 // GenesisState defines the claim module's genesis state.
 message GenesisState {

@@ -11,9 +11,9 @@ import (
 	clienttypes "github.com/cosmos/ibc-go/v5/modules/core/02-client/types"
 	"github.com/spf13/cast"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/utils"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // Create a new deposit record for each host zone for the given epoch

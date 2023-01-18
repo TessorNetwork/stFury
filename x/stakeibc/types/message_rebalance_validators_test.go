@@ -6,7 +6,7 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"github.com/stretchr/testify/require"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/sample"
+	"github.com/TessorNetwork/dredger/testutil/sample"
 )
 
 func TestMsgRebalanceValidators_ValidateBasic(t *testing.T) {

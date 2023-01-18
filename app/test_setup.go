@@ -20,7 +20,7 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
 )
 
 const Bech32Prefix = "dredger"

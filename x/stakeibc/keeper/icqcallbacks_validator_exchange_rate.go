@@ -6,10 +6,10 @@ import (
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/utils"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // ValidatorCallback is a callback handler for validator queries.

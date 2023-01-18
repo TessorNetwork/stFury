@@ -7,7 +7,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 // Test functionality for loading allocation data(csv)

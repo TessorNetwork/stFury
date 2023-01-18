@@ -5,10 +5,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	keepertest "github.com/TessorNetwork/dredger/v4/testutil/keeper"
-	"github.com/TessorNetwork/dredger/v4/testutil/nullify"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	keepertest "github.com/TessorNetwork/dredger/testutil/keeper"
+	"github.com/TessorNetwork/dredger/testutil/nullify"
+	"github.com/TessorNetwork/dredger/x/icacallbacks"
+	"github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 func TestGenesis(t *testing.T) {

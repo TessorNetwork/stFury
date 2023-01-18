@@ -6,10 +6,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	stakingibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochstypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	stakingibctypes "github.com/TessorNetwork/dredger/x/stakeibc/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 func (k Keeper) AfterDelegationModified(ctx sdk.Context, delAddr sdk.AccAddress, valAddr sdk.ValAddress) error {

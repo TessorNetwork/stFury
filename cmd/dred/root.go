@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/snapshots"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
+	"github.com/TessorNetwork/dredger/utils"
 
 	tmDb "github.com/tendermint/tm-db"
 
@@ -40,8 +40,8 @@ import (
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 	tmcfg "github.com/tendermint/tendermint/config"
 
-	"github.com/TessorNetwork/dredger/v4/app"
-	// "github.com/TessorNetwork/dredger/v4/app/params"
+	"github.com/TessorNetwork/dredger/app"
+	// "github.com/TessorNetwork/dredger/app/params"
 	// this line is used by starport scaffolding # stargate/root/import
 )
 

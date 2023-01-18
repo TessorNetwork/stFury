@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/mint/types"
+	"github.com/TessorNetwork/dredger/x/mint/types"
 )
 
 var _ types.QueryServer = Querier{}

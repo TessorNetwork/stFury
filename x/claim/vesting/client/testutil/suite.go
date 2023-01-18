@@ -3,7 +3,7 @@ package testutil
 import (
 	"github.com/stretchr/testify/suite"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/network"
+	"github.com/TessorNetwork/dredger/testutil/network"
 )
 
 type IntegrationTestSuite struct {

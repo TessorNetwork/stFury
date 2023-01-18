@@ -7,8 +7,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
-	claimkeeper "github.com/TessorNetwork/dredger/v4/x/claim/keeper"
-	claimtypes "github.com/TessorNetwork/dredger/v4/x/claim/types"
+	claimkeeper "github.com/TessorNetwork/dredger/x/claim/keeper"
+	claimtypes "github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 // Note: ensure these values are properly set before running upgrade

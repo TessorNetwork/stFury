@@ -8,9 +8,9 @@ import (
 	icatypes "github.com/cosmos/ibc-go/v5/modules/apps/27-interchain-accounts/types"
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
-	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	icacallbackstypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 type RebalanceValidatorsTestCase struct {

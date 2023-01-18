@@ -20,10 +20,10 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/TessorNetwork/dredger/v4/x/epochs/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/simulation"
-	"github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/x/epochs/client/cli"
+	"github.com/TessorNetwork/dredger/x/epochs/keeper"
+	"github.com/TessorNetwork/dredger/x/epochs/simulation"
+	"github.com/TessorNetwork/dredger/x/epochs/types"
 )
 
 var (

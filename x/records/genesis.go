@@ -3,8 +3,8 @@ package records
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/records/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/x/records/keeper"
+	"github.com/TessorNetwork/dredger/x/records/types"
 )
 
 // InitGenesis initializes the capability module's state from a provided genesis

@@ -5,9 +5,9 @@ import (
 
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"github.com/TessorNetwork/dredger/v4/app"
+	"github.com/TessorNetwork/dredger/app"
 
-	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
+	cmdcfg "github.com/TessorNetwork/dredger/cmd/dred/config"
 )
 
 func main() {

@@ -5,10 +5,10 @@ import (
 	ibctesting "github.com/cosmos/ibc-go/v5/testing"
 	_ "github.com/stretchr/testify/suite"
 
-	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	recordtypes "github.com/TessorNetwork/dredger/x/records/types"
 
-	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
-	stakeibc "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/x/epochs/types"
+	stakeibc "github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 type SweepUnbondedTokensTestCase struct {

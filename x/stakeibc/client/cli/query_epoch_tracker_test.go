@@ -11,9 +11,9 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 
-	"github.com/TessorNetwork/dredger/v4/testutil/network"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/client/cli"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/testutil/network"
+	"github.com/TessorNetwork/dredger/x/stakeibc/client/cli"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 // Prevent strconv unused error

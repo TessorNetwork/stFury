@@ -3,7 +3,7 @@ package vesting
 import (
 	"github.com/cosmos/cosmos-sdk/x/auth/keeper"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/vesting/types"
+	"github.com/TessorNetwork/dredger/x/claim/vesting/types"
 )
 
 type msgServer struct {

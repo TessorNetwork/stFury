@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 
-	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	recordstypes "github.com/TessorNetwork/dredger/x/records/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
+	"github.com/TessorNetwork/dredger/utils"
 )
 
 func (k msgServer) RedeemStake(goCtx context.Context, msg *types.MsgRedeemStake) (*types.MsgRedeemStakeResponse, error) {

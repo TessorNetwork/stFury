@@ -3,9 +3,9 @@ package keeper
 import (
 	"fmt"
 
-	"github.com/TessorNetwork/dredger/v4/utils"
-	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/utils"
+	icacallbackstypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"

@@ -7,12 +7,12 @@ import (
 	channeltypes "github.com/cosmos/ibc-go/v5/modules/core/04-channel/types"
 	_ "github.com/stretchr/testify/suite"
 
-	icacallbacktypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
-	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
-	stakeibckeeper "github.com/TessorNetwork/dredger/v4/x/stakeibc/keeper"
+	icacallbacktypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
+	recordtypes "github.com/TessorNetwork/dredger/x/records/types"
+	stakeibckeeper "github.com/TessorNetwork/dredger/x/stakeibc/keeper"
 
-	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
-	stakeibc "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/x/stakeibc/types"
+	stakeibc "github.com/TessorNetwork/dredger/x/stakeibc/types"
 )
 
 type RedemptionCallbackState struct {

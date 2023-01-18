@@ -17,9 +17,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/TessorNetwork/dredger/v4/app/apptesting"
-	"github.com/TessorNetwork/dredger/v4/x/icacallbacks"
-	icacallbacktypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	"github.com/TessorNetwork/dredger/app/apptesting"
+	"github.com/TessorNetwork/dredger/x/icacallbacks"
+	icacallbacktypes "github.com/TessorNetwork/dredger/x/icacallbacks/types"
 )
 
 func TestParseTxMsgDataCurrent(t *testing.T) {

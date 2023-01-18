@@ -6,8 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/TessorNetwork/dredger/v4/x/claim/keeper"
-	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/x/claim/keeper"
+	"github.com/TessorNetwork/dredger/x/claim/types"
 )
 
 func (suite *KeeperTestSuite) TestSetAirdropAllocationsForMultiAirdrops() {
