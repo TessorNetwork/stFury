@@ -6,8 +6,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/Stride-Labs/stride/v4/x/claim/keeper"
-	"github.com/Stride-Labs/stride/v4/x/claim/types"
+	"github.com/TessorNetwork/dredger/v4/x/claim/keeper"
+	"github.com/TessorNetwork/dredger/v4/x/claim/types"
 )
 
 func (suite *KeeperTestSuite) TestSetAirdropAllocationsForMultiAirdrops() {
@@ -125,7 +125,7 @@ func (suite *KeeperTestSuite) TestCreateAirdrop() {
 
 	_, err := msgServer.CreateAirdrop(sdk.WrapSDKContext(suite.ctx), &types.MsgCreateAirdrop{
 		Distributor: distributors[types.DefaultAirdropIdentifier].String(),
-		Identifier:  "stride-1",
+		Identifier:  "dredger-1",
 		StartTime:   uint64(time.Now().Unix()),
 		Duration:    uint64(time.Hour),
 		Denom:       "stake",

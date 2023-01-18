@@ -20,10 +20,10 @@ import (
 	tmtypes "github.com/tendermint/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	cmdcfg "github.com/Stride-Labs/stride/v4/cmd/strided/config"
+	cmdcfg "github.com/TessorNetwork/dredger/v4/cmd/dred/config"
 )
 
-const Bech32Prefix = "stride"
+const Bech32Prefix = "dredger"
 
 func init() {
 	SetupConfig()
@@ -145,7 +145,7 @@ func GenesisStateWithValSet(app *StrideApp) GenesisState {
 	return genesisState
 }
 
-// Initializes a new Stride App casted as a TestingApp for IBC support
+// Initializes a new Dredger App casted as a TestingApp for IBC support
 func InitStrideIBCTestingApp() (ibctesting.TestingApp, map[string]json.RawMessage) {
 	app := InitStrideTestApp(false)
 	return app, NewDefaultGenesisState()

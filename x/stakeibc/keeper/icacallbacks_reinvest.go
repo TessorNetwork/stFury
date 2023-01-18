@@ -3,11 +3,11 @@ package keeper
 import (
 	"fmt"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icacallbackstypes "github.com/Stride-Labs/stride/v4/x/icacallbacks/types"
-	recordstypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icacallbackstypes "github.com/TessorNetwork/dredger/v4/x/icacallbacks/types"
+	recordstypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
@@ -68,7 +68,7 @@ func ReinvestCallback(k Keeper, ctx sdk.Context, packet channeltypes.Packet, ack
 	k.Logger(ctx).Info(utils.LogICACallbackStatusWithHostZone(chainId, ICACallbackID_Reinvest,
 		icacallbackstypes.AckResponseStatus_SUCCESS, packet))
 
-	// Get the current stride epoch number
+	// Get the current dredger epoch number
 	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
 	if !found {
 		k.Logger(ctx).Error("failed to find epoch")

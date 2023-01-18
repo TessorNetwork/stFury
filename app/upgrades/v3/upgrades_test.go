@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/Stride-Labs/stride/v4/app/apptesting"
+	"github.com/TessorNetwork/dredger/v4/app/apptesting"
 )
 
 var (
-	airdropIdentifiers = []string{"stride", "gaia", "osmosis", "juno", "stars"}
+	airdropIdentifiers = []string{"dredger", "gaia", "osmosis", "juno", "stars"}
 )
 
 const dummyUpgradeHeight = 5

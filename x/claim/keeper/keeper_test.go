@@ -12,9 +12,9 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/Stride-Labs/stride/v4/app"
-	"github.com/Stride-Labs/stride/v4/x/claim/types"
-	minttypes "github.com/Stride-Labs/stride/v4/x/mint/types"
+	"github.com/TessorNetwork/dredger/v4/app"
+	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	minttypes "github.com/TessorNetwork/dredger/v4/x/mint/types"
 )
 
 type KeeperTestSuite struct {
@@ -29,10 +29,10 @@ var distributors map[string]sdk.AccAddress
 
 func (suite *KeeperTestSuite) SetupTest() {
 	suite.app = app.InitStrideTestApp(true)
-	suite.ctx = suite.app.BaseApp.NewContext(false, tmproto.Header{Height: 1, ChainID: "stride-1", Time: time.Now().UTC()})
+	suite.ctx = suite.app.BaseApp.NewContext(false, tmproto.Header{Height: 1, ChainID: "dredger-1", Time: time.Now().UTC()})
 	distributors = make(map[string]sdk.AccAddress)
 
-	// Initiate a distributor account for stride user airdrop
+	// Initiate a distributor account for dredger user airdrop
 	pub1 := secp256k1.GenPrivKey().PubKey()
 	addr1 := sdk.AccAddress(pub1.Address())
 	suite.app.AccountKeeper.SetAccount(suite.ctx, authtypes.NewBaseAccount(addr1, nil, 0, 0))
@@ -68,7 +68,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 		panic(err)
 	}
 
-	// Stride airdrop
+	// Dredger airdrop
 	airdropStartTime := time.Now()
 	err = suite.app.ClaimKeeper.CreateAirdropAndEpoch(suite.ctx, addr1.String(), sdk.DefaultBondDenom, uint64(airdropStartTime.Unix()), uint64(types.DefaultAirdropDuration.Seconds()), types.DefaultAirdropIdentifier)
 	if err != nil {

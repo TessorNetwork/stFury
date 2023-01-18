@@ -10,7 +10,7 @@ import (
 	_ "github.com/stretchr/testify/suite"
 	"github.com/tendermint/tendermint/proto/tendermint/crypto"
 
-	"github.com/Stride-Labs/stride/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
 )
 
 const (
@@ -39,7 +39,7 @@ func (s *KeeperTestSuite) SetupMsgSubmitQueryResponse() MsgSubmitQueryResponseTe
 
 	_, addr, _ := bech32.DecodeAndConvert(s.TestAccs[0].String())
 	data := banktypes.CreateAccountBalancesPrefix(addr)
-	// save the query to Stride state, so it can be retrieved in the response
+	// save the query to Dredger state, so it can be retrieved in the response
 	query := types.Query{
 		Id:           expectedId,
 		CallbackId:   "withdrawalbalance",
@@ -121,7 +121,7 @@ func (s *KeeperTestSuite) TestMsgSubmitQueryResponse_FindAndInvokeCallback_Wrong
 }
 
 // To write this test, we need to write data to Gaia, then get the proof for that data and check it using the LC
-// As a first pass, to verify proof checking, we will use an example from Stride integration testing
+// As a first pass, to verify proof checking, we will use an example from Dredger integration testing
 //     //   ...down the line, we may want to write tests here that verify the merkle check using proofs from tendermint's proof_test library, https://github.com/tendermint/tendermint/blob/75d51e18f740c7cbfb7d8b4d49182ee6c7f41982/crypto/merkle/proof_test.go
 // func (s *KeeperTestSuite) TestMsgSubmitQueryResponse_VerifyProofSuccess() {
 // 	tc := s.SetupMsgSubmitQueryResponse()

@@ -19,7 +19,7 @@ class Account:
     address: str
 
 # Contants
-BONDED_TOKENS_POOL_MODULE_ADDRESS = "stride1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
+BONDED_TOKENS_POOL_MODULE_ADDRESS = "dred1fl48vsnmsdzcv85q5d2q4z5ajdha8yu3ksfndm"
 
 config = {
     "governance_voting_period": "180s",
@@ -177,7 +177,7 @@ def main():
 
     old_account = Account(
         pubkey = "Ayyx0UKVV+w9zsTTLTGylpUH0bPON0DVdseetjVNN9eC",
-        address = "stride1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
+        address = "dred1h2r2k24349gtx7e4kfxxl8gzqz8tn6zyc0sq2a"
     )
 
     print("📝 Opening {}... (it may take a while)".format(args.input_genesis))

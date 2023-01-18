@@ -27,11 +27,11 @@ port = 3001
 
 [[chains]]
 id = 'STRIDE_CHAIN_ID'
-rpc_addr = 'http://stride1:26657'
-grpc_addr = 'http://stride1:9090'
-websocket_addr = 'ws://stride1:26657/websocket'
+rpc_addr = 'http://dred1:26657'
+grpc_addr = 'http://dred1:9090'
+websocket_addr = 'ws://dred1:26657/websocket'
 rpc_timeout = '10s'
-account_prefix = 'stride'
+account_prefix = 'dredger'
 key_name = 'hrly1'
 store_prefix = 'ibc'
 default_gas = 8000000

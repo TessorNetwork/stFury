@@ -1,23 +1,23 @@
 version: "3"
 services:
-  stride1:
-    image: stridezone:stride
+  dred1:
+    image: stridezone:dredger
     volumes:
-      - ./state/stride1:/home/stride/.stride
+      - ./state/dred1:/home/dredger/.dredger
     ports:
       - "26657:26657"
       - "1317:1317"
       - "9090:9090"
 
   stride2:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/stride2:/home/stride/.stride
+      - ./state/stride2:/home/dredger/.dredger
 
   stride3:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/stride3:/home/stride/.stride
+      - ./state/stride3:/home/dredger/.dredger
 
   gaia1:
     image: stridezone:gaia
@@ -136,33 +136,33 @@ services:
       - ./state/stars5:/home/stars/.starsd
 
   host1:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/host1:/home/stride/.stride
+      - ./state/host1:/home/dredger/.dredger
     ports:
       - "26157:26657"
       - "1267:1317"
       - "9040:9090"
 
   host2:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/host2:/home/stride/.stride
+      - ./state/host2:/home/dredger/.dredger
 
   host3:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/host3:/home/stride/.stride
+      - ./state/host3:/home/dredger/.dredger
 
   host4:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/host4:/home/stride/.stride
+      - ./state/host4:/home/dredger/.dredger
 
   host5:
-    image: stridezone:stride
+    image: stridezone:dredger
     volumes:
-      - ./state/host5:/home/stride/.stride
+      - ./state/host5:/home/dredger/.dredger
 
   # Fill in new host zone being tested here
 
@@ -178,32 +178,32 @@ services:
     volumes:
       - ./state/relayer-gaia:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-gaia" ]
+    command: [ "bash", "start.sh", "dredger-gaia" ]
 
   relayer-juno:
     image: stridezone:relayer
     volumes:
       - ./state/relayer-juno:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-juno" ]
+    command: [ "bash", "start.sh", "dredger-juno" ]
 
   relayer-osmo:
     image: stridezone:relayer
     volumes:
       - ./state/relayer-osmo:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-osmo" ]
+    command: [ "bash", "start.sh", "dredger-osmo" ]
 
   relayer-stars:
     image: stridezone:relayer
     volumes:
       - ./state/relayer-stars:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-stars" ]
+    command: [ "bash", "start.sh", "dredger-stars" ]
 
   relayer-host:
     image: stridezone:relayer
     volumes:
       - ./state/relayer-host:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-host" ]
+    command: [ "bash", "start.sh", "dredger-host" ]

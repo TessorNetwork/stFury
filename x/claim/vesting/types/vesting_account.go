@@ -12,8 +12,8 @@ import (
 
 	sdkmath "cosmossdk.io/math"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	vestexported "github.com/Stride-Labs/stride/v4/x/claim/vesting/exported"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	vestexported "github.com/TessorNetwork/dredger/v4/x/claim/vesting/exported"
 )
 
 // Compile-time type assertions
@@ -193,7 +193,7 @@ func (bva BaseVestingAccount) MarshalYAML() (interface{}, error) {
 	return marshalYaml(out)
 }
 
-// Periodic Vesting Account (only for stride)
+// Periodic Vesting Account (only for dredger)
 // This vesting account works differently from the core periodic vesting account.
 var _ vestexported.VestingAccount = (*StridePeriodicVestingAccount)(nil)
 var _ authtypes.GenesisAccount = (*StridePeriodicVestingAccount)(nil)

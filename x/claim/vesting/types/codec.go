@@ -6,7 +6,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/msgservice"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/Stride-Labs/stride/v4/x/claim/vesting/exported"
+	"github.com/TessorNetwork/dredger/v4/x/claim/vesting/exported"
 )
 
 // RegisterLegacyAminoCodec registers the vesting interfaces and concrete types on the
@@ -20,7 +20,7 @@ func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
 // Interfaces and creates a registry of it's concrete implementations
 func RegisterInterfaces(registry types.InterfaceRegistry) {
 	registry.RegisterInterface(
-		"stride.vesting.v1beta1.VestingAccount",
+		"dredger.vesting.v1beta1.VestingAccount",
 		(*exported.VestingAccount)(nil),
 		&StridePeriodicVestingAccount{},
 	)

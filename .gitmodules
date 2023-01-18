@@ -10,7 +10,7 @@
 [submodule "deps/gaia"]
 	# Commit: 5b47714dd5607993a1a91f2b06a6d92cbb504721
 	path = deps/gaia
-	url = https://github.com/Stride-Labs/gaia.git
+	url = https://github.com/Dredger-Labs/gaia.git
 [submodule "deps/juno"]
 	# Commit: 955892041359443fbb5addd34c0ab8b66bd8d75c
 	path = deps/juno

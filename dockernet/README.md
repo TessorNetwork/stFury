@@ -1,4 +1,4 @@
-`/dockernet` contains infrastructure that is used for testing and development of the Stride protocol. The scripts here support docker-image based testing, some of which are heavily inspired by those used by Osmosis and Quicksilver (although there have been large deviations from the original implementations since). The relevant licenses are included here.
+`/dockernet` contains infrastructure that is used for testing and development of the Dredger protocol. The scripts here support docker-image based testing, some of which are heavily inspired by those used by Osmosis and Quicksilver (although there have been large deviations from the original implementations since). The relevant licenses are included here.
 
 ## Dockernet
 ### Adding a new host zone
@@ -49,7 +49,7 @@ while getopts sgojhir{n} flag; do
     volumes:
       - ./state/relayer-{chain_id}:/home/relayer/.relayer
     restart: always
-    command: [ "bash", "start.sh", "stride-{chain_id}" ]
+    command: [ "bash", "start.sh", "dredger-{chain_id}" ]
 ```
 * Add the following parameters to `dockernet/config.sh`, where `CHAIN` is the ID of the new host zone. For the relayer, you can use the mnemonic below or create your own. Note: you'll have to add the variables in the right places in `dockernet/config.sh`, as noted below.
 ```
@@ -81,7 +81,7 @@ RELAYER_{CHAIN}_ACCT=rly{add one since the account from the last host zone}
 # NOTE: Update the RELAYER_ACCTS variable directly!
 RELAYER_ACCTS=(... $RELAYER_{CHAIN}_ACCT)
 
-# stride1muwz5er4wq7svxnh5dgn2tssm92je5dwthxl7q
+# dred1muwz5er4wq7svxnh5dgn2tssm92je5dwthxl7q
 RELAYER_{CHAIN}_MNEMONIC="science depart where tell bus ski laptop follow child bronze rebel recall brief plug razor ship degree labor human series today embody fury harvest"
 # NOTE: Update the RELAYER_MNEMONICS variable directly!
 RELAYER_MNEMONICS=(
@@ -117,7 +117,7 @@ chains:
   ...
 paths:
   ...
-    stride-{new-host-zone}:
+    dredger-{new-host-zone}:
     src:
       chain-id: STRIDE
     dst:
@@ -148,7 +148,7 @@ CHAIN_NAME={NEW-HOST-ZONE} TRANSFER_CHANNEL_NUMBER=1 $BATS $INTEGRATION_TEST_FIL
 make build-docker build=n
 make start-docker
 ```
-* After the chain is running, run the integration tests to confirm the new host zone is compatible with Stride
+* After the chain is running, run the integration tests to confirm the new host zone is compatible with Dredger
 ```
 make test-integration-docker
 ```

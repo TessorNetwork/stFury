@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	_ "github.com/stretchr/testify/suite"
 
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	recordtypes "github.com/Stride-Labs/stride/v4/x/records/types"
-	stakeibctypes "github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	recordtypes "github.com/TessorNetwork/dredger/v4/x/records/types"
+	stakeibctypes "github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 type RedeemStakeState struct {
@@ -156,13 +156,13 @@ func (s *KeeperTestSuite) TestRedeemStake_InvalidCreatorAddress() {
 	tc := s.SetupRedeemStake()
 	invalidMsg := tc.validMsg
 
-	// cosmos instead of stride address
+	// cosmos instead of dredger address
 	invalidMsg.Creator = "cosmos1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8uf"
 	_, err := s.GetMsgServer().RedeemStake(sdk.WrapSDKContext(s.Ctx), &invalidMsg)
-	s.Require().EqualError(err, fmt.Sprintf("creator address is invalid: %s. err: invalid Bech32 prefix; expected stride, got cosmos: invalid address", invalidMsg.Creator))
+	s.Require().EqualError(err, fmt.Sprintf("creator address is invalid: %s. err: invalid Bech32 prefix; expected dredger, got cosmos: invalid address", invalidMsg.Creator))
 
-	// invalid stride address
-	invalidMsg.Creator = "stride1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8uf"
+	// invalid dredger address
+	invalidMsg.Creator = "dred1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8uf"
 	_, err = s.GetMsgServer().RedeemStake(sdk.WrapSDKContext(s.Ctx), &invalidMsg)
 	s.Require().EqualError(err, fmt.Sprintf("creator address is invalid: %s. err: decoding bech32 failed: invalid checksum (expected 8dpmg9 got yxp8uf): invalid address", invalidMsg.Creator))
 
@@ -172,7 +172,7 @@ func (s *KeeperTestSuite) TestRedeemStake_InvalidCreatorAddress() {
 	s.Require().EqualError(err, fmt.Sprintf("creator address is invalid: %s. err: empty address string is not allowed: invalid address", invalidMsg.Creator))
 
 	// wrong len address
-	invalidMsg.Creator = "stride1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8ufabc"
+	invalidMsg.Creator = "dred1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8ufabc"
 	_, err = s.GetMsgServer().RedeemStake(sdk.WrapSDKContext(s.Ctx), &invalidMsg)
 	s.Require().EqualError(err, fmt.Sprintf("creator address is invalid: %s. err: decoding bech32 failed: invalid character not part of charset: 98: invalid address", invalidMsg.Creator))
 }
@@ -203,10 +203,10 @@ func (s *KeeperTestSuite) TestRedeemStake_InvalidReceiverAddress() {
 
 	invalidMsg := tc.validMsg
 
-	// stride instead of cosmos address
-	invalidMsg.Receiver = "stride159atdlc3ksl50g0659w5tq42wwer334ajl7xnq"
+	// dredger instead of cosmos address
+	invalidMsg.Receiver = "dred159atdlc3ksl50g0659w5tq42wwer334ajl7xnq"
 	_, err := s.GetMsgServer().RedeemStake(sdk.WrapSDKContext(s.Ctx), &invalidMsg)
-	s.Require().EqualError(err, "invalid receiver address (invalid Bech32 prefix; expected cosmos, got stride): invalid address")
+	s.Require().EqualError(err, "invalid receiver address (invalid Bech32 prefix; expected cosmos, got dredger): invalid address")
 
 	// invalid cosmos address
 	invalidMsg.Receiver = "cosmos1g6qdx6kdhpf000afvvpte7hp0vnpzapuyxp8ua"

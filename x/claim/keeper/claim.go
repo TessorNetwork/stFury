@@ -14,10 +14,10 @@ import (
 	authvestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	"github.com/gogo/protobuf/proto"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	"github.com/Stride-Labs/stride/v4/x/claim/types"
-	vestingtypes "github.com/Stride-Labs/stride/v4/x/claim/vesting/types"
-	epochstypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	"github.com/TessorNetwork/dredger/v4/x/claim/types"
+	vestingtypes "github.com/TessorNetwork/dredger/v4/x/claim/vesting/types"
+	epochstypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
 )
 
 func (k Keeper) LoadAllocationData(ctx sdk.Context, allocationData string) bool {
@@ -516,7 +516,7 @@ func (k Keeper) ClaimCoinsForAction(ctx sdk.Context, addr sdk.AccAddress, action
 		strideVestingAcc, isStrideVestingAccount := acc.(*vestingtypes.StridePeriodicVestingAccount)
 		// Check if vesting tokens already exist for this account.
 		if !isStrideVestingAccount {
-			// Convert user account into stride veting account.
+			// Convert user account into dredger veting account.
 			baseAccount := k.accountKeeper.NewAccountWithAddress(ctx, addr)
 			if _, ok := baseAccount.(*authtypes.BaseAccount); !ok {
 				return nil, sdkerrors.Wrapf(sdkerrors.ErrInvalidRequest, "invalid account type; expected: BaseAccount, got: %T", baseAccount)
@@ -531,7 +531,7 @@ func (k Keeper) ClaimCoinsForAction(ctx sdk.Context, addr sdk.AccAddress, action
 			}})
 			k.accountKeeper.SetAccount(ctx, vestingAcc)
 		} else {
-			// Grant a new vesting to the existing stride vesting account
+			// Grant a new vesting to the existing dredger vesting account
 			periodLength := GetAirdropDurationForAction(action)
 			strideVestingAcc.AddNewGrant(vestingtypes.Period{
 				StartTime:  ctx.BlockTime().Unix(),

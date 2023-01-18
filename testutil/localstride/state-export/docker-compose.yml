@@ -2,7 +2,7 @@ version: "3"
 
 services:
 
-  stride:
+  dredger:
     image: stridezone:localstride
     build:
       context: ../../../
@@ -10,12 +10,12 @@ services:
         RUNNER_IMAGE: alpine:3.16
         GO_VERSION: 1.19
     volumes:
-      - ./scripts/start.sh:/home/stride/start.sh
-      - ./scripts/testnetify.py:/home/stride/testnetify.py
-      - ./state_export.json:/home/stride/state_export.json
-      - $HOME/.stride/:/home/stride/.stride/
+      - ./scripts/start.sh:/home/dredger/start.sh
+      - ./scripts/testnetify.py:/home/dredger/testnetify.py
+      - ./state_export.json:/home/dredger/state_export.json
+      - $HOME/.dredger/:/home/dredger/.dredger/
     entrypoint:
-      - /home/stride/start.sh
+      - /home/dredger/start.sh
     environment:
       - MONIKER=val
       - CHAIN_ID=localstride

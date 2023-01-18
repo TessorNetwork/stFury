@@ -2,7 +2,7 @@ version: "3"
 
 services:
 
-  strided:
+  dred:
     image: stridezone:localstride
     build:
       context: ../../../
@@ -10,10 +10,10 @@ services:
         RUNNER_IMAGE: alpine:3.15
         GO_VERSION: 1.18
     volumes:
-      - ./scripts/start.sh:/home/stride/start.sh
-      - $HOME/.stride/:/home/stride/.stride/
+      - ./scripts/start.sh:/home/dredger/start.sh
+      - $HOME/.dredger/:/home/dredger/.dredger/
     entrypoint:
-      - /home/stride/start.sh
+      - /home/dredger/start.sh
     ports:
       - 26657:26657
       - 1317:1317

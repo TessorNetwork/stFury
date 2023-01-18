@@ -16,10 +16,10 @@ if [[ "$UPGRADE_NAME" != "" ]]; then
     
     # Update binary #2 with the binary that was just compiled
     mkdir -p $UPGRADES/binaries
-    rm -f $UPGRADES/binaries/strided2
-    cp $DOCKERNET_HOME/../build/strided $UPGRADES/binaries/strided2
+    rm -f $UPGRADES/binaries/dred2
+    cp $DOCKERNET_HOME/../build/dred $UPGRADES/binaries/dred2
 
-    # Build a cosmovisor image with the old binary and replace the stride docker image with a new one
+    # Build a cosmovisor image with the old binary and replace the dredger docker image with a new one
     #  that has both binaries and is running cosmovisor
     # The reason for having a separate cosmovisor image is so we can cache the building of cosmovisor and the old binary
     echo "Building Cosmovisor..."
@@ -29,11 +29,11 @@ if [[ "$UPGRADE_NAME" != "" ]]; then
         --build-arg stride_admin_address=$STRIDE_ADMIN_ADDRESS \
         -f $UPGRADES/Dockerfile.cosmovisor .
 
-    echo "Re-Building Stride with Upgrade Support..."
+    echo "Re-Building Dredger with Upgrade Support..."
     docker build \
-        -t stridezone:stride \
+        -t stridezone:dredger \
         --build-arg upgrade_name=$UPGRADE_NAME \
-        -f $UPGRADES/Dockerfile.stride .
+        -f $UPGRADES/Dockerfile.dredger .
 
     echo "Done"
 fi

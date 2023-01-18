@@ -14,7 +14,7 @@ parent:
 # Interchain Query
 
 ## Abstract
-Stride uses interchain queries and interchain accounts to perform multichain liquid staking. The `interchainquery` module creates a framework that allows other modules to query other appchains using IBC. The `interchainquery` module is used to make bank balance ICQ queries to withdrawal account every N. The callback triggers ICA bank sends for 90% of the rewards to the delegation account and 10% to the stride hostzone revenue account. The ICA bank send logic is in x/stakeibc/keeper/callbacks.go.
+Dredger uses interchain queries and interchain accounts to perform multichain liquid staking. The `interchainquery` module creates a framework that allows other modules to query other appchains using IBC. The `interchainquery` module is used to make bank balance ICQ queries to withdrawal account every N. The callback triggers ICA bank sends for 90% of the rewards to the delegation account and 10% to the dredger hostzone revenue account. The ICA bank send logic is in x/stakeibc/keeper/callbacks.go.
 
 ## Contents
 
@@ -54,7 +54,7 @@ The `interchainquery` module keeps `Query` objects and modifies the information 
 
 The `interchainquery` module emits an event at the end of every 3 `stride_epoch`s (e.g. 15 minutes on local testnet).
 
-The purpose of this event is to send interchainqueries that query data about staking rewards, which Stride uses to reinvest (aka autocompound) staking rewards.
+The purpose of this event is to send interchainqueries that query data about staking rewards, which Dredger uses to reinvest (aka autocompound) staking rewards.
 
 ```go
 			event := sdk.NewEvent(

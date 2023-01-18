@@ -23,7 +23,7 @@ import (
 	"github.com/tendermint/tendermint/crypto/ed25519"
 	tmtypes "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/Stride-Labs/stride/v4/app"
+	"github.com/TessorNetwork/dredger/v4/app"
 )
 
 var (
@@ -100,11 +100,11 @@ func CreateRandomAccounts(numAccts int) []sdk.AccAddress {
 	return testAddrs
 }
 
-// Initializes a ibctesting coordinator to keep track of Stride and a host chain's state
+// Initializes a ibctesting coordinator to keep track of Dredger and a host chain's state
 func (s *AppTestHelper) SetupIBCChains(hostChainID string) {
 	s.Coordinator = ibctesting.NewCoordinator(s.T(), 0)
 
-	// Initialize a stride testing app by casting a StrideApp -> TestingApp
+	// Initialize a dredger testing app by casting a StrideApp -> TestingApp
 	ibctesting.DefaultTestingAppInit = app.InitStrideIBCTestingApp
 	s.StrideChain = ibctesting.NewTestChain(s.T(), s.Coordinator, StrideChainID)
 
@@ -120,7 +120,7 @@ func (s *AppTestHelper) SetupIBCChains(hostChainID string) {
 	s.IbcEnabled = true
 }
 
-// Creates clients, connections, and a transfer channel between stride and a host chain
+// Creates clients, connections, and a transfer channel between dredger and a host chain
 func (s *AppTestHelper) CreateTransferChannel(hostChainID string) {
 	// If we have yet to create the host chain, do that here
 	if !s.IbcEnabled {
@@ -133,15 +133,15 @@ func (s *AppTestHelper) CreateTransferChannel(hostChainID string) {
 	s.TransferPath = NewTransferPath(s.StrideChain, s.HostChain)
 	s.Coordinator.Setup(s.TransferPath)
 
-	// Replace stride and host apps with those from TestingApp
+	// Replace dredger and host apps with those from TestingApp
 	s.App = s.StrideChain.App.(*app.StrideApp)
 	s.HostApp = s.HostChain.GetSimApp()
 	s.Ctx = s.StrideChain.GetContext()
 
 	// Finally confirm the channel was setup properly
-	s.Require().Equal(ibctesting.FirstClientID, s.TransferPath.EndpointA.ClientID, "stride clientID")
-	s.Require().Equal(ibctesting.FirstConnectionID, s.TransferPath.EndpointA.ConnectionID, "stride connectionID")
-	s.Require().Equal(ibctesting.FirstChannelID, s.TransferPath.EndpointA.ChannelID, "stride transfer channelID")
+	s.Require().Equal(ibctesting.FirstClientID, s.TransferPath.EndpointA.ClientID, "dredger clientID")
+	s.Require().Equal(ibctesting.FirstConnectionID, s.TransferPath.EndpointA.ConnectionID, "dredger connectionID")
+	s.Require().Equal(ibctesting.FirstChannelID, s.TransferPath.EndpointA.ChannelID, "dredger transfer channelID")
 
 	s.Require().Equal(ibctesting.FirstClientID, s.TransferPath.EndpointB.ClientID, "host clientID")
 	s.Require().Equal(ibctesting.FirstConnectionID, s.TransferPath.EndpointB.ConnectionID, "host connectionID")
@@ -349,7 +349,7 @@ func GenerateTestAddrs() (string, string) {
 	return validAddr, invalidAddr
 }
 
-// Modifies sdk config to have stride address prefixes (used for non-keeper tests)
+// Modifies sdk config to have dredger address prefixes (used for non-keeper tests)
 func SetupConfig() {
 	app.SetupConfig()
 }

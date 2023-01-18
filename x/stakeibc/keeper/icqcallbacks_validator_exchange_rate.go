@@ -6,10 +6,10 @@ import (
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/Stride-Labs/stride/v4/utils"
-	epochtypes "github.com/Stride-Labs/stride/v4/x/epochs/types"
-	icqtypes "github.com/Stride-Labs/stride/v4/x/interchainquery/types"
-	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
+	"github.com/TessorNetwork/dredger/v4/utils"
+	epochtypes "github.com/TessorNetwork/dredger/v4/x/epochs/types"
+	icqtypes "github.com/TessorNetwork/dredger/v4/x/interchainquery/types"
+	"github.com/TessorNetwork/dredger/v4/x/stakeibc/types"
 )
 
 // ValidatorCallback is a callback handler for validator queries.
@@ -56,10 +56,10 @@ func ValidatorExchangeRateCallback(k Keeper, ctx sdk.Context, args []byte, query
 		return sdkerrors.Wrapf(types.ErrValidatorNotFound, "no registered validator for address (%s)", queriedValidator.OperatorAddress)
 	}
 
-	// Get the stride epoch number
+	// Get the dredger epoch number
 	strideEpochTracker, found := k.GetEpochTracker(ctx, epochtypes.STRIDE_EPOCH)
 	if !found {
-		k.Logger(ctx).Error("failed to find stride epoch")
+		k.Logger(ctx).Error("failed to find dredger epoch")
 		return sdkerrors.Wrapf(sdkerrors.ErrNotFound, "no epoch number for epoch (%s)", epochtypes.STRIDE_EPOCH)
 	}
 
